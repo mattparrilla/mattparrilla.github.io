@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Improving The Weather On Twitter</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="This is my home on the web to share thoughts, host projects, and to tell my own story.">
+    <meta name="author" content="@mattparrilla">
+
+
+    
+    <meta property="og:description" content="How I used National Weather Service data and imagery to make a network of twitter bots that post regional radar GIFs with improved palettes and projections." />
+    <meta property="fb:admins" content="5735853" />
+    <meta property="og:title" content="Improving The Weather On Twitter" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://localhost/post/improving-the-weather-on-twitter/" />
+    <meta property="og:site_name" content="matthewparrilla.com" />
+    <meta name="twitter:site" content="@mattparrilla">
+    <meta name="twitter:title" content="Improving The Weather On Twitter">
+    <meta name="twitter:description" content="How I used National Weather Service data and imagery to make a network of twitter bots that post regional radar GIFs with improved palettes and projections.">
+    <meta name="twitter:creator" content="@mattparrilla">
+    
+        <meta name="twitter:card" content="summary">
+    
+
+
+    <link href="/static/css/style.css?ver=0.8" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,500,600,300,200|Roboto:500,600,300,100' rel='stylesheet' type='text/css'>
+    <link rel="shortcut icon" href="/static/favicon.ico">
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-31358980-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</head>
+
+<body>
+
+<div id="top_border"></div>
+<div id="page_container">
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+            <div class="post" id="improving-the-weather-on-twitter">
+                <div id="title_date">
+                    <p class="date">July 29, 2015</p>
+                    <h1>Improving The Weather On Twitter</h1>
+                    <h2>Using NWS Data To Make Animated Radar GIFs</h2>
+                </div>
+                <p>I consume a lot of media on Twitter. My <a href="https://twitter.com/nwsburlington">local National Weather Service branch</a> does an incredible job on the platform, providing relevant content on everything from imminent weather events to long-term climate trends. But every once in a while, they'll tweet an image like this:</p>
+<p><img class="img-responsive img-centered" src="/static/img/nws-radar-arrows.png" alt="NWS radar image with arrows, odd projection, and rainbow palette"></p>
+<p>There are a few problems with this, namely:</p>
+<h3>1. There are arrows</h3>
+<p>Weather is a dynamic, complex beast that rarely moves in straight lines. Why limit ourselves to only static images?</p>
+<p>The NWS has the data, so we should animate it.</p>
+<h3>2. The rainbow palette</h3>
+<p>The problem with the rainbow pallete is that it doesn't vary in a perceptually meaningful way. While it does increase in hue between steps&mdash;which it doesn't do evenly&mdash;its luminosity bounces all over the place, which is the most effective way to encode information using color. And if you're color-blind, good luck!</p>
+<p>Choosing a palette is definitely tricky. The rainbow palette is both familiar and effective at showing intense storms&mdash;my eyes always go straight for the red. But we're trying to build something better, so let's try something that is more perceptually intuitive and accessible.</p>
+<p>(Check out <a href="http://journals.ametsoc.org/doi/full/10.1175/BAMS-D-13-00155.1">this excellent article</a> to get up to speed on choosing effective palettes for visualizations. Lots of great stuff in there.)</p>
+<h3>3. That projection</h3>
+<p>Many federal agencies use the NAD83 (EPSG:4269) projection and this is the de facto projection of the National Weather Service. Unlike the palette, my preference for a different projection is more a matter of taste than science. Having grown up on the web, I'm used to Mercator, not NAD83, which makes the familar shape of the continental US looked stretched out and squished to me.</p>
+<div class="row">
+    <div class="projection col-sm-6">
+        <img class="img-responsive" src="/static/img/wxgif-post/epsg-4269.png" alt="Nad-83 projection">
+        <p class="projection-label">NAD-83</p>
+    </div>
+    <div class="projection col-sm-6">
+        <img class="img-responsive" src="/static/img/wxgif-post/epsg-3857.png" alt="Web Mercator projection">
+        <p class="projection-label">Web Mercator</p>
+    </div>
+</div>
+
+<p>Web Mercator (EPSG:3857) does a pretty good job of representing the continental US, so let's use it.</p>
+<h3>4. There are arrows!</h3>
+<p>In fairness to the National Weather Service, they've <a href="https://twitter.com/NWSBurlington/status/614879343085535232">started tweeting GIFs</a> recently, though there's still room for improvement. In addition to changing the palette and projection, that frame rate is pretty low.</p>
+<hr>
+
+<h2>Building Something Better</h2>
+<p>One of the wonderful things about the National Weather Service is that most of their data is publicly available. It's not accessible via some sexy API, but hey, at least it's on the web. Let's use it to build something better!</p>
+<p>Here's what the raw <a href="http://radar.weather.gov/GIS.html">NWS images</a> look like:</p>
+<p><img class="img-responsive img-centered" src="/static/img/conus-source.gif"/></p>
+<h3>Step 1: Change The Projection</h3>
+<p><a href="https://en.wikipedia.org/wiki/GDAL">GDAL</a> comes with a great command line utility called <a href="http://www.gdal.org/gdalwarp.html"><code>gdalwarp</code></a> that ended up being the right tool for the job. It handles reprojections, and I was able to use <code>os.system</code> to execute the command in my Python script.</p>
+<p>Here's how the NWS image is looking after reprojection:</p>
+<p><img class="img-centered img-responsive" src="/static/img/conus-new-projection.png"/></p>
+<h3>Step 2: Change The Palette</h3>
+<p>Changing the palette was more straightforward though I'm sure there are much more elegant ways of getting this done. I ended up creating a map between the NWS rainbow palette and a palette of my own choosing and parsing the image pixel by pixel and transforming the RGB values based on the mapping. I used <a href="https://python-pillow.github.io/">Pillow</a> for image processing.</p>
+<div class="codehilite"><pre><span class="k">def</span> <span class="nf">change_palette</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">purple_yellow_red</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Takes an image file and changes the palette&quot;&quot;&quot;</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;.&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">image</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s">&quot;RGBA&quot;</span><span class="p">)</span>
+
+    <span class="n">pixels</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+            <span class="k">if</span> <span class="n">pixels</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="ow">in</span> <span class="n">nws_colors</span><span class="p">:</span>
+                <span class="n">pixels</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">change_color</span><span class="p">(</span><span class="n">pixels</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span> <span class="n">palette</span><span class="p">)</span>
+
+    <span class="n">filename</span> <span class="o">=</span> <span class="s">&quot;gif/new_palette/</span><span class="si">%s</span><span class="s">.</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s">&quot;png&quot;</span><span class="p">)</span>
+    <span class="n">im</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">&quot;PNG&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">filename</span>
+</pre></div>
+
+
+<p>With 3,000 by 2,000 pixels per image and around 25 images per animated GIF, that's 50,000,000 color changes, making this the most computationally expensive step in the process. If there's a better way to do this, I'd love to hear about it!</p>
+<p>Here's how we're looking with the new palette:</p>
+<p><img class="img-responsive img-centered" src="/static/img/conus-new-palette.png"/></p>
+<h3>Step 3: Resize For Publication</h3>
+<p>I then resized the images to their display dimensions. I did this after changing the palette, even though it would have cut down processing time tremendously to do it the other way around, because it resulted in a higher quality image.</p>
+<h3>Step 4: Add A Basemap</h3>
+<p>Using <a href="https://www.mapbox.com/tilemill/">Tilemill</a> I created a high-contrast basemap. I initially experimented with more <a href="https://twitter.com/mattparrilla/status/513012778257645570">information dense basemap's</a> by including elevation data and lakes and rivers before eventually deciding to go for simplicity.</p>
+<p>I also added a timestamp and a small text logo using Pillow:</p>
+<p><img class="img-responsive img-centered" src="/static/img/conus-basemap.gif"/></p>
+<h3>Step 5: Combine Images Into A GIF</h3>
+<p>Finally, it's time for the payoff!!</p>
+<p>Using an awesome Python module I found floating around the web called <a href="https://github.com/mattparrilla/wxGIF/blob/master/libs/images2gif.py">images2gif.py</a>, I was able to pass an array of radar images to a function that magically returned an animated GIF of my new and improved radar images.</p>
+<p>So voila! Here we have it, our final product:</p>
+<p><img class="img-responsive img-centered" src="/static/img/Conus.gif"/></p>
+<h2>Publishing To Twitter</h2>
+<p>I made this thing because I wanted an improved radar experience in my Twitter feed, so Twitter is where I've chosen to publish these images. This meant dealing with a few constraints.</p>
+<p>At the time, Twitter didn't provide native video support, so that meant GIFs. Interestingly enough, Twitter converts GIFs to video on their platform. (While Twitter now supports video, they don't yet have a public API for uploading video, so GIFs are still the format of choice for auto-uploading animations.)</p>
+<p>Further constraints include display dimensions (maximum width of 560px) and a maximum file size of 3MB. The more information dense images end up being larger in size, so to keep files under 3MB the script removes slides from the front-end of the animation until they fit under 3MB.</p>
+<h3>Creating A Bot Army</h3>
+<p>The National Weather Service groups radar imagery into 10 regions in the continental United States. In trying to balance file size and image quality, I found that it made sense for me to slice the national map into 14 regions. So counting the continental US radar, I needed to create 15 Twitter accounts.</p>
+<p>Registering the accounts and providing my application with the proper permissions was the most arduous part of this whole process.</p>
+<p>With Twitter accounts created and authentication keys in place, I pushed the project to Webfaction and created a cronjob that would run every two hours. The job would kick off scripts that download and process the data, generate the GIFs, and push them to Twitter.</p>
+<div class="row weather-gif-list">
+<div class="col-xs-12">
+    <h2>Full List of Twitter Bots</h2>
+</div>
+<div class="col-sm-4">
+<a class="bot" href="https://twitter.com/wxGIF" alt="Twitter Handle for Continental US region">
+    <p class="bot-handle">@wxGIF</p>
+    <p class="bot-region">Continental US</p>
+</a>
+
+<a class="bot" href="https://twitter.com/wxGIF_MidAtl" alt="Twitter Handle for Mid-Atlantic region">
+    <p class="bot-handle">@wxGIF_MidAtl</p>
+    <p class="bot-region">Mid-Atlantic</p>
+</a>
+
+<a class="bot" href="https://twitter.com/wxGIF_Texas" alt="Twitter Handle for Texas region">
+    <p class="bot-handle">@wxGIF_Texas</p>
+    <p class="bot-region">Texas</p>
+</a>
+
+<a class="bot" href="https://twitter.com/wxGIF_GulfCoast" alt="Twitter Handle for Gulf Coast region">
+    <p class="bot-handle">@wxGIF_GulfCoast</p>
+    <p class="bot-region">Gulf Coast</p>
+</a>
+
+<a class="bot" href="https://twitter.com/IntMtnWestWxGIF" alt="Twitter Handle for Intermountain West region">
+    <p class="bot-handle">@IntMtnWestWxGIF</p>
+    <p class="bot-region">Intermountain West</p>
+</a>
+</div>
+
+<div class="col-sm-4">
+<a class="bot" href="https://twitter.com/NWwxGif" alt="Twitter Handle for Pacific Northwest region">
+    <p class="bot-handle">@NWwxGif</p>
+    <p class="bot-region">Pacific Northwest</p>
+</a>
+
+<a class="bot" href="https://twitter.com/GreatLakesWxGIF" alt="Twitter Handle for Great Lakes region">
+    <p class="bot-handle">@GreatLakesWxGIF</p>
+    <p class="bot-region">Great Lakes</p>
+</a>
+
+<a class="bot" href="https://twitter.com/NRockiesWxGIF" alt="Twitter Handle for Norther Rockies region">
+    <p class="bot-handle">@NRockiesWxGIF</p>
+    <p class="bot-region">Norther Rockies</p>
+</a>
+
+<a class="bot" href="https://twitter.com/PacificSWwxGIF" alt="Twitter Handle for Pacific Southwest region">
+    <p class="bot-handle">@PacificSWwxGIF</p>
+    <p class="bot-region">Pacific Southwest</p>
+</a>
+
+<a class="bot" href="https://twitter.com/SoutheastWxGIF" alt="Twitter Handle for Southeast region">
+    <p class="bot-handle">@SoutheastWxGIF</p>
+    <p class="bot-region">Southeast</p>
+</a>
+
+</div>
+
+<div class="col-sm-4">
+<a class="bot" href="https://twitter.com/NortheastWxGIF" alt="Twitter Handle for Northeast region">
+    <p class="bot-handle">@NortheastWxGIF</p>
+    <p class="bot-region">Northeast</p>
+</a>
+
+<a class="bot" href="https://twitter.com/NoMissWxGIF" alt="Twitter Handle for Northern Mississippi Valley region">
+    <p class="bot-handle">@NoMissWxGIF</p>
+    <p class="bot-region">Northern Mississippi Valley</p>
+</a>
+
+<a class="bot" href="https://twitter.com/PlainsWxGIF" alt="Twitter Handle for Great Plains region">
+    <p class="bot-handle">@PlainsWxGIF</p>
+    <p class="bot-region">Great Plains</p>
+</a>
+
+<a class="bot" href="https://twitter.com/DeepSouthWxGIF" alt="Twitter Handle for Deep South region">
+    <p class="bot-handle">@DeepSouthWxGIF</p>
+    <p class="bot-region">Deep South</p>
+</a>
+
+<a class="bot" href="https://twitter.com/SoRockiesWxGIF" alt="Twitter Handle for Southern Rockies region">
+    <p class="bot-handle">@SoRockiesWxGIF</p>
+    <p class="bot-region">Southern Rockies</p>
+</a>
+</div>
+
+</div>
+
+<h2>Interested?</h2>
+<p>You can view the code for this project on <a href="https://github.com/mattparrilla/wxGIF">GitHub</a> and if you like this sort of stuff, you should <a href="https://twitter.com/mattparrilla">follow me on twitter</a>.</p>
+<hr>
+
+<div class="row featured-stuff">
+    <h2>Other Stuff By Matt</h2>
+    <div class="col-md-6 feature">
+        <a href="http://mattparrilla.github.io/mansfield-stake" alt="Interactive graphic of snow depth on Mt. Mansfield">
+            <img class="img-responsive img-bordered" src="/static/img/mansfield.png" alt="Mt. Mansfield Snow Depth graph">
+            <h4>Mt. Mansfield Snow Depth</h3>
+        </a>
+        <p>An interactive graphic that allows users to explore the snow depth on Mt. Mansfield for any season on record. This visualization was retweeted by <a href="http://en.wikipedia.org/wiki/Edward_Tufte">Edward Tufte</a> (who <a href="http://www.amazon.com/The-Visual-Display-Quantitative-Information/dp/0961392142">wrote the book</a> on data visualization) and was <a href="http://knowmore.washingtonpost.com/2015/02/20/60-years-of-snowfall-visualized/">shared</a> by the Washington Post on their "Know More" blog.</p>
+    </div>
+    <div class="col-md-6 feature">
+        <a href="http://www.vpr.net/apps/lyme-disease" alt="VPR report on the spread of Lyme Disease">
+            <img class="img-responsive img-bordered" src="/static/img/vermont-lyme.png" alt="Animated radar of continental US">
+            <h4>Lyme On The Rise</h3>
+        </a>
+        <p>A data project for Vermont Public Radio on the growth of Lyme Disease over the last 15 years. Includes an interactive bar graph of New England and small multiples of Vermont and the continental United States showing the infection's expanded range. Published in the open with links to the data.</p>
+    </div>
+</div>
+
+<p class="centered-with-space">See the rest - <a href="/">matthewparrilla.com</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+<footer>
+    <div class="container">
+        <div class="contact row">
+            <a href="http://twitter.com/mattparrilla" alt="Matt's twitter profile" class="service col-sm-4">
+                <p class="icon"><i class="icon ion-social-twitter"></i></p>
+                <p>@mattparrilla</p>
+            </a>
+            <a href="http://github.com/mattparrilla" alt="Matt's github profile" class="service col-sm-4">
+                <p class="icon"><i class="icon ion-social-github"></i></p>
+                <p>mattparrilla</p>
+            </a>
+            <a href="mailto:matthew.parrilla@gmail.com" alt="Email Matt" class="service email col-sm-4">
+                <p class="icon"><i class="icon ion-email"></i></p>
+                <p>matthew.parrilla@gmail.com</p>
+            </a>
+        </div>
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+.weather-gif-list {
+    margin-top: 40px;
+    padding: 20px;
+    background: $blockquote-bg;
+
+    h2 {
+        margin-top: 0;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .bot {
+        margin-bottom: 20px;
+        display: block;
+
+        &:hover {
+            text-decoration: none;
+        }
+
+        p {
+            color: $blue;
+            margin-bottom: 0;
+            line-height: 1.3em;
+        }
+
+        .bot-handle {
+            font-size: 20px;
+            font-weight: 300;
+        }
+
+        .bot-region {
+            color: $gray;
+            font-size: 16px;
+        }
+    }
+
+}
+
+.projection {
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    img {
+        margin-bottom: 10px;
+        border: 1px solid lighten($gray, 20%);
+    }
+
+    .projection-label {
+        font-size: 14px;
+        text-align: center;
+        color: $gray;
+    }
+}
+
+#improving-the-weather-on-twitter {
+    hr:last-child {
+        margin: 80px 0;
+    }
+}

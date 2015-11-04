@@ -1,0 +1,20 @@
+{
+  "name": "matt's blog",
+  "description": "The personal blog of Matthew Parrilla",
+  "private": "true",
+  "version": "0.1.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mattparrilla/blog.git"
+  },
+  "devDependencies": {
+    "grunt-browser-sync": "^0.9.1",
+    "grunt-contrib-compass": "^1.0.3",
+    "grunt-contrib-concat": "~0.4.0",
+    "grunt-contrib-imagemin": "^0.7.0",
+    "grunt-contrib-uglify": "^0.4.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-modernizr": "^0.5.2",
+    "grunt-parallel": "^0.3.1"
+  }
+}
