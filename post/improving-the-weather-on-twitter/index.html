@@ -65,7 +65,7 @@
 <p>Choosing a palette is definitely tricky. The rainbow palette is both familiar and effective at showing intense storms&mdash;my eyes always go straight for the red. But we're trying to build something better, so let's try something that is more perceptually intuitive and accessible.</p>
 <p>(Check out <a href="http://journals.ametsoc.org/doi/full/10.1175/BAMS-D-13-00155.1">this excellent article</a> to get up to speed on choosing effective palettes for visualizations. Lots of great stuff in there.)</p>
 <h3>3. That projection</h3>
-<p>Many federal agencies use the NAD83 (EPSG:4269) projection and this is the de facto projection of the National Weather Service. Unlike the palette, my preference for a different projection is more a matter of taste than science. Having grown up on the web, I'm used to Mercator, not NAD83, which makes the familar shape of the continental US looked stretched out and squished to me.</p>
+<p>Many federal agencies use the NAD83 (EPSG:4269) projection and this is the de facto projection of the National Weather Service. Unlike the palette, my preference for a different projection is more a matter of taste than science. Having grown up on the web, I'm used to Mercator, not NAD83, which makes the familar shape of the continental US look stretched out and squished to me.</p>
 <div class="row">
     <div class="projection col-sm-6">
         <img class="img-responsive" src="/static/img/wxgif-post/epsg-4269.png" alt="Nad-83 projection">
@@ -78,7 +78,7 @@
 </div>
 
 <p>Web Mercator (EPSG:3857) does a pretty good job of representing the continental US, so let's use it.</p>
-<h3>4. There are arrows!</h3>
+<h3>4. Again: the arrows!</h3>
 <p>In fairness to the National Weather Service, they've <a href="https://twitter.com/NWSBurlington/status/614879343085535232">started tweeting GIFs</a> recently, though there's still room for improvement. In addition to changing the palette and projection, that frame rate is pretty low.</p>
 <hr>
 
@@ -118,7 +118,7 @@
 <h3>Step 3: Resize For Publication</h3>
 <p>I then resized the images to their display dimensions. I did this after changing the palette, even though it would have cut down processing time tremendously to do it the other way around, because it resulted in a higher quality image.</p>
 <h3>Step 4: Add A Basemap</h3>
-<p>Using <a href="https://www.mapbox.com/tilemill/">Tilemill</a> I created a high-contrast basemap. I initially experimented with more <a href="https://twitter.com/mattparrilla/status/513012778257645570">information dense basemap's</a> by including elevation data and lakes and rivers before eventually deciding to go for simplicity.</p>
+<p>Using <a href="https://www.mapbox.com/tilemill/">Tilemill</a> I created a high-contrast basemap. I initially experimented with more <a href="https://twitter.com/mattparrilla/status/513012778257645570">information dense basemaps</a> by including elevation data and lakes and rivers before eventually deciding to go for simplicity.</p>
 <p>I also added a timestamp and a small text logo using Pillow:</p>
 <p><img class="img-responsive img-centered" src="/static/img/conus-basemap.gif"/></p>
 <h3>Step 5: Combine Images Into A GIF</h3>
@@ -127,7 +127,7 @@
 <p>So voila! Here we have it, our final product:</p>
 <p><img class="img-responsive img-centered" src="/static/img/Conus.gif"/></p>
 <h2>Publishing To Twitter</h2>
-<p>I made this thing because I wanted an improved radar experience in my Twitter feed, so Twitter is where I've chosen to publish these images. This meant dealing with a few constraints.</p>
+<p>I made this because I wanted an improved radar experience in my Twitter feed, so Twitter is where I've chosen to publish these images. This meant dealing with a few constraints.</p>
 <p>At the time, Twitter didn't provide native video support, so that meant GIFs. Interestingly enough, Twitter converts GIFs to video on their platform. (While Twitter now supports video, they don't yet have a public API for uploading video, so GIFs are still the format of choice for auto-uploading animations.)</p>
 <p>Further constraints include display dimensions (maximum width of 560px) and a maximum file size of 3MB. The more information dense images end up being larger in size, so to keep files under 3MB the script removes slides from the front-end of the animation until they fit under 3MB.</p>
 <h3>Creating A Bot Army</h3>
