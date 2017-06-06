@@ -1,0 +1,52 @@
+$green: #2d9683;
+$green2: #b7dc4e;
+$black: #3f4444;
+$orange: #ed8b00;
+$red: #e04e39;
+$gray: #75787b;
+$blue: lighten(#2c5eb0, 5%);
+$font: 'Roboto';
+$whitered: lighten($red, 45%);
+$tablet: 768px;
+$big-screen: 1200px;
+$laptop: 1000px;
+$phone: 500px;
+
+@mixin wt_link($font-color, $px) {
+    color: $font-color;
+}
+
+html, body {
+    font-family: $font, sans-serif;
+    color: $black;
+    background: #fcfffc;
+    height: 100%;
+    font-size: 16px;
+    font-weight: 300;
+    @media (min-width: $tablet) {
+        font-size: 18px;
+    }
+    @media (min-width: $laptop) {
+        font-size: 20px;
+    }
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: $font;
+}
+
+p {
+    color: $black;
+}
+
+#top_border {
+    height: 2px;
+    width: 100%;
+    background: lighten($red, 5%);
+    position: fixed;
+    z-index: 100;
+}
+
+a {
+    color: $blue;
+}

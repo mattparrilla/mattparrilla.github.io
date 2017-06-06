@@ -45,7 +45,9 @@ p {
     background: lighten($red, 5%);
     position: fixed;
     z-index: 100;
+    top: 0;
 }
+
 
 a {
     color: $blue;
