@@ -11,10 +11,7 @@ footer {
     z-index: 20;
     background: $red;
     padding: 70px 0 80px;
-    margin-top: -123px;
-    @media (max-width: $tablet) {
-        margin-top: -377px;
-    }
+
     a {
         p {
             color: $whitered;
