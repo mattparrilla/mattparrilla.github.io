@@ -20,8 +20,8 @@ def index():
 
 
 # Why <path:path> and not <path>?
-@app.route('/<path:path>/')
-def page(path):
+@app.route('/post/<path:path>/')
+def post(path):
     page = pages.get_or_404(path)
     return render_template('page.html', page=page)
 
