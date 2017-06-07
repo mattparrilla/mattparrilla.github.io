@@ -1,5 +1,7 @@
 # matthewparrilla.com
 
+Note, the default branch for this repo is `default` not `master` (which is used as the by GitHub pages).
+
 ## Set Up
 
 1. Install compass dependency
@@ -36,4 +38,10 @@ Build website from flask app:
 $ python sitebuilder.py build
 ```
 
-Then commit and push. GitHub pages uses the `docs` directory (by [convention](https://help.github.com/articles/configuring-a-publishing-source-for-github-pages/#publishing-your-github-pages-site-from-a-docs-folder-on-your-master-branch)) as the root for the site.
+Push `build/` to master.
+
+```
+$ git subtree push --prefix build origin master
+```
+
+This is necessary because github custom domains require you use the `master` branch without giving you the ability to specify a root.
