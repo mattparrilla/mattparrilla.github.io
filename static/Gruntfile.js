@@ -112,6 +112,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-parallel');
 
     // What tasks should be run when "grunt" is entered in the command line
-    grunt.registerTask('default', ['browserSync', 'watch']);
+    grunt.registerTask('default', ['watch']);
 
 };
