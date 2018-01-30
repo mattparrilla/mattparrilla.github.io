@@ -114,4 +114,6 @@ module.exports = function (grunt) {
     // What tasks should be run when "grunt" is entered in the command line
     grunt.registerTask('default', ['watch']);
 
+    // browsersync wasn't working
+    //grunt.registerTask('default', ['browserSync', 'watch']);
 };
