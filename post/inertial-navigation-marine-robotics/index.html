@@ -72,6 +72,17 @@
         <img alt="Roll, pitch, yaw diagram" src="../../static/img/roll_pitch_yaw.png" />
         <p>Attitude is our measurement of orientation and is composed of roll, pitch, and heading. Roll is the rotation about X, pitch rotation about Y, and heading is rotation about Z.</p>
         <p>Together, position and attitude tell us where our robot is and how it is oriented in the earth frame.</p>
+        <div class="aside">
+          <h4>Frames of Reference</h4>
+          <p>While talking about our navigation solution we glossed over an important concept, the frame of reference. A frame of reference is a defined origin for our coordinate system. In robotics, we most often talk about three frames of reference:</p>
+          <ul>
+            <li>Earth Frame</li>
+            <li>Body Frame</li>
+            <li>Sensor Frame</li>
+          </ul>
+          <p>The earth frame is the easiest to understand, it's how we generally think of position. You're at a given latitude, longitude, and elevation at any given moment. That's your position in the earth frame.</p>
+          <p>Body frame is a more subjective measurement as it is relative to the vehicle. </p>
+        </div>
         <h2>Inertial Sensors</h2>
         <p>First we'll review the sensors that make up our inertial navigation system.</p>
         <h2>Accelerometer</h2>
