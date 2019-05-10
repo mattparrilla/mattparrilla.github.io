@@ -1,6 +1,7 @@
 svg {
   display: block;
   margin: 50px auto;
+  border: 1px solid #ddd;
 }
 
 .line {
@@ -12,9 +13,19 @@ svg {
   margin: 50px auto 30px;
 }
 
+pre {
+  font-size: 18px;
+  margin: 40px 0;
+}
+
+/* TODO change axis color, currently its #000 */
+
+svg text {
+  font-family: monospace;
+}
+
 .axis {
-  stroke-width: 3px;
-  stroke: #3d3d3d;
+  stroke-width: 2px;
 }
 
 .axis text {
@@ -22,15 +33,13 @@ svg {
   stroke-width: 1px;
   font-size: 12px;
   font-weight: 100;
-  font-family: monospace;
 }
 
-.label {
-  font-size: 12px;
-  text-align: center;
+.axis_label {
+  font-size: 14px;
 }
 
-pre {
-  font-size: 18px;
-  margin: 40px 0;
+.axis .tick_0, .axis .tick_100, .axis .tick_200,
+.axis .tick_900, .axis .tick_1000 {
+  stroke: #111;
 }

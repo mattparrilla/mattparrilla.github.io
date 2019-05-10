@@ -15,8 +15,8 @@ const plotHeadingErrors = (width) => {
   const yPos = error => d => y(Math.cos(error * Math.PI / 180) * d);
 
   // IMPORTANT: ratio of width to height needs to be the same (1/2)
-  x.domain([-15, 185]);  // 200 meters wide
-  y.domain([910, 1010]); // 100 meters tall
+  x.domain([-15, 205]);   // 200 meters wide
+  y.domain([875, 1005]); // 100 meters tall
 
   const line = error => d3.line()
     .defined(d => Math.cos(error * Math.PI / 180) * (d + 1) >= y.domain()[0])
@@ -78,13 +78,29 @@ const plotHeadingErrors = (width) => {
   plot.append("g")
     .attr("class", "axis x-axis")
     .attr("transform", `translate(0,${height - margin.bottom})`)
-    .call(d3.axisBottom(x));
+    .call(d3.axisBottom(x).tickArguments([20]));
 
   plot.append("g")
     .attr("class", "axis y-axis")
     .attr("transform", `translate(${margin.left},0)`)
     .call(d3.axisLeft(y));
 
+  const ticks = d3.selectAll(".tick text")
+  ticks.attr("class", d => `tick_${d}`);
+
+  plot.append("text")
+    .attr("class", "axis_label")
+    .attr("x", width / 2 - 80)
+    .attr("y", height - 10)
+    .text("Easting Distance Travelled");
+
+  plot.append("text")
+    .attr("class", "axis_label")
+    .attr("x", 20)
+    .attr("y", -70)
+    .attr("transform", `rotate(90)`)
+    .text("Northing Distance Travelled");
+  // TODO add axes descriptions
 };
 
 document.addEventListener('DOMContentLoaded', () => {
