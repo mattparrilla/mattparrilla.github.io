@@ -1,15 +1,15 @@
 /* globals d3 */
 
 const plotHeadingErrors = (width) => {
-  const height = width / 2;
+  const margin = { top: 50, left: 80, bottom: 60 };
+  // height needs to be 1/2 of width including margins
+  const height = width / 2 + (margin.left * 2 - (margin.top + margin.bottom));
   const plot = d3.select("#heading_errors")
     .attr("width", width)
     .attr("height", height);
 
-  const margin = { left: 60, bottom: 60 };
-
   const x = d3.scaleLinear().range([margin.left, width]);
-  const y = d3.scaleLinear().range([height - margin.bottom, 0]);
+  const y = d3.scaleLinear().range([height - margin.bottom, margin.top]);
 
   const xPos = error => d => x(Math.sin(error * Math.PI / 180) * d);
   const yPos = error => d => y(Math.cos(error * Math.PI / 180) * d);
@@ -43,9 +43,9 @@ const plotHeadingErrors = (width) => {
     </svg>`;
 
   const lines = [
-    { error: 0,   color: "#1a9850" },
-    { error: 0.5, color: "#66bd63" },
-    { error: 1,   color: "#a6d96a" },
+    { error: 0,   color: "#111" },
+    { error: 1, color: "#1a9850" },
+    { error: 2,   color: "#66bd63" },
     { error: 5,   color: "#f46d43" },
     { error: 10,  color: "#d73027" }];
 
@@ -64,15 +64,10 @@ const plotHeadingErrors = (width) => {
     plot.append('g')
       .html(vehicleIcon(color, origin.x, origin.y, error));
 
-    /*
-    plot.append("g")
-      .attr("x", origin.x - 20)
-      .attr("y", origin.y - 10)
-      .attr("class", "label")
-      .append("text")
-      .attr("transform", "rotate(0)")
+    plot.append("text")
+      .attr("class", `data_label ${error ? "error" : "no_error"}`)
+      .attr("transform", `translate(${origin.x}, ${origin.y - 10}), rotate(-30)`)
       .text(error ? `${error}° Error` : "No Error");
-      */
   });
 
   plot.append("g")
@@ -90,17 +85,14 @@ const plotHeadingErrors = (width) => {
 
   plot.append("text")
     .attr("class", "axis_label")
-    .attr("x", width / 2 - 80)
+    .attr("x", width / 2 - 110)
     .attr("y", height - 10)
-    .text("Easting Distance Travelled");
+    .text("Easting Distance Traveled (meters)");
 
   plot.append("text")
     .attr("class", "axis_label")
-    .attr("x", 20)
-    .attr("y", -70)
-    .attr("transform", `rotate(90)`)
-    .text("Northing Distance Travelled");
-  // TODO add axes descriptions
+    .attr("transform", `translate(20,350), rotate(-90)`)
+    .text("Northing Distance Traveled (meters)");
 };
 
 document.addEventListener('DOMContentLoaded', () => {

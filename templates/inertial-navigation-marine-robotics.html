@@ -60,13 +60,13 @@ position     = &int;&int; a = &frac12; &middot; a &middot; t<sup>2</sup></pre>
         <pre>(&frac12;) &middot; 0.0196 meters/second &middot; 3600<sup>2</sup> seconds = 127,008 meters</pre>
 
         <h3>Magnetometer (AKA Compass)</h3>
-        <p>A magnetometer measures the magnetic field in 3 spatial dimensions. A compass is a 1D magnetometer, measuring the magnetic field about Z, giving us our heading.</p>
-        <p>Heading is our most important measurement because small errors in heading can lead to large errors in position. The below chart shows the calculated path travelled for a 1 kilometer straight line run given various heading errors.</p>
+        <p>A magnetometer measures the magnetic field in 3 spatial dimensions. A compass is a single dimension magnetometer, measuring the magnetic field about Z, giving us our heading. Heading is our most important measurement because small errors in heading can lead to large errors in position.</p>
+        <p>The below chart shows where our robot thinks it ended up after traveling in a straight line for 1 kilometer. The black line shows the true path and the other lines show the calculated course given an error in our heading.</p>
         <div>
           <svg id="heading_errors"></svg>
         </div>
-        <p>The chart illustrates error in final position given various heading errors for a 1km straight line run. If our heading is off by a single degree, we see a positional error of 17 meters, or 1.7% of distance travelled. If our heading is off by 10&deg; that error increases tenfold, to 174 meters, 17% of distance travelled.</p>
-        <p>Given these large errors for only a single kilometer of travel, it is obvious that we need to get better heading measurements, but we can only get so far with the compass. Putting a compass in a robot with metal and electricity flowing around it tends to make for unhappy compasses, so we need another sensor to aid in our heading measurements. That’s where the gyroscope comes in.</p>
+        <p>If our heading is off by 10&deg; we'll end up with a position error of 174 meters, which is 17.4% of our distance traveled. 10&deg; might seem like a huge error, but compasses are notoriously fickle, and for good reason. Putting a compass in a metal cage with electricity flowing around it tends to make for unhappy compasses.
+        <p>We need another sensor to aid in our heading measurements. That’s where the gyroscope comes in.</p>
 
         <h3>Gyroscope</h3>
         <p>While magnetometers measure changes in angular position, gyroscopes measure changes in angular velocity.</p>

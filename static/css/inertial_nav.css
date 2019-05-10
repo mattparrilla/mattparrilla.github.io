@@ -1,7 +1,6 @@
 svg {
   display: block;
-  margin: 50px auto;
-  border: 1px solid #ddd;
+  margin: 30px auto 50px;
 }
 
 .line {
@@ -37,6 +36,16 @@ svg text {
 
 .axis_label {
   font-size: 14px;
+}
+
+.data_label {
+  font-size: 12px;
+  fill: #333;
+}
+
+.data_label.no_error {
+  fill: #000;
+  stroke: #000;
 }
 
 .axis .tick_0, .axis .tick_100, .axis .tick_200,
