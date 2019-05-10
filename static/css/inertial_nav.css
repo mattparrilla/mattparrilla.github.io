@@ -1,0 +1,14 @@
+svg {
+  display: block;
+  margin: 50px auto;
+}
+
+.line {
+  fill: none;
+  stroke-dasharray: 10 10;
+  stroke-width: 3px;
+}
+
+.img-responsive {
+  margin: 50px auto 30px;
+}
