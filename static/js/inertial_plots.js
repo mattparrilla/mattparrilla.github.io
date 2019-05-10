@@ -6,40 +6,31 @@ const plotHeadingErrors = (width) => {
     .attr("width", width)
     .attr("height", height);
 
-  const margin = { left: 40, bottom: 20 };
+  const margin = { left: 60, bottom: 60 };
 
   const x = d3.scaleLinear().range([margin.left, width]);
   const y = d3.scaleLinear().range([height - margin.bottom, 0]);
 
-  const xPos = error => d => x(Math.sin(error * Math.PI / 180) * (d + 1))
-  const yPos = error => d => y(Math.cos(error * Math.PI / 180) * (d + 1))
+  const xPos = error => d => x(Math.sin(error * Math.PI / 180) * d);
+  const yPos = error => d => y(Math.cos(error * Math.PI / 180) * d);
 
   // IMPORTANT: ratio of width to height needs to be the same (1/2)
   x.domain([-15, 185]);  // 200 meters wide
   y.domain([910, 1010]); // 100 meters tall
 
   const line = error => d3.line()
-    .defined(d => Math.cos(error * Math.PI / 180) * (d + 1) > y.domain()[0])
+    .defined(d => Math.cos(error * Math.PI / 180) * (d + 1) >= y.domain()[0])
     .x(xPos(error))
     .y(yPos(error));
 
-  const distance = [...Array(1000).keys()]; // 0 to 999
+  // make 10k element array of numbers 1 to 1000
+  const distance = [...Array(10000).keys()].map(i => (i + 1) / 10);
 
-
-  plot.append("g")
-    .attr("class", "axis x-axis")
-    .attr("transform", `translate(0,${height - margin.bottom})`)
-    .call(d3.axisBottom(x));
-
-  plot.append("g")
-    .attr("class", "axis y-axis")
-    .attr("transform", `translate(${margin.left},0)`)
-    .call(d3.axisLeft(y));
 
   const vehicleIcon = (fill, x, y, rotate) => `
     <svg
       x="${x - (Math.cos(rotate * Math.PI / 180) * 15)}"
-      y="${y - (Math.sin(rotate * Math.PI / 180) * 30)}"
+      y="${y - 10}"
       stroke="#fff"
       stroke-width="1"
       height="30"
@@ -65,9 +56,35 @@ const plotHeadingErrors = (width) => {
         .attr("d", line(error)(distance))
         .attr("stroke", color);
 
+    const origin = {
+      x: xPos(error)(1000),
+      y: yPos(error)(1000)
+    }
+
     plot.append('g')
-      .html(vehicleIcon(color, xPos(error)(1000), yPos(error)(1000), error));
+      .html(vehicleIcon(color, origin.x, origin.y, error));
+
+    /*
+    plot.append("g")
+      .attr("x", origin.x - 20)
+      .attr("y", origin.y - 10)
+      .attr("class", "label")
+      .append("text")
+      .attr("transform", "rotate(0)")
+      .text(error ? `${error}° Error` : "No Error");
+      */
   });
+
+  plot.append("g")
+    .attr("class", "axis x-axis")
+    .attr("transform", `translate(0,${height - margin.bottom})`)
+    .call(d3.axisBottom(x));
+
+  plot.append("g")
+    .attr("class", "axis y-axis")
+    .attr("transform", `translate(${margin.left},0)`)
+    .call(d3.axisLeft(y));
+
 };
 
 document.addEventListener('DOMContentLoaded', () => {

@@ -53,9 +53,9 @@ navigation_solution {
         <p>The accelerometer is our only inertial sensor which gives us a measurement of our position. Unfortunately, it is not a very good one.</p>
         <p>To go from acceleration to position we need to integrate twice, which means that any error in our acceleration measurement will increase quadratically over time. Even small errors in acceleration can result in huge errors in position, errors that increase over time.</p>
         <pre>
-acceleration =   a
-velocity     =  &int;a = a &middot; t
-position     = &int;&int;a = &frac12; &middot; a &middot; t<sup>2</sup></pre>
+acceleration =    a
+velocity     =  &int; a =     a &middot; t
+position     = &int;&int; a = &frac12; &middot; a &middot; t<sup>2</sup></pre>
         <p>Plugging in an accelerometer bias of 0.0196 m/s2 (which is an actual spec from a $20,000 sensor) we would could drift 127 kilometers in an hour while sitting on a bench top:</p>
         <pre>(&frac12;) &middot; 0.0196 meters/second &middot; 3600<sup>2</sup> seconds = 127,008 meters</pre>
 
@@ -72,8 +72,8 @@ position     = &int;&int;a = &frac12; &middot; a &middot; t<sup>2</sup></pre>
         <p>While magnetometers measure changes in angular position, gyroscopes measure changes in angular velocity.</p>
         <p>Velocity is the first derivative of position, so you need to integrate velocity in order to get rotational position. The integral of velocity is <tt>velocity &middot; time</tt>, so our error gets bigger over time, but not nearly as quickly as it does with our accelerometer.</p>
         <pre>
-angular velocity = v
-angular position = &int;v  = v &middot; t</pre>
+angular velocity =   v
+angular position = &int; v  = v &middot; t</pre>
         <p>This is still not as nice as having a direct measurement of angular position, which doesn’t have an error that increases over time, but the gyroscope is a much more precise measurement than the magnetometer, so it turns out to be extremely useful.</p>
         <p>Classic gyroscopes, the kind you might remember from physics class, are spinning masses that measure changes in angular momentum. Modern gyroscopes are a bit more sophisticated but easier to understand. Today’s state-of-the-art gyroscope is the fiber optic gyroscope (FOG) and rather than using conservation of angular momentum, it uses special relativity to calculate rotational velocity.</p>
         <p>Here’s an illustration demonstrating how they work:</p>
