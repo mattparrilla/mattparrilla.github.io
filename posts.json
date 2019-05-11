@@ -2,7 +2,7 @@
   "inertial-navigation-marine-robotics": {
     "title": "Inertial Navigation in Marine Robotics",
     "description": "An introduction to inertial navigation in marine robotics, from the sensors used to the mathematical tools needed to fuse that sensor data into a navigation solution",
-    "social_img": "roll_pitch_yaw.png"
+    "social_img": "img/roll_pitch_yaw.png"
   },
   "negotiation-http2-alpn-tls-handshake": {
     "title": "Negotiating HTTP/2: ALPN and the TLS Handshake",
@@ -11,6 +11,6 @@
   "improving-the-weather-on-twitter": {
     "title": "Improving The Weather On Twitter",
     "description": "Using National Weather Service data and imagery to make a network of twitter bots that post regional radar GIFs with improved palettes and projections.",
-    "social_img": "conus-basemap.gif"
+    "social_img": "img/conus-basemap.gif"
   }
 }

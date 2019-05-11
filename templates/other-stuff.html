@@ -2,17 +2,15 @@
   <h2>Other Stuff By Matt</h2>
   <div class="col-md-6 feature">
       <a href="http://mattparrilla.github.io/mansfield-stake" alt="Interactive graphic of snow depth on Mt. Mansfield">
-          <img class="img-responsive img-bordered" src="/static/img/mansfield.png" alt="Mt. Mansfield Snow Depth graph">
-          <h4>
-          Mt. Mansfield Snow Depth</h3>
+          <img class="img-responsive img-bordered" src="{{ url_for('static', filename='img/mansfield.png') }}" alt="Mt. Mansfield Snow Depth graph">
+          <h4>Mt. Mansfield Snow Depth</h4>
       </a>
       <p>An interactive graphic that allows users to explore the snow depth on Mt. Mansfield for any season on record. This visualization was retweeted by <a href="http://en.wikipedia.org/wiki/Edward_Tufte">Edward Tufte</a> (who <a href="http://www.amazon.com/The-Visual-Display-Quantitative-Information/dp/0961392142">wrote the book</a> on data visualization) and was <a href="http://knowmore.washingtonpost.com/2015/02/20/60-years-of-snowfall-visualized/">shared</a> by the Washington Post on their "Know More" blog.</p>
   </div>
   <div class="col-md-6 feature">
       <a href="http://www.vpr.net/apps/lyme-disease" alt="VPR report on the spread of Lyme Disease">
-          <img class="img-responsive img-bordered" src="/static/img/vermont-lyme.png" alt="Animated radar of continental US">
-          <h4>
-          Lyme On The Rise</h3>
+          <img class="img-responsive img-bordered" src="{{ url_for('static', filename='img/vermont-lyme.png') }}" alt="Animated radar of continental US">
+          <h4>Lyme On The Rise</h4>
       </a>
       <p>A data project for Vermont Public Radio on the growth of Lyme Disease over the last 15 years. Includes an interactive bar graph of New England and small multiples of Vermont and the continental United States showing the infection's expanded range. Published in the open with links to the data.</p>
   </div>

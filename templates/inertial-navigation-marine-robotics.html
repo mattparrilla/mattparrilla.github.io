@@ -77,7 +77,7 @@ angular position = &int; v  = v &middot; t</pre>
           <img
             class="img-responsive"
             alt="Demonstration of fiber optic gyro ring stationary and rotating"
-            src="../static/img/FOG.png"/>
+            src="{{ url_for('static', filename='img/FOG.png') }}"/>
         </div>
         <p>A laser gets shot around a ring in two directions. The image on the left shows a stationary ring (black) with the two beams of the laser (red and blue) arriving back at the origin at the same time. The image on the right shows a ring rotating clockwise. The beam traveling clockwise (blue) has to travel further than the beam traveling counter-clockwise (red) to get back to where it started, resulting in a different interference pattern in a sensor at the origin. This interference pattern is used to derive the angular velocity along the plane of the ring.</p>
         <p>FOGs are composed of three orthogonal rings and so can measure angular velocity about any axis.</p>
@@ -90,11 +90,11 @@ angular position = &int; v  = v &middot; t</pre>
         <h3>Doppler Velocity Log (DVL)</h3>
         <p>In marine robotics, we are often operating at or near the bottom. When this is the case we can use a DVL to tell us how fast and in what direction we are moving by bouncing sound waves off of the bottom.</p>
         <div>
-          <img class="img-responsive" src="../../static/img/dvl_doppler_shift.jpg" />
+          <img class="img-responsive" src="{{ url_for('static', filename='img/dvl_doppler_shift.jpg') }}" />
         </div>
         <p>As the name indicates, the Doppler Velocity Log utilizes the doppler shift to calculate its measurements. The doppler shift is demonstrated by the animation below. The gist is that given a wave of constant frequency, you’ll experience the wave at a higher frequency when you’re moving toward the source compared to when you’re moving away from the source.</p>
         <div>
-          <img class="img-responsive" src="../../static/img/Dopplerfrequency.gif" />
+          <img class="img-responsive" src="{{ url_for('static', filename='img/Dopplerfrequency.gif') }}" />
         </div>
         <p>The DVL operates by sending a 4-beam signal out of a transducer and then listening for the response. It then measures the phase shift across those 4 beams and reports a velocity and a course-over-ground.</p>
         <p>Course-over-ground is a direct measurement of relative heading and a pretty good one. It can’t tell us which way is north, but it is very valuable in telling us how far we’ve turned.</p>
@@ -121,7 +121,7 @@ angular position = &int; v  = v &middot; t</pre>
           <img 
             class="img-responsive"
             alt="Kalman filter explanation"
-            src="../../static/img/kalman_filter.png"
+            src="{{ url_for('static', filename='img/kalman_filter.png') }}"
           />
           <p class="caption">Source: <a href="https://www.mathworks.com/videos/understanding-kalman-filters-part-1-why-use-kalman-filters--1485813028675.html">Mathworks</a>
         </div>

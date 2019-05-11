@@ -1,11 +1,11 @@
+from flask_frozen import Freezer
 from flask import Flask, render_template, request
 import json
 
 app = Flask(__name__)
+freezer = Freezer(app)
 
-# TODO update static paths
-
-# TODO freeze pages, likely just render app at a given view
+app.config["FREEZER_DESTINATION_IGNORE"] = ["CNAME"]
 
 
 @app.route("/")
@@ -27,3 +27,15 @@ def post(title):
         raise ValueError("Missing description entry for {}".format(title))
 
     return render_template("{}.html".format(title), **post_properties)
+
+
+@freezer.register_generator
+def post():
+    with open("posts.json", "r") as f:
+        posts = json.load(f)
+        for title in posts.keys():
+            yield {"title": title}
+
+
+if __name__ == "__main__":
+    freezer.freeze()
