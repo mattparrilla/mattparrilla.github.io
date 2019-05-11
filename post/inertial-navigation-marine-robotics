@@ -1,10 +1,43 @@
-{% extends "base.html" %}
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Inertial Navigation in Marine Robotics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="An introduction to inertial navigation in marine robotics, from the sensors used to the mathematical tools needed to fuse that sensor data into a navigation solution">
+    <meta name="author" content="@mattparrilla">
 
-{% block head %}
-<link href="{{ url_for('static', filename='css/inertial_nav.css') }}" rel="stylesheet">
-{% endblock %}
+    <!-- Social Media Tags -->
+    <meta property="og:title" content="Inertial Navigation in Marine Robotics">
+    <meta property="og:description" content="An introduction to inertial navigation in marine robotics, from the sensors used to the mathematical tools needed to fuse that sensor data into a navigation solution">
+    
+      <meta property="og:image" content="/static/img/roll_pitch_yaw.png">
+    
+    <meta property="og:url" content="/post/inertial-navigation-marine-robotics">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="mattparrilla">
 
-{% block content %}
+    <link href="/static/css/style.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,500,600,300,200|Roboto:500,600,300,100' rel='stylesheet' type='text/css'>
+    <link rel="shortcut icon" href="/static/favicon.ico">
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-31358980-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+    
+<link href="/static/css/inertial_nav.css" rel="stylesheet">
+
+</head>
+<body>
+    <div id="top_border"></div>
+    <div class="container">
+      
   <div class="row post">
     <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
       <div class="title-block">
@@ -37,7 +70,7 @@ navigation_solution {
         <img
           class="img-responsive"
           alt="Roll, pitch, yaw diagram"
-          src="{{ url_for('static', filename='img/roll_pitch_yaw.png') }}"
+          src="/static/img/roll_pitch_yaw.png"
         />
         <p>Attitude is our measurement of orientation and is composed of roll, pitch, and heading. Roll is the rotation about X, pitch rotation about Y, and heading is rotation about Z.</p>
         <p>Together, position and attitude tell us where our robot is and how it is oriented in the earth frame.</p>
@@ -77,7 +110,7 @@ angular position = &int; v  = v &middot; t</pre>
           <img
             class="img-responsive"
             alt="Demonstration of fiber optic gyro ring stationary and rotating"
-            src="{{ url_for('static', filename='img/FOG.png') }}"/>
+            src="/static/img/FOG.png"/>
         </div>
         <p>A laser gets shot around a ring in two directions. The image on the left shows a stationary ring (black) with the two beams of the laser (red and blue) arriving back at the origin at the same time. The image on the right shows a ring rotating clockwise. The beam traveling clockwise (blue) has to travel further than the beam traveling counter-clockwise (red) to get back to where it started, resulting in a different interference pattern in a sensor at the origin. This interference pattern is used to derive the angular velocity along the plane of the ring.</p>
         <p>FOGs are composed of three orthogonal rings and so can measure angular velocity about any axis.</p>
@@ -90,11 +123,11 @@ angular position = &int; v  = v &middot; t</pre>
         <h3>Doppler Velocity Log (DVL)</h3>
         <p>In marine robotics, we are often operating at or near the bottom. When this is the case we can use a DVL to tell us how fast and in what direction we are moving by bouncing sound waves off of the bottom.</p>
         <div>
-          <img class="img-responsive" src="{{ url_for('static', filename='img/dvl_doppler_shift.jpg') }}" />
+          <img class="img-responsive" src="/static/img/dvl_doppler_shift.jpg" />
         </div>
         <p>As the name indicates, the Doppler Velocity Log utilizes the doppler shift to calculate its measurements. The doppler shift is demonstrated by the animation below. The gist is that given a wave of constant frequency, you’ll experience the wave at a higher frequency when you’re moving toward the source compared to when you’re moving away from the source.</p>
         <div>
-          <img class="img-responsive" src="{{ url_for('static', filename='img/Dopplerfrequency.gif') }}" />
+          <img class="img-responsive" src="/static/img/Dopplerfrequency.gif" />
         </div>
         <p>The DVL operates by sending a 4-beam signal out of a transducer and then listening for the response. It then measures the phase shift across those 4 beams and reports a velocity and a course-over-ground.</p>
         <p>Course-over-ground is a direct measurement of relative heading and a pretty good one. It can’t tell us which way is north, but it is very valuable in telling us how far we’ve turned.</p>
@@ -121,7 +154,7 @@ angular position = &int; v  = v &middot; t</pre>
           <img 
             class="img-responsive"
             alt="Kalman filter explanation"
-            src="{{ url_for('static', filename='img/kalman_filter.png') }}"
+            src="/static/img/kalman_filter.png"
           />
           <p class="caption">Source: <a href="https://www.mathworks.com/videos/understanding-kalman-filters-part-1-why-use-kalman-filters--1485813028675.html">Mathworks</a>
         </div>
@@ -151,12 +184,50 @@ angular position = &int; v  = v &middot; t</pre>
         <p>I hope you enjoyed this post. If you’re interested in more content like this, including a more detailed explanation of kalman filters, you should <a href="//twitter.com/mattparrilla">follow me on twitter</a> or <a href="http://matthewparrilla.com">check out my website.</a></p>
         <p>And if you think these sound like fun problems to work on, <a href="//greensea.com/join-our-team">come work with me.</a></p>
       </div>
-      {% include "other-stuff.html" %}
+      <div class="row featured-stuff">
+  <h2>Other Stuff By Matt</h2>
+  <div class="col-md-6 feature">
+      <a href="http://mattparrilla.github.io/mansfield-stake" alt="Interactive graphic of snow depth on Mt. Mansfield">
+          <img class="img-responsive img-bordered" src="/static/img/mansfield.png" alt="Mt. Mansfield Snow Depth graph">
+          <h4>Mt. Mansfield Snow Depth</h4>
+      </a>
+      <p>An interactive graphic that allows users to explore the snow depth on Mt. Mansfield for any season on record. This visualization was retweeted by <a href="http://en.wikipedia.org/wiki/Edward_Tufte">Edward Tufte</a> (who <a href="http://www.amazon.com/The-Visual-Display-Quantitative-Information/dp/0961392142">wrote the book</a> on data visualization) and was <a href="http://knowmore.washingtonpost.com/2015/02/20/60-years-of-snowfall-visualized/">shared</a> by the Washington Post on their "Know More" blog.</p>
+  </div>
+  <div class="col-md-6 feature">
+      <a href="http://www.vpr.net/apps/lyme-disease" alt="VPR report on the spread of Lyme Disease">
+          <img class="img-responsive img-bordered" src="/static/img/vermont-lyme.png" alt="Animated radar of continental US">
+          <h4>Lyme On The Rise</h4>
+      </a>
+      <p>A data project for Vermont Public Radio on the growth of Lyme Disease over the last 15 years. Includes an interactive bar graph of New England and small multiples of Vermont and the continental United States showing the infection's expanded range. Published in the open with links to the data.</p>
+  </div>
+  <p class="centered-with-space">See the rest - <a href="/">matthewparrilla.com</a></p>
+</div>
     </div>
   </div>
-{% endblock %}
 
-{% block scripts %}
-<script type="text/javascript" src="{{ url_for('static', filename='js/d3.min.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/inertial_plots.js') }}"></script>
-{% endblock %}
+    </div>
+
+    <footer>
+    <div class="container">
+        <div class="contact row">
+            <a href="http://twitter.com/mattparrilla" alt="Matt's twitter profile" class="service col-sm-4">
+                <p class="icon"><i class="icon ion-social-twitter"></i></p>
+                <p>@mattparrilla</p>
+            </a>
+            <a href="http://github.com/mattparrilla" alt="Matt's github profile" class="service col-sm-4">
+                <p class="icon"><i class="icon ion-social-github"></i></p>
+                <p>mattparrilla</p>
+            </a>
+            <a href="mailto:matthew.parrilla@gmail.com" alt="Email Matt" class="service email col-sm-4">
+                <p class="icon"><i class="icon ion-email"></i></p>
+                <p>matthew.parrilla@gmail.com</p>
+            </a>
+        </div>
+    </div>
+</footer>
+    
+<script type="text/javascript" src="/static/js/d3.min.js"></script>
+<script type="text/javascript" src="/static/js/inertial_plots.js"></script>
+
+</body>
+</html>
