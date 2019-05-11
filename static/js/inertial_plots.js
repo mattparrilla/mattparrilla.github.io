@@ -15,8 +15,8 @@ const plotHeadingErrors = (width) => {
   const yPos = error => d => y(Math.cos(error * Math.PI / 180) * d);
 
   // IMPORTANT: ratio of width to height needs to be the same (1/2)
-  x.domain([-15, 205]);   // 200 meters wide
-  y.domain([875, 1005]); // 100 meters tall
+  x.domain([-15, 205]);   // 220 meters wide
+  y.domain([895, 1005]); // 110 meters tall
 
   const line = error => d3.line()
     .defined(d => Math.cos(error * Math.PI / 180) * (d + 1) >= y.domain()[0])
