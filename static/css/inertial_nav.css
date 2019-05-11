@@ -28,8 +28,7 @@ svg text {
 }
 
 .axis text {
-  stroke: #ababab;
-  stroke-width: 1px;
+  fill: #777;
   font-size: 12px;
   font-weight: 100;
 }
@@ -40,15 +39,14 @@ svg text {
 
 .data_label {
   font-size: 12px;
-  fill: #333;
+  fill: #777;
 }
 
 .data_label.no_error {
   fill: #000;
-  stroke: #000;
 }
 
 .axis .tick_0, .axis .tick_100, .axis .tick_200,
 .axis .tick_900, .axis .tick_1000 {
-  stroke: #111;
+  fill: #111;
 }
