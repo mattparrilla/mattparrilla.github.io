@@ -1,0 +1,93 @@
+$blockquote-bg: #f6f6f6;
+
+.post {
+    padding: 80px 0;
+
+    h2,
+    h3 {
+        margin: 40px 0 20px;
+    }
+
+    h2,
+    h3,
+    h4 {
+        font-weight: 300;
+    }
+
+    h2 {
+        font-size: 32px;
+    }
+
+    .title-block {
+        h1 {
+            font-size: 60px;
+            margin-top: 0;
+            @media (max-width: $phone) {
+                font-size: 32px;
+                margin-top: 5px;
+            }
+            margin-bottom: 5px;
+        }
+        h2 {
+            color: $gray;
+            margin: 0 0 40px;
+            @media (max-width: $phone) {
+                margin-bottom: 30px;
+            }
+            @media (max-width: $phone) {
+                font-size: 24px;
+            }
+        }
+        .date {
+            margin-bottom: 0;
+            color: lighten($gray, 20%);
+            font-size: 18px;
+            font-family: $font;
+            font-weight: 300;
+            a {
+                @include wt_link(lighten($gray, 20%), 2px);
+            }
+        }
+    }
+    h2 {
+        @media (max-width: $phone) {
+            font-size: 36px;
+        }
+    }
+    h3 {
+        @media (max-width: $phone) {
+            font-size: 32px;
+        }
+    }
+    p {
+        line-height: 1.6em;
+        margin-bottom: 20px;
+    }
+    .img-bordered {
+        border: 1px solid lighten($gray, 40%);
+    }
+    .img-centered {
+        margin: 60px auto;
+        display: block;
+    }
+    @media (max-width: $phone) {
+        padding-top: 30px;
+    }
+    hr {
+        margin: 60px 0;
+    }
+    blockquote {
+        border: none;
+        background: $blockquote-bg;
+        padding: 40px;
+        ul {
+            padding-left: 0;
+        }
+        @media (max-width: $tablet) {
+            font-size: 14px;
+        }
+    }
+    .codehilite {
+        margin: 40px 0;
+    }
+}
