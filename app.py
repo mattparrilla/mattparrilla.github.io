@@ -1,13 +1,9 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+import json
+
 app = Flask(__name__)
 
-# TODO put required info, but not content, in a JSON object for each post
-# and pass that to the template. Can perform validation in the view function
-# to make sure needed info is included (eg. description, title, image)
-
 # TODO update static paths
-
-# TODO social cards
 
 # TODO freeze pages, likely just render app at a given view
 
@@ -19,4 +15,15 @@ def index():
 
 @app.route("/post/<title>")
 def post(title):
-    return render_template("{}.html".format(title))
+    post_properties = {}
+    with open("posts.json", "r") as f:
+        posts = json.load(f)
+        post_properties = posts[title]
+    post_properties["url"] = request.path
+
+    if not post_properties.get("title", False):
+        raise ValueError("Missing title entry for {}".format(title))
+    if not post_properties.get("description", False):
+        raise ValueError("Missing description entry for {}".format(title))
+
+    return render_template("{}.html".format(title), **post_properties)

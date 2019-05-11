@@ -2,14 +2,25 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>{% block title %}Matt Parrilla's Personal Website{% endblock %}</title>
+    <title>{{ title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{% block description %}{% endblock %}">
+    <meta name="description" content="{{ description }}">
     <meta name="author" content="@mattparrilla">
+
+    <!-- Social Media Tags -->
+    <meta property="og:title" content="{% if fb_title %}{{ fb_title }}{% else %}{{ title }}{% endif %}">
+    <meta property="og:description" content="{% if fb_description %}{{ fb_description }}{% else %}{{ description }}{% endif %}">
+    {% if social_img %}
+      <meta property="og:image" content="{{ url_for('static', filename=social_img) }}">
+    {% endif %}
+    <meta property="og:url" content="{{ url }}">
+    <meta name="twitter:card" content="{% if social_img %}summary_large_image{% else %}summary{% endif %}">
+    <meta name="twitter:site" content="mattparrilla">
 
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,500,600,300,200|Roboto:500,600,300,100' rel='stylesheet' type='text/css'>
-    <link rel="shortcut icon" href="/static/favicon.ico">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -27,24 +38,7 @@
       {% block content %}{% endblock %}
     </div>
 
-    <footer>
-        <div class="container">
-            <div class="contact row">
-                <a href="http://twitter.com/mattparrilla" alt="Matt's twitter profile" class="service col-sm-4">
-                    <p class="icon"><i class="icon ion-social-twitter"></i></p>
-                    <p>@mattparrilla</p>
-                </a>
-                <a href="http://github.com/mattparrilla" alt="Matt's github profile" class="service col-sm-4">
-                    <p class="icon"><i class="icon ion-social-github"></i></p>
-                    <p>mattparrilla</p>
-                </a>
-                <a href="mailto:matthew.parrilla@gmail.com" alt="Email Matt" class="service email col-sm-4">
-                    <p class="icon"><i class="icon ion-email"></i></p>
-                    <p>matthew.parrilla@gmail.com</p>
-                </a>
-            </div>
-        </div>
-    </footer>
+    {% include "footer.html" %}
     {% block scripts %}{% endblock %}
 </body>
 </html>
