@@ -149,7 +149,7 @@ const plotErrors = (id, errors, xPos, yPos, defined) => {
     .text("Full transit");
 
   if (id == "gyro_errors") {
-    const smallMultipleDimensions = { width: width / 6, height: 200 };
+    const smallMultipleDimensions = { width: width / 4, height: 200 };
     const smallMultiplePlot = d3.select("#gyro_small_multiples")
       .attr("width", width)
       .attr("height", smallMultipleDimensions.height);
@@ -159,14 +159,16 @@ const plotErrors = (id, errors, xPos, yPos, defined) => {
     y.range([smallMultipleDimensions.height - 5, 5])
 
 
-    const speeds = [0.5, 1, 2, 5];
-    speeds.forEach((speed, i) => {
+    const durations = [2, 1, 0.5, 0.25];
+    durations.forEach((hours, i) => {
+      const duration = hours * 3600;
+      const velocity = 1000 / duration;
       const smallLine = error => d3.line()
-        .x(d => x(Math.sin((error / 3600) * (d / speed) * Math.PI / 180) * d))
-        .y(d => y(Math.cos((error / 3600) * (d / speed) * Math.PI / 180) * d));
+        .x(d => x(Math.sin((error / 3600) * (d / velocity) * Math.PI / 180) * d))
+        .y(d => y(Math.cos((error / 3600) * (d / velocity) * Math.PI / 180) * d));
 
       x.range([
-        5 + smallMultipleDimensions.width * i,
+        smallMultipleDimensions.width / 2 + smallMultipleDimensions.width * i,
         smallMultipleDimensions.width - 5 + (smallMultipleDimensions.width * i)
       ])
 
@@ -178,8 +180,9 @@ const plotErrors = (id, errors, xPos, yPos, defined) => {
               .attr("stroke", color);
       });
       smallMultiplePlot.append("text")
-        .attr("transform", `translate(${smallMultipleDimensions.width * i}, ${smallMultipleDimensions.height})`)
-        .text(`${speed} m/s`);
+        .attr("class", "labels")
+        .attr("transform", `translate(${smallMultipleDimensions.width * i + smallMultipleDimensions.width / 2 + 20}, ${smallMultipleDimensions.height - 10})`)
+        .text(`${hours} hr`);
 
     });
   }
