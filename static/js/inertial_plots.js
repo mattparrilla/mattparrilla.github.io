@@ -1,7 +1,7 @@
 /* globals d3 */
 
 
-const plotErrors = (id, errors, xPos, yPos) => {
+const plotErrors = (id, errors, xPos, yPos, defined) => {
   const width = document.getElementById('body').clientWidth;
   const margin = { top: 50, left: 80, bottom: 60 };
   // height needs to be 1/2 of width including margins
@@ -18,7 +18,7 @@ const plotErrors = (id, errors, xPos, yPos) => {
   y.domain([895, 1005]); // 110 meters tall
 
   const line = error => d3.line()
-    .defined(d => Math.cos(error * Math.PI / 180) * (d + 1) >= y.domain()[0])
+    .defined(d => defined(error)(d) >= y.domain()[0])
     .x(xPos(x, error))
     .y(yPos(y, error));
 
@@ -92,7 +92,6 @@ const plotErrors = (id, errors, xPos, yPos) => {
     .attr("transform", `translate(20,350), rotate(-90)`)
     .text("Northing Distance Traveled (meters)");
 
-
   // Plot small context box
   const contextDimensions = { width: 40, height: 100 };
   x.domain([-15, 205]);
@@ -153,11 +152,13 @@ document.addEventListener('DOMContentLoaded', () => {
     "heading_errors",
     [0, 1, 2, 5, 10],
     (x, error) => d => x(Math.sin(error * Math.PI / 180) * d),
-    (y, error) => d => y(Math.cos(error * Math.PI / 180) * d));
+    (y, error) => d => y(Math.cos(error * Math.PI / 180) * d),
+    error => d => (Math.cos(error * Math.PI / 180) * d));
 
   plotErrors(
     "gyro_errors",
     [0, 1, 5, 10, 15],
     (x, error) => d => x(Math.sin(error * (d / 1800) * Math.PI / 180) * d),
-    (y, error) => d => y(Math.cos(error * (d / 1800) * Math.PI / 180) * d));
+    (y, error) => d => y(Math.cos(error * (d / 1800) * Math.PI / 180) * d),
+    error => d => (Math.cos(error * (d / 1800) * Math.PI / 180) * d));
 });
