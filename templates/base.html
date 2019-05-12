@@ -12,8 +12,8 @@
     <meta property="og:description" content="{{ description }}">
     <meta property="og:url" content="{{ url }}">
     {% if social_img %}
-      <meta property="og:image" content="{{ url_for('static', filename=social_img) }}">
-      <meta name="twitter:image" content="{{ url_for('static', filename=social_img) }}">
+      <meta property="og:image" content="https://matthewparrilla.com{{ url_for('static', filename=social_img) }}">
+      <meta name="twitter:image" content="https://matthewparrilla.com{{ url_for('static', filename=social_img) }}">
     {% endif %}
     <meta name="twitter:title" content="{{ title }}">
     <meta name="twitter:description" content="{{ description }}">
