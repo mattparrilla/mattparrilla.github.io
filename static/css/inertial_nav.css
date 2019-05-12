@@ -8,6 +8,10 @@ svg {
   stroke-width: 3px;
 }
 
+.context_line {
+  stroke-width: 2px;
+}
+
 .img-responsive {
   margin: 50px auto 30px;
 }

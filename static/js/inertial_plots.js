@@ -93,6 +93,60 @@ const plotHeadingErrors = (width) => {
     .attr("class", "axis_label")
     .attr("transform", `translate(20,350), rotate(-90)`)
     .text("Northing Distance Traveled (meters)");
+
+
+  // Plot small context box
+  const contextDimensions = { width: 40, height: 100 };
+  x.domain([-15, 205]);
+  y.domain([0, 1005]);
+  x.range([5, contextDimensions.width - 5])
+  y.range([contextDimensions.height - 5, 5])
+  const contextPosition = {
+    x: width - contextDimensions.width - 30,
+    y: height - margin.bottom - contextDimensions.height - 10
+  };
+  const contextPlot = `
+    <svg
+      id="context_plot"
+      x="${contextPosition.x}"
+      y="${contextPosition.y}"
+      height="${contextDimensions.height}"
+      width="${contextDimensions.width}">
+    </svg>`;
+
+  plot.append("g").html(contextPlot);
+
+  lines.reverse().forEach(({ error, color }) => {
+    plot.select("#context_plot")
+      .append("g")
+        .append("path")
+          .attr("class", "context_line")
+          .attr("d", line(error)(distance))
+          .attr("stroke", color);
+  });
+
+  plot.select("#context_plot")
+    .append("g")
+    .html(`
+      <rect
+        x=2
+        y=2
+        width="${contextDimensions.width - 4}"
+        height="${contextDimensions.width / 2}"
+        fill-opacity="0"
+        stroke="#333"
+        stroke-width="2px"
+      />`);
+
+  plot.select("#context_plot")
+    .append("g")
+    .html(`<circle cx="${x(0)}" cy="${y(0)}" r="3" />`);
+
+  plot.append("text")
+    .attr("class", "axis_label")
+    .attr("transform", `translate(${contextPosition.x - 10},${contextPosition.y + contextDimensions.height - 5}) rotate(-90)`)
+    .text("Full transit");
+
 };
 
 document.addEventListener('DOMContentLoaded', () => {
