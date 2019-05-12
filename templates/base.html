@@ -8,12 +8,15 @@
     <meta name="author" content="@mattparrilla">
 
     <!-- Social Media Tags -->
-    <meta property="og:title" content="{% if fb_title %}{{ fb_title }}{% else %}{{ title }}{% endif %}">
-    <meta property="og:description" content="{% if fb_description %}{{ fb_description }}{% else %}{{ description }}{% endif %}">
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:description" content="{{ description }}">
+    <meta property="og:url" content="{{ url }}">
     {% if social_img %}
       <meta property="og:image" content="{{ url_for('static', filename=social_img) }}">
+      <meta name="twitter:image" content="{{ social_img }}">
     {% endif %}
-    <meta property="og:url" content="{{ url }}">
+    <meta name="twitter:title" content="{{ title }}">
+    <meta name="twitter:description" content="{{ description }}">
     <meta name="twitter:card" content="{% if social_img %}summary_large_image{% else %}summary{% endif %}">
     <meta name="twitter:site" content="mattparrilla">
 
