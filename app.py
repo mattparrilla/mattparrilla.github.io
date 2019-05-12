@@ -13,7 +13,7 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/post/<title>/index.html")
+@app.route("/post/<title>.html")
 def post(title):
     post_properties = {}
     with open("posts.json", "r") as f:
