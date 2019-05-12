@@ -149,14 +149,16 @@ const plotErrors = (id, errors, xPos, yPos, defined) => {
     .text("Full transit");
 
   if (id == "gyro_errors") {
+    // TODO: what the hell am I doing with scaling here?
     const smallMultipleDimensions = { width: width / 4, height: 200 };
     const smallMultiplePlot = d3.select("#gyro_small_multiples")
       .attr("width", width)
       .attr("height", smallMultipleDimensions.height);
 
-    x.domain([-15, 205]);
-    y.domain([0, 1005]);
+    x.domain([0, 200]);
+    y.domain([0, 1000]);
     y.range([smallMultipleDimensions.height - 5, 5])
+
 
 
     const durations = [2, 1, 0.5, 0.25];
@@ -184,7 +186,19 @@ const plotErrors = (id, errors, xPos, yPos, defined) => {
         .attr("transform", `translate(${smallMultipleDimensions.width * i + smallMultipleDimensions.width / 2 + 20}, ${smallMultipleDimensions.height - 10})`)
         .text(`${hours} hr`);
 
+    smallMultiplePlot.append("g")
+      .html(`<line
+        class="small_multiple_axis_line"
+        x1="${smallMultipleDimensions.width * i + smallMultipleDimensions.width / 2 - 5}"
+        y1="5"
+        x2="${smallMultipleDimensions.width * i + smallMultipleDimensions.width / 2 + 1}"
+        y2="5"/>`);
     });
+
+    smallMultiplePlot.append("text")
+      .attr("transform", `translate(${smallMultipleDimensions.width / 2 - 50}, 10)`)
+      .text("1 km");
+      
   }
 };
 

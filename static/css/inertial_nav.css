@@ -86,3 +86,11 @@ text.context {
   font-size: 14px;
 }
 
+.small_multiple_axis_line {
+  stroke: #111;
+  stroke-width: 2px;
+}
+
+#body h3, #body h2 {
+  font-weight: 400;
+}

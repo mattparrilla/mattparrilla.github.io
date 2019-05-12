@@ -13,9 +13,9 @@
         <h2>Or how to know where your robot is when under water</h2>
       </div>
       <div id="body">
-        <p>The first thing to know about underwater navigation is that GPS doesn’t work underwater. This simple fact makes figuring out where you are a surprisingly difficult and interesting problem. It turns out that in order to know where you are, you have to know how you got there.</p>
+        <p>The first thing to know about underwater navigation is that GPS doesn’t work underwater. This makes figuring out where you are a surprisingly difficult and interesting problem. It turns out that in order to know where you are, you have to know how you got there.</p>
+        <p>Inertial navigation is a relative positioning technique that uses past measurements to predict current position and orientation. Using past measurements to predict current position is known as <em>dead reckoning</em>. A classic inertial navigation system (INS) is composed of an accelerometer, a magnetometer, and a gyroscope along with a computer to process the sensor data. The data from these sensors become inputs in a program whose output is an estimate of our robot's position and orientation, also known as <em>pose</em>.
         <p>GPS provides what is called an absolute position reference, which defines our position on planet earth. Due to the lack of an absolute position reference, we need to creatively utilize relative position measurements and tie those measurements to a single or infrequent absolute position measurements, such as a GPS ping when we’re on the surface.</p>
-        <p>Inertial navigation is a relative positioning technique that uses past measurements to predict current position and orientation. A classic inertial navigation system (INS) is composed of an accelerometer, a magnetometer, and a gyroscope along with a computer to process the sensor data. The data from these sensors become inputs in a program whose output is an estimate of our robot's position and orientation, also known as <em>pose</em>.
         <h2>Navigation Solution</h2>
         <p>Our ultimate goal is a navigation solution that includes defines our this pose.</p>
         <pre>
@@ -47,8 +47,8 @@ navigation_solution {
         <h2>Sensors</h2>
         <p>First we'll review the sensors that make up our inertial navigation system.</p>
 
-        <h2>Accelerometer</h2>
-        <p>The accelerometer is the only of the "traditional" inertial sensors that gives us a measurement of our position. Unfortunately, it is not a very good one.</p>
+        <h3>Accelerometer</h3>
+        <p>The accelerometer is the only "traditional" inertial sensors that gives us a measurement of our position. Unfortunately, it is not a very good one.</p>
         <p>To go from acceleration to position we need to integrate twice, which means that any error in our acceleration measurement will increase quadratically over time. Even small errors in acceleration can result in huge errors in position, errors that increase over time.</p>
         <pre>
 acceleration =    a
