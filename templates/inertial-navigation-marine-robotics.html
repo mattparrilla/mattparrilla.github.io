@@ -15,9 +15,9 @@
       <div id="body">
         <p>The first thing to know about underwater navigation is that GPS doesn’t work underwater. This simple fact makes figuring out where you are a surprisingly difficult and interesting problem. It turns out that in order to know where you are, you have to know how you got there.</p>
         <p>GPS provides what is called an absolute position reference, which defines our position on planet earth. Due to the lack of an absolute position reference, we need to creatively utilize relative position measurements and tie those measurements to a single or infrequent absolute position measurements, such as a GPS ping when we’re on the surface.</p>
-        <p>Inertial navigation is a relative positioning technique that uses of motion and rotation sensors to determine position and orientation. A classic inertial navigation system (INS) is composed of an accelerometer, a magnetometer, and a gyroscope along with a computer to process the sensor data. The data from these sensors are inputs in an application whose output is called a navigation solution.</p>
+        <p>Inertial navigation is a relative positioning technique that uses past measurements to predict current position and orientation. A classic inertial navigation system (INS) is composed of an accelerometer, a magnetometer, and a gyroscope along with a computer to process the sensor data. The data from these sensors become inputs in a program whose output is an estimate of our robot's position and orientation, also known as <em>pose</em>.
         <h2>Navigation Solution</h2>
-        <p>Our ultimate goal is a navigation solution that includes our robot's pose (position and orientation).</p>
+        <p>Our ultimate goal is a navigation solution that includes defines our this pose.</p>
         <pre>
 navigation_solution {
   time
@@ -31,8 +31,7 @@ navigation_solution {
   attitude_acceleration[3]
 
   absolute_position[2] // lat, lon
-}
-        </pre>
+}</pre>
         <p>For position we've got 3 spatial dimensions, X, Y, and Z as well the first and second derivatives, velocity and acceleration in each of those 3 dimensions.</p>
         <div class="media">
           <h4>Position and Orientation</h4>
@@ -62,7 +61,7 @@ position     = &int;&int; a = &frac12; &middot; a &middot; t<sup>2</sup></pre>
         <p>A magnetometer measures the magnetic field in 3 spatial dimensions. A compass is a single dimension magnetometer, measuring the magnetic field about Z, giving us our heading. Heading is our most important measurement because small errors in heading can lead to large errors in position.</p>
         <p>The below chart shows where our robot thinks it ended up after traveling in a straight line for 1 kilometer. The black line shows the true path and the other lines show the calculated course given an error in our heading.</p>
         <div class="media">
-          <h4>Effect of Heading Errors on Position</h4>
+          <h4>Position Error After 1 Kilometer</h4>
           <svg id="heading_errors"></svg>
         </div>
         <p>If our heading is off by 10&deg; we'll end up with a position error of 174 meters, which is 17.4% of our distance traveled. 10&deg; might seem like a huge error, but compasses are notoriously fickle, and for good reason. Putting a compass in a metal cage with electricity flowing around it tends to make for unhappy compasses.
@@ -98,7 +97,7 @@ angular position = &int; v  = v &middot; t</pre>
         <p>FOGs are typically composed of three orthogonal rings and so can measure angular velocity about any axis.</p>
         <p>Given that we still need to integrate once to get angular position, gyroscopes will need to be much more precise than magnetometers to outperform them. The good news is that they are.</p>
         <div class="media">
-          <h4>Effect of Rotation Rate Errors on Position</h4>
+          <h4>Position Error After 1 Hour at 1 m/s</h4>
           <svg id="gyro_errors"></svg>
         </div>
         <p>The above plot shows the effect of gyro bias values on a 1km straight line run traveling at X m/s. Since the error introduced by the gyroscope increases over time, at some point it will be worse than the magnetometer error. In practice we are able to combine measurements from the magnetometer and aiding sensors enabling the gyroscope to become one of our most valuable sensors.</p>
@@ -111,6 +110,7 @@ angular position = &int; v  = v &middot; t</pre>
             alt="Doppler Velocity Log (DVL)"
             class="img-responsive"
             src="{{ url_for('static', filename='img/dvl_doppler_shift.jpg') }}" />
+          <p class="caption">Source: <a href="https://cultofsea.com/bridge-equipment/1229/">cultofsea</a></p>
         </div>
         <p>As the name indicates, the Doppler Velocity Log utilizes the doppler shift to calculate its measurements. The doppler shift is demonstrated by the animation below. The gist is that given a wave of constant frequency, you’ll experience the wave at a higher frequency when you’re moving toward the source compared to when you’re moving away from the source.</p>
         <div class="media">
@@ -170,8 +170,7 @@ angular position = &int; v  = v &middot; t</pre>
   attitude_acceleration[3]
 
   absolute_position[2]
-  }
-        </pre>
+  }</pre>
         <p>I hope you enjoyed this post. If you’re interested in more content like this, including a more detailed explanation of kalman filters, you should <a href="//twitter.com/mattparrilla">follow me on twitter</a> or <a href="http://matthewparrilla.com">check out my website.</a></p>
         <p>And if you think these sound like fun problems to work on, <a href="//greensea.com/join-our-team">come work with me.</a></p>
       </div>

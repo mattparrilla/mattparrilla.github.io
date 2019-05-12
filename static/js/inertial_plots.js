@@ -65,7 +65,7 @@ const plotErrors = (id, errors, xPos, yPos) => {
     plot.append("text")
       .attr("class", `data_label ${error ? "error" : "no_error"}`)
       .attr("transform", `translate(${origin.x}, ${origin.y - 10}), rotate(-30)`)
-      .text(error ? `${error}° Error` : "No Error");
+      .text(error ? `${error}°${id == "gyro_errors" ? "/hr" : ""} Error` : "No Error");
   });
 
   plot.append("g")
@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   plotErrors(
     "gyro_errors",
-    [0, 0.05, 3, 10, 15],
+    [0, 1, 5, 10, 15],
     (x, error) => d => x(Math.sin(error * (d / 1800) * Math.PI / 180) * d),
     (y, error) => d => y(Math.cos(error * (d / 1800) * Math.PI / 180) * d));
 });

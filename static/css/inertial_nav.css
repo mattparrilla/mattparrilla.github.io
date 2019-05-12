@@ -68,6 +68,15 @@ text.context {
   font-family: monospace;
 }
 
+.media svg {
+  margin-top: 15px;
+}
+
+.media .caption {
+  font-size: 12px;
+  text-align: right;
+}
+
 #fog_labels {
   font-size: 14px;
   margin-right: 15px;
