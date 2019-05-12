@@ -147,6 +147,42 @@ const plotErrors = (id, errors, xPos, yPos, defined) => {
     .attr("class", "context")
     .attr("transform", `translate(${contextPosition.x - 0},${contextPosition.y + contextDimensions.height + 15}) rotate(-0)`)
     .text("Full transit");
+
+  if (id == "gyro_errors") {
+    const smallMultipleDimensions = { width: width / 6, height: 200 };
+    const smallMultiplePlot = d3.select("#gyro_small_multiples")
+      .attr("width", width)
+      .attr("height", smallMultipleDimensions.height);
+
+    x.domain([-15, 205]);
+    y.domain([0, 1005]);
+    y.range([smallMultipleDimensions.height - 5, 5])
+
+
+    const speeds = [0.5, 1, 2, 5];
+    speeds.forEach((speed, i) => {
+      const smallLine = error => d3.line()
+        .x(d => x(Math.sin((error / 3600) * (d / speed) * Math.PI / 180) * d))
+        .y(d => y(Math.cos((error / 3600) * (d / speed) * Math.PI / 180) * d));
+
+      x.range([
+        5 + smallMultipleDimensions.width * i,
+        smallMultipleDimensions.width - 5 + (smallMultipleDimensions.width * i)
+      ])
+
+      lines.forEach(({ error, color }) => {
+        smallMultiplePlot.append("g")
+            .append("path")
+              .attr("class", "context_line")
+              .attr("d", smallLine(error)(distance))
+              .attr("stroke", color);
+      });
+      smallMultiplePlot.append("text")
+        .attr("transform", `translate(${smallMultipleDimensions.width * i}, ${smallMultipleDimensions.height})`)
+        .text(`${speed} m/s`);
+
+    });
+  }
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -157,10 +193,13 @@ document.addEventListener('DOMContentLoaded', () => {
     (y, error) => d => y(Math.cos(error * Math.PI / 180) * d),
     error => d => (Math.cos(error * Math.PI / 180) * d));
 
+  // gyro error is sin(rot_rate * t) with rotation rate in deg / s
+  // time is distance / velocity
+  const velocity = 0.5; // m/s
   plotErrors(
     "gyro_errors",
     [0, 1, 2, 5, 10],
-    (x, error) => d => x(Math.sin(error * (d / 1000) * Math.PI / 180) * d),
-    (y, error) => d => y(Math.cos(error * (d / 1000) * Math.PI / 180) * d),
-    error => d => (Math.cos(error * (d / 1000) * Math.PI / 180) * d));
+    (x, error) => d => x(Math.sin((error / 3600) * (d / velocity) * Math.PI / 180) * d),
+    (y, error) => d => y(Math.cos((error / 3600) * (d / velocity) * Math.PI / 180) * d),
+    error => d => (Math.cos((error / 3600) * (d / velocity) * Math.PI / 180) * d));
 });
