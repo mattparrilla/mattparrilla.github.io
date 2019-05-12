@@ -46,6 +46,10 @@ svg text {
   fill: #777;
 }
 
+text.context {
+  font-size: 12px;
+}
+
 .data_label.no_error {
   fill: #000;
 }

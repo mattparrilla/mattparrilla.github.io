@@ -102,8 +102,8 @@ const plotHeadingErrors = (width) => {
   x.range([5, contextDimensions.width - 5])
   y.range([contextDimensions.height - 5, 5])
   const contextPosition = {
-    x: width - contextDimensions.width - 30,
-    y: height - margin.bottom - contextDimensions.height - 10
+    x: width - contextDimensions.width - 50,
+    y: height - margin.bottom - contextDimensions.height - 30
   };
   const contextPlot = `
     <svg
@@ -143,10 +143,9 @@ const plotHeadingErrors = (width) => {
     .html(`<circle cx="${x(0)}" cy="${y(0)}" r="3" />`);
 
   plot.append("text")
-    .attr("class", "axis_label")
-    .attr("transform", `translate(${contextPosition.x - 10},${contextPosition.y + contextDimensions.height - 5}) rotate(-90)`)
+    .attr("class", "context")
+    .attr("transform", `translate(${contextPosition.x - 0},${contextPosition.y + contextDimensions.height + 15}) rotate(-0)`)
     .text("Full transit");
-
 };
 
 document.addEventListener('DOMContentLoaded', () => {
