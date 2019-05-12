@@ -64,6 +64,10 @@ text.context {
   font-family: monospace;
 }
 
+.media.pose {
+  margin: 10px 20px 10px 10px;
+}
+
 .media h4 {
   font-family: monospace;
 }
@@ -94,3 +98,7 @@ text.context {
 #body h3, #body h2 {
   font-weight: 400;
 }
+
+.roll_pitch_yaw {
+  max-width: 300px;
+  height: auto;

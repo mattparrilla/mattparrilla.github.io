@@ -14,10 +14,10 @@
       </div>
       <div id="body">
         <p>The first thing to know about underwater navigation is that GPS doesn’t work underwater. This makes figuring out where you are a surprisingly difficult and interesting problem. It turns out that in order to know where you are, you have to know how you got there.</p>
-        <p>Inertial navigation is a relative positioning technique that uses past measurements to predict current position and orientation. Using past measurements to predict current position is known as <em>dead reckoning</em>. A classic inertial navigation system (INS) is composed of an accelerometer, a magnetometer, and a gyroscope along with a computer to process the sensor data. The data from these sensors become inputs in a program whose output is an estimate of our robot's position and orientation, also known as <em>pose</em>.
-        <p>GPS provides what is called an absolute position reference, which defines our position on planet earth. Due to the lack of an absolute position reference, we need to creatively utilize relative position measurements and tie those measurements to a single or infrequent absolute position measurements, such as a GPS ping when we’re on the surface.</p>
+        <p>Inertial navigation is a relative positioning technique that uses past measurements to predict current position and orientation. Using past measurements to predict current position is known as <em>dead reckoning</em>.
+        <p>A classic inertial navigation system (INS) is composed of an accelerometer, a magnetometer, and a gyroscope along with a computer to process the sensor data. The data from these sensors become inputs in a program whose output is an estimate of our robot's position and orientation, also known as <em>pose</em>.
         <h2>Navigation Solution</h2>
-        <p>Our ultimate goal is a navigation solution that includes defines our this pose.</p>
+        <p>Our ultimate goal is a navigation solution that includes defines our pose.</p>
         <pre>
 navigation_solution {
   time
@@ -32,16 +32,15 @@ navigation_solution {
 
   absolute_position[2] // lat, lon
 }</pre>
-        <p>For position we've got 3 spatial dimensions, X, Y, and Z as well the first and second derivatives, velocity and acceleration in each of those 3 dimensions.</p>
-        <div class="media">
-          <h4>Position and Orientation</h4>
+        <div class="media pose pull-left">
           <img
-            class="img-responsive"
+            class="roll_pitch_yaw"
             alt="Roll, pitch, yaw diagram"
             src="{{ url_for('static', filename='img/roll_pitch_yaw.png') }}"
           />
         </div>
-        <p>Attitude is our measurement of orientation and is composed of roll, pitch, and heading. Roll is the rotation about X, pitch rotation about Y, and heading is rotation about Z.</p>
+        <p>For position we've got 3 spatial dimensions, X, Y, and Z as well the first and second derivatives, velocity and acceleration, in each of those 3 dimensions.</p>
+        <p>Attitude is our measurement of orientation and is composed of roll, pitch, and heading. Roll is the rotation about X, pitch the rotation about Y, and heading the rotation about Z.</p>
         <p>Together, position and attitude tell us where our robot is and how it is oriented in the earth frame.</p>
 
         <h2>Sensors</h2>
