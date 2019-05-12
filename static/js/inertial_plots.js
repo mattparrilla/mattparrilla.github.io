@@ -1,18 +1,17 @@
 /* globals d3 */
 
-const plotHeadingErrors = (width) => {
+
+const plotErrors = (id, errors, xPos, yPos) => {
+  const width = document.getElementById('body').clientWidth;
   const margin = { top: 50, left: 80, bottom: 60 };
   // height needs to be 1/2 of width including margins
   const height = width / 2 + (margin.left * 2 - (margin.top + margin.bottom));
-  const plot = d3.select("#heading_errors")
+  const plot = d3.select(`#${id}`)
     .attr("width", width)
     .attr("height", height);
 
   const x = d3.scaleLinear().range([margin.left, width]);
   const y = d3.scaleLinear().range([height - margin.bottom, margin.top]);
-
-  const xPos = error => d => x(Math.sin(error * Math.PI / 180) * d);
-  const yPos = error => d => y(Math.cos(error * Math.PI / 180) * d);
 
   // IMPORTANT: ratio of width to height needs to be the same (1/2)
   x.domain([-15, 205]);   // 220 meters wide
@@ -20,16 +19,15 @@ const plotHeadingErrors = (width) => {
 
   const line = error => d3.line()
     .defined(d => Math.cos(error * Math.PI / 180) * (d + 1) >= y.domain()[0])
-    .x(xPos(error))
-    .y(yPos(error));
+    .x(xPos(x, error))
+    .y(yPos(y, error));
 
   // make 10k element array of numbers 1 to 1000
   const distance = [...Array(10000).keys()].map(i => (i + 1) / 10);
 
-
   const vehicleIcon = (fill, x, y, rotate) => `
     <svg
-      x="${x - (Math.cos(rotate * Math.PI / 180) * 15)}"
+      x="${x - (rotate > 3 ? 14 : 15)}"
       y="${y - 10}"
       stroke="#fff"
       stroke-width="1"
@@ -42,12 +40,12 @@ const plotHeadingErrors = (width) => {
         points="0,20 10,15 20,20 10,0 0,20" />
     </svg>`;
 
-  const lines = [
-    { error: 0,   color: "#111" },
-    { error: 1, color: "#1a9850" },
-    { error: 2,   color: "#66bd63" },
-    { error: 5,   color: "#f46d43" },
-    { error: 10,  color: "#d73027" }];
+  const colors = ["#111", "#1a9850", "#66bd63", "#f46d43", "#d73027"];
+
+  const lines = errors.map((error, i) => ({
+    error,
+    color: colors[i],
+  }));
 
   lines.forEach(({ error, color }) => {
     plot.append("g")
@@ -57,8 +55,8 @@ const plotHeadingErrors = (width) => {
         .attr("stroke", color);
 
     const origin = {
-      x: xPos(error)(1000),
-      y: yPos(error)(1000)
+      x: xPos(x, error)(1000),
+      y: yPos(y, error)(1000)
     }
 
     plot.append('g')
@@ -105,9 +103,11 @@ const plotHeadingErrors = (width) => {
     x: width - contextDimensions.width - 50,
     y: height - margin.bottom - contextDimensions.height - 30
   };
+
+  const contextId = `${id}_context_plot`;
   const contextPlot = `
     <svg
-      id="context_plot"
+      id="${contextId}"
       x="${contextPosition.x}"
       y="${contextPosition.y}"
       height="${contextDimensions.height}"
@@ -117,7 +117,7 @@ const plotHeadingErrors = (width) => {
   plot.append("g").html(contextPlot);
 
   lines.reverse().forEach(({ error, color }) => {
-    plot.select("#context_plot")
+    plot.select(`#${contextId}`)
       .append("g")
         .append("path")
           .attr("class", "context_line")
@@ -125,7 +125,7 @@ const plotHeadingErrors = (width) => {
           .attr("stroke", color);
   });
 
-  plot.select("#context_plot")
+  plot.select(`#${contextId}`)
     .append("g")
     .html(`
       <rect
@@ -138,7 +138,7 @@ const plotHeadingErrors = (width) => {
         stroke-width="2px"
       />`);
 
-  plot.select("#context_plot")
+  plot.select(`#${contextId}`)
     .append("g")
     .html(`<circle cx="${x(0)}" cy="${y(0)}" r="3" />`);
 
@@ -149,6 +149,15 @@ const plotHeadingErrors = (width) => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  const width = document.getElementById('body').clientWidth;
-  plotHeadingErrors(width);
+  plotErrors(
+    "heading_errors",
+    [0, 1, 2, 5, 10],
+    (x, error) => d => x(Math.sin(error * Math.PI / 180) * d),
+    (y, error) => d => y(Math.cos(error * Math.PI / 180) * d));
+
+  plotErrors(
+    "gyro_errors",
+    [0, 0.05, 3, 10, 15],
+    (x, error) => d => x(Math.sin(error * (d / 1800) * Math.PI / 180) * d),
+    (y, error) => d => y(Math.cos(error * (d / 1800) * Math.PI / 180) * d));
 });

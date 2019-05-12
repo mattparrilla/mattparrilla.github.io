@@ -10,7 +10,7 @@
       <div class="title-block">
         <p class="date">May 6, 2019</p>
         <h1>Inertial Navigation in Marine Robotics</h1>
-        <h2>Or how to know where you robot is when under water</h2>
+        <h2>Or how to know where your robot is when under water</h2>
       </div>
       <div id="body">
         <p>The first thing to know about underwater navigation is that GPS doesn’t work underwater. This simple fact makes figuring out where you are a surprisingly difficult and interesting problem. It turns out that in order to know where you are, you have to know how you got there.</p>
@@ -34,11 +34,14 @@ navigation_solution {
 }
         </pre>
         <p>For position we've got 3 spatial dimensions, X, Y, and Z as well the first and second derivatives, velocity and acceleration in each of those 3 dimensions.</p>
-        <img
-          class="img-responsive"
-          alt="Roll, pitch, yaw diagram"
-          src="{{ url_for('static', filename='img/roll_pitch_yaw.png') }}"
-        />
+        <div class="media">
+          <h4>Position and Orientation</h4>
+          <img
+            class="img-responsive"
+            alt="Roll, pitch, yaw diagram"
+            src="{{ url_for('static', filename='img/roll_pitch_yaw.png') }}"
+          />
+        </div>
         <p>Attitude is our measurement of orientation and is composed of roll, pitch, and heading. Roll is the rotation about X, pitch rotation about Y, and heading is rotation about Z.</p>
         <p>Together, position and attitude tell us where our robot is and how it is oriented in the earth frame.</p>
 
@@ -46,7 +49,7 @@ navigation_solution {
         <p>First we'll review the sensors that make up our inertial navigation system.</p>
 
         <h2>Accelerometer</h2>
-        <p>The accelerometer is our only inertial sensor which gives us a measurement of our position. Unfortunately, it is not a very good one.</p>
+        <p>The accelerometer is the only of the "traditional" inertial sensors that gives us a measurement of our position. Unfortunately, it is not a very good one.</p>
         <p>To go from acceleration to position we need to integrate twice, which means that any error in our acceleration measurement will increase quadratically over time. Even small errors in acceleration can result in huge errors in position, errors that increase over time.</p>
         <pre>
 acceleration =    a
@@ -58,7 +61,8 @@ position     = &int;&int; a = &frac12; &middot; a &middot; t<sup>2</sup></pre>
         <h3>Magnetometer (AKA Compass)</h3>
         <p>A magnetometer measures the magnetic field in 3 spatial dimensions. A compass is a single dimension magnetometer, measuring the magnetic field about Z, giving us our heading. Heading is our most important measurement because small errors in heading can lead to large errors in position.</p>
         <p>The below chart shows where our robot thinks it ended up after traveling in a straight line for 1 kilometer. The black line shows the true path and the other lines show the calculated course given an error in our heading.</p>
-        <div>
+        <div class="media">
+          <h4>Effect of Heading Errors on Position</h4>
           <svg id="heading_errors"></svg>
         </div>
         <p>If our heading is off by 10&deg; we'll end up with a position error of 174 meters, which is 17.4% of our distance traveled. 10&deg; might seem like a huge error, but compasses are notoriously fickle, and for good reason. Putting a compass in a metal cage with electricity flowing around it tends to make for unhappy compasses.
@@ -73,28 +77,48 @@ angular position = &int; v  = v &middot; t</pre>
         <p>This is still not as nice as having a direct measurement of angular position, which doesn’t have an error that increases over time, but the gyroscope is a much more precise measurement than the magnetometer, so it turns out to be extremely useful.</p>
         <p>Classic gyroscopes, the kind you might remember from physics class, are spinning masses that measure changes in angular momentum. Modern gyroscopes are a bit more sophisticated but easier to understand. Today’s state-of-the-art gyroscope is the fiber optic gyroscope (FOG) and rather than using conservation of angular momentum, it uses special relativity to calculate rotational velocity.</p>
         <p>Here’s an illustration demonstrating how they work:</p>
-        <div>
+        <div class="media">
+          <h4>Fiber Optic Gyroscope</h4>
           <img
             class="img-responsive"
             alt="Demonstration of fiber optic gyro ring stationary and rotating"
             src="{{ url_for('static', filename='img/FOG.png') }}"/>
+          <div id="fog_labels">
+            <div class="row">
+              <div class="col-xs-5 col-xs-offset-1">
+                No Rotation
+              </div>
+              <div class="col-xs-5">
+                Clockwise Rotation
+              </div>
+            </div>
+          </div>
         </div>
         <p>A laser gets shot around a ring in two directions. The image on the left shows a stationary ring (black) with the two beams of the laser (red and blue) arriving back at the origin at the same time. The image on the right shows a ring rotating clockwise. The beam traveling clockwise (blue) has to travel further than the beam traveling counter-clockwise (red) to get back to where it started, resulting in a different interference pattern in a sensor at the origin. This interference pattern is used to derive the angular velocity along the plane of the ring.</p>
-        <p>FOGs are composed of three orthogonal rings and so can measure angular velocity about any axis.</p>
+        <p>FOGs are typically composed of three orthogonal rings and so can measure angular velocity about any axis.</p>
         <p>Given that we still need to integrate once to get angular position, gyroscopes will need to be much more precise than magnetometers to outperform them. The good news is that they are.</p>
-        <div>
-          TODO: ad plot of gyro errors
+        <div class="media">
+          <h4>Effect of Rotation Rate Errors on Position</h4>
+          <svg id="gyro_errors"></svg>
         </div>
         <p>The above plot shows the effect of gyro bias values on a 1km straight line run traveling at X m/s. Since the error introduced by the gyroscope increases over time, at some point it will be worse than the magnetometer error. In practice we are able to combine measurements from the magnetometer and aiding sensors enabling the gyroscope to become one of our most valuable sensors.</p>
 
         <h3>Doppler Velocity Log (DVL)</h3>
         <p>In marine robotics, we are often operating at or near the bottom. When this is the case we can use a DVL to tell us how fast and in what direction we are moving by bouncing sound waves off of the bottom.</p>
-        <div>
-          <img class="img-responsive" src="{{ url_for('static', filename='img/dvl_doppler_shift.jpg') }}" />
+        <div class="media">
+          <h4>Doppler Velocity Log</h4>
+          <img
+            alt="Doppler Velocity Log (DVL)"
+            class="img-responsive"
+            src="{{ url_for('static', filename='img/dvl_doppler_shift.jpg') }}" />
         </div>
         <p>As the name indicates, the Doppler Velocity Log utilizes the doppler shift to calculate its measurements. The doppler shift is demonstrated by the animation below. The gist is that given a wave of constant frequency, you’ll experience the wave at a higher frequency when you’re moving toward the source compared to when you’re moving away from the source.</p>
-        <div>
-          <img class="img-responsive" src="{{ url_for('static', filename='img/Dopplerfrequency.gif') }}" />
+        <div class="media">
+          <h4>Doppler Shift</h4>
+          <img
+            alt="Dopper shift animation"
+            class="img-responsive"
+            src="{{ url_for('static', filename='img/Dopplerfrequency.gif') }}" />
         </div>
         <p>The DVL operates by sending a 4-beam signal out of a transducer and then listening for the response. It then measures the phase shift across those 4 beams and reports a velocity and a course-over-ground.</p>
         <p>Course-over-ground is a direct measurement of relative heading and a pretty good one. It can’t tell us which way is north, but it is very valuable in telling us how far we’ve turned.</p>
@@ -111,13 +135,13 @@ angular position = &int; v  = v &middot; t</pre>
         <p>So far I’ve described most of the navigation sensors in a typical ROV, but the challenge for the roboticist comes in combining all of that data to get the most accurate solution possible.</p>
         
         <h3>Noise</h3>
-        <p>We’ve got our suite of sensors and we know how we’ll use them, but now we need to jam them all together inside of a tiny vehicle with spinning metal, flowing electricity, and other talking sensors. Now we’ve got acoustic noise (DVL, sonar, and USBL all ping), mechanical noise (motors and power converters), electrical noise (both faults and expected), and even temperature effects. Now our expensive sensors with their lovely spec sheets are performing nowhere near how they perform on the bench top.</p>
+        <p>We’ve got our suite of sensors and we know how we’ll use them, but now we need to jam them all together inside of a tiny vehicle with spinning metal, flowing electricity, and other talking sensors. We’ve got acoustic noise from the DVL, sonar, and USBL, mechanical noise from motors and spinning parts, electrical noise from everything, and even temperature effects. Now our expensive sensors with their lovely spec sheets are performing nowhere near how they perform on the bench top.</p>
         <p>A large part in designing and maintaining a robotic system involves reducing noise, to the extent that this is possible. This is an art, honed over years of experience. Characterizing the noise is the first step in the process and iterating on system design is often the end result. But even in the best designed system there will always be noise.</p>
         <p>Fortunately the same mathematical tool that we’ll use to fuse sensor data, also helps us mitigate noise, the Kalman filter.</p>
         <h3>Kalman Filters</h3>
         <p>The Kalman filter is the main tool in our toolbelt for taking this disparate and noisy data and turning it into a navigation solution. Kalman filters are an entire subject in themselves and that is a blog post I plan on writing someday, but this is not that post.</p>
         <p>The Kalman filter is a state estimator that allows us to make predictions based on latest measurements and predicted values, resulting in an estimate that is better than either.</p>
-        <div>
+        <div class="media">
           <img 
             class="img-responsive"
             alt="Kalman filter explanation"
