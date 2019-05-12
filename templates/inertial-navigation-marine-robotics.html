@@ -97,7 +97,7 @@ angular position = &int; v  = v &middot; t</pre>
         <p>FOGs are typically composed of three orthogonal rings and so can measure angular velocity about any axis.</p>
         <p>Given that we still need to integrate once to get angular position, gyroscopes will need to be much more precise than magnetometers to outperform them. The good news is that they are.</p>
         <div class="media">
-          <h4>Position Error After 1 Hour at 1 m/s</h4>
+          <h4>Position Error After 1 Kilometer Traveling at 1 m/s</h4>
           <svg id="gyro_errors"></svg>
         </div>
         <p>The above plot shows the effect of gyro bias values on a 1km straight line run traveling at X m/s. Since the error introduced by the gyroscope increases over time, at some point it will be worse than the magnetometer error. In practice we are able to combine measurements from the magnetometer and aiding sensors enabling the gyroscope to become one of our most valuable sensors.</p>

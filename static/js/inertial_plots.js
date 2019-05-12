@@ -25,6 +25,7 @@ const plotErrors = (id, errors, xPos, yPos, defined) => {
   // make 10k element array of numbers 1 to 1000
   const distance = [...Array(10000).keys()].map(i => (i + 1) / 10);
 
+  // the polygon transform attribute's value is very specific and fragile
   const vehicleIcon = (fill, x, y, rotate) => `
     <svg
       x="${x - (rotate > 3 ? 14 : 15)}"
@@ -34,7 +35,8 @@ const plotErrors = (id, errors, xPos, yPos, defined) => {
       height="30"
       width="30">
       <polygon
-        transform="rotate(${rotate}) translate(5,5)"
+        transform="rotate(${id == 'gyro_errors' ? rotate * 2 : rotate})
+          ${id == 'gyro_errors' && rotate == 10 ? 'translate(7,0)' : 'translate(5,5)'}"
         fill="${fill}"
         stroke="${fill}"
         points="0,20 10,15 20,20 10,0 0,20" />
@@ -157,8 +159,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   plotErrors(
     "gyro_errors",
-    [0, 1, 5, 10, 15],
-    (x, error) => d => x(Math.sin(error * (d / 1800) * Math.PI / 180) * d),
-    (y, error) => d => y(Math.cos(error * (d / 1800) * Math.PI / 180) * d),
-    error => d => (Math.cos(error * (d / 1800) * Math.PI / 180) * d));
+    [0, 1, 2, 5, 10],
+    (x, error) => d => x(Math.sin(error * (d / 1000) * Math.PI / 180) * d),
+    (y, error) => d => y(Math.cos(error * (d / 1000) * Math.PI / 180) * d),
+    error => d => (Math.cos(error * (d / 1000) * Math.PI / 180) * d));
 });
