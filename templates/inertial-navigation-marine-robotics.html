@@ -72,12 +72,11 @@ position     = &int;&int; a = &frac12; &middot; a &middot; t<sup>2</sup></pre>
 
         <h3>Gyroscope</h3>
         <p>While magnetometers measure changes in angular position, gyroscopes measure changes in angular velocity.</p>
-        <p>Velocity is the first derivative of position, so you need to integrate velocity in order to get rotational position. The integral of velocity is <tt>velocity &middot; time</tt>, so our error gets bigger over time, but not nearly as quickly as it does with our accelerometer.</p>
+        <p>Velocity is the first derivative of position, so we need to integrate velocity in order to get rotational position. The integral of velocity is <tt>velocity &middot; time</tt>, so our error gets bigger over time, but not nearly as quickly as it does with our accelerometer since we only need to integrate once this time.</p>
         <pre>
 angular velocity =   v
 angular position = &int; v  = v &middot; t</pre>
-        <p>This is still not as nice as having a direct measurement of angular position, which doesn’t have an error that increases over time, but the gyroscope is a much more precise measurement than the magnetometer, so it turns out to be extremely useful.</p>
-        <p>Classic gyroscopes are spinning masses that measure changes in angular momentum; you might remember a spinning wheel from high school physics class. Modern gyroscopes are a bit more sophisticated but easier to understand. Today’s state-of-the-art gyroscope is the fiber optic gyroscope (FOG) and rather than using conservation of angular momentum, it uses special relativity to calculate rotational velocity.</p>
+        <p>Classic gyroscopes are spinning masses that measure changes in angular momentum. Modern gyroscopes are a bit more sophisticated but are more intuitive to understand. Today’s state-of-the-art gyroscope is the fiber optic gyroscope (FOG) and rather than using conservation of angular momentum, it uses special relativity to calculate rotational velocity.</p>
         <p>Here’s an illustration demonstrating how they work:</p>
         <div class="media">
           <h4>Fiber Optic Gyroscope</h4>
@@ -96,20 +95,20 @@ angular position = &int; v  = v &middot; t</pre>
             </div>
           </div>
         </div>
-        <p>A laser gets shot around a ring in two directions. The image on the left shows a stationary ring (black) with the two beams of the laser (red and blue) arriving back at the origin at the same time. The image on the right shows a ring rotating clockwise. The beam traveling clockwise (blue) has to travel further than the beam traveling counter-clockwise (red) to get back to where it started, resulting in a different interference pattern in a sensor at the origin. This interference pattern is used to derive the angular velocity along the plane of the ring.</p>
+        <p>A laser gets shot around a ring in two directions. The image on the left shows a stationary ring (black) with the two beams of the laser (red and blue) arriving back at the origin at the same time. The image on the right shows a ring rotating clockwise. The beam traveling clockwise (blue) has to travel further than the beam traveling counter-clockwise (red) to get back to where it started, resulting in a different interference pattern in a sensor at the origin. This interference pattern is used to derive the angular velocity in the plane of the ring.</p>
         <p>FOGs are typically composed of three orthogonal rings and so can measure angular velocity about any axis.</p>
-        <p>Given that we still need to integrate once to get angular position, gyroscopes will need to be much more precise than magnetometers to outperform them. The good news is that they are.</p>
+        <p>Given that we still need to integrate once to get angular position, gyroscopes will need to be much more precise than magnetometers to outperform them. The good news is that they are. In fact, FOGs are able to measure the rotation of the earth!</p>
+        <p>The earth rotates 360&deg; in 24 hours, which gives us a rotation rate of 15&deg;/hr. In order to see the full 15&deg;/hr in our heading measurement, we'd need to be at one of the poles. If we were at the equator, we would see no bias from the earth's rotation in our heading measurement (we would see it in roll and/or pitch). The bias due to the rotation of the earth is a function of latitude, so as long as we know our latitude we can factor it out.</p>
         <div class="media">
           <h4>Position Error After 1 Kilometer Traveling at 0.5 m/s</h4>
           <svg id="gyro_errors"></svg>
         </div>
-        <p>The above plot shows the effect of gyro bias values on a 1km straight line run traveling at 0.5 m/s. Since the error introduced by the gyroscope increases over time, at some point it will be worse than the magnetometer error. In practice we are able to combine measurements from the magnetometer and aiding sensors enabling the gyroscope to become one of our most valuable sensors.</p>
+        <p>The above plot shows the effect of gyro bias on position error over a 1km straight line run traveling at 0.5 m/s. For FOGs we can expect gyro biases of less than 1&deg;/hr, but if we don't account for the rotation of the earth we'd see a much larger bias. In the above plot, the red line represents the gyro bias due to earth's rotation at the poles. The latitude bias due to the earth's rotation where I live, in Vermont, is about 10&deg;/hr.</p>
         <div class="media">
           <h4>Effect Of Time On Gyro Errors</h4>
           <svg id="gyro_small_multiples"></svg>
         </div>
-        <p>Since we need to integrate rotational velocity to get heading, the same biases result in large differences in position given different amounts of time. The above plot shows the position errors over a 1 kilometer transit for the same biases over different durations.</p>
-        <p>For both the accelerometer and the gyroscope, time is the enemy</p>
+        <p>Since we need to integrate rotational velocity to get heading, the error introduced by the gyroscope increases over time, as the above plots indicate. The plots show the position errors over a 1 kilometer transit for the same biases over different durations. After some amount of time, the error will be worse than the magnetometer error if uncorrected. In practice we are able to combine measurements from the magnetometer and aiding sensors.</p>
       
         <h3>Doppler Velocity Log (DVL)</h3>
         <p>In marine robotics, we are often operating at or near the bottom. When this is the case we can use a DVL to tell us how fast and in what direction we are moving by bouncing sound waves off of the bottom.</p>

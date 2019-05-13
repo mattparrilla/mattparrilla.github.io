@@ -35,8 +35,7 @@ const plotErrors = (id, errors, xPos, yPos, defined) => {
       height="30"
       width="30">
       <polygon
-        transform="rotate(${id == 'gyro_errors' ? rotate * 2 : rotate})
-          ${id == 'gyro_errors' && rotate == 10 ? 'translate(7,0)' : 'translate(5,5)'}"
+        transform="rotate(${rotate}) translate(${rotate > 10 ? 6 : 5},5)"
         fill="${fill}"
         stroke="${fill}"
         points="0,20 10,15 20,20 10,0 0,20" />
@@ -161,7 +160,7 @@ const plotErrors = (id, errors, xPos, yPos, defined) => {
 
 
 
-    const durations = [0.25, 0.5, 1, 2];
+    const durations = [2, 1, 0.5, 0.25];
     durations.forEach((hours, i) => {
       const duration = hours * 3600;
       const velocity = 1000 / duration;
@@ -170,7 +169,7 @@ const plotErrors = (id, errors, xPos, yPos, defined) => {
         .y(d => y(Math.cos((error / 3600) * (d / velocity) * Math.PI / 180) * d));
 
       x.range([
-        20 + smallMultipleDimensions.width * i,
+        smallMultipleDimensions.width / 2 + smallMultipleDimensions.width * i,
         smallMultipleDimensions.width - 5 + (smallMultipleDimensions.width * i)
       ])
 
@@ -183,20 +182,20 @@ const plotErrors = (id, errors, xPos, yPos, defined) => {
       });
       smallMultiplePlot.append("text")
         .attr("class", "labels")
-        .attr("transform", `translate(${smallMultipleDimensions.width * i + 20}, ${smallMultipleDimensions.height - 10})`)
+        .attr("transform", `translate(${smallMultipleDimensions.width * i + smallMultipleDimensions.width / 2 + 20}, ${smallMultipleDimensions.height - 10})`)
         .text(`${hours} hr`);
 
     smallMultiplePlot.append("g")
       .html(`<line
         class="small_multiple_axis_line"
-        x1="${smallMultipleDimensions.width * i + 50 - 5}"
+        x1="${smallMultipleDimensions.width * i + smallMultipleDimensions.width / 2 - 5}"
         y1="5"
-        x2="${smallMultipleDimensions.width * i + 50 + 1}"
+        x2="${smallMultipleDimensions.width * i + smallMultipleDimensions.width / 2 + 1}"
         y2="5"/>`);
     });
 
     smallMultiplePlot.append("text")
-      .attr("transform", `translate(${smallMultipleDimensions.width}, 10)`)
+      .attr("transform", `translate(${smallMultipleDimensions.width / 2 - 50}, 10)`)
       .text("1 km");
       
   }
@@ -215,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const velocity = 0.5; // m/s
   plotErrors(
     "gyro_errors",
-    [0, 1, 2, 5, 10],
+    [0, 1, 5, 10, 15],
     (x, error) => d => x(Math.sin((error / 3600) * (d / velocity) * Math.PI / 180) * d),
     (y, error) => d => y(Math.cos((error / 3600) * (d / velocity) * Math.PI / 180) * d),
     error => d => (Math.cos((error / 3600) * (d / velocity) * Math.PI / 180) * d));
