@@ -161,7 +161,7 @@ const plotErrors = (id, errors, xPos, yPos, defined) => {
 
 
 
-    const durations = [2, 1, 0.5, 0.25];
+    const durations = [0.25, 0.5, 1, 2];
     durations.forEach((hours, i) => {
       const duration = hours * 3600;
       const velocity = 1000 / duration;
@@ -170,7 +170,7 @@ const plotErrors = (id, errors, xPos, yPos, defined) => {
         .y(d => y(Math.cos((error / 3600) * (d / velocity) * Math.PI / 180) * d));
 
       x.range([
-        smallMultipleDimensions.width / 2 + smallMultipleDimensions.width * i,
+        20 + smallMultipleDimensions.width * i,
         smallMultipleDimensions.width - 5 + (smallMultipleDimensions.width * i)
       ])
 
@@ -183,20 +183,20 @@ const plotErrors = (id, errors, xPos, yPos, defined) => {
       });
       smallMultiplePlot.append("text")
         .attr("class", "labels")
-        .attr("transform", `translate(${smallMultipleDimensions.width * i + smallMultipleDimensions.width / 2 + 20}, ${smallMultipleDimensions.height - 10})`)
+        .attr("transform", `translate(${smallMultipleDimensions.width * i + 20}, ${smallMultipleDimensions.height - 10})`)
         .text(`${hours} hr`);
 
     smallMultiplePlot.append("g")
       .html(`<line
         class="small_multiple_axis_line"
-        x1="${smallMultipleDimensions.width * i + smallMultipleDimensions.width / 2 - 5}"
+        x1="${smallMultipleDimensions.width * i + 50 - 5}"
         y1="5"
-        x2="${smallMultipleDimensions.width * i + smallMultipleDimensions.width / 2 + 1}"
+        x2="${smallMultipleDimensions.width * i + 50 + 1}"
         y2="5"/>`);
     });
 
     smallMultiplePlot.append("text")
-      .attr("transform", `translate(${smallMultipleDimensions.width / 2 - 50}, 10)`)
+      .attr("transform", `translate(${smallMultipleDimensions.width}, 10)`)
       .text("1 km");
       
   }
