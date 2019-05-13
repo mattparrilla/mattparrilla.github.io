@@ -102,3 +102,8 @@ text.context {
 .roll_pitch_yaw {
   max-width: 300px;
   height: auto;
+}
+
+blockquote {
+  margin-bottom: 50px;
+}
