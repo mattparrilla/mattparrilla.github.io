@@ -22,6 +22,12 @@ pre {
   margin: 40px 0;
 }
 
+@media (max-width: 1000px) {
+  pre {
+    font-size: 14px;
+  }
+}
+
 svg text {
   font-family: monospace;
 }
@@ -102,6 +108,12 @@ text.context {
 .roll_pitch_yaw {
   max-width: 300px;
   height: auto;
+}
+
+@media (max-width: 768px) {
+  .roll_pitch_yaw {
+    max-width: 100%;
+  }
 }
 
 blockquote {
