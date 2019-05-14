@@ -1,4 +1,9 @@
 {
+  "index": {
+    "title": "Personal website of Matt Parrilla",
+    "description": "Data visualizations, blog posts, and random musings of an embedded cultural anthropologist",
+    "social_img": "img/harvest_moon.png"
+  },
   "inertial-navigation-marine-robotics": {
     "title": "Inertial Navigation in Marine Robotics",
     "description": "An introduction to inertial navigation in marine robotics, from the sensors used to the mathematical tools needed to fuse that sensor data into a navigation solution",

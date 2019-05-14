@@ -10,7 +10,12 @@ app.config["FREEZER_DESTINATION_IGNORE"] = ["CNAME"]
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    post_properties = {}
+    with open("posts.json", "r") as f:
+        posts = json.load(f)
+        post_properties = posts["index"]
+    post_properties["url"] = request.path
+    return render_template("index.html", **post_properties)
 
 
 @app.route("/post/<title>/index.html")
