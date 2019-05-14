@@ -158,8 +158,6 @@ const plotErrors = (id, errors, xPos, yPos, defined) => {
     y.domain([0, 1000]);
     y.range([smallMultipleDimensions.height - 5, 5])
 
-
-
     const durations = [2, 1, 0.5, 0.25];
     durations.forEach((hours, i) => {
       const duration = hours * 3600;

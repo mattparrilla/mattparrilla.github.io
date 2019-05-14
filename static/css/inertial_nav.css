@@ -110,6 +110,12 @@ text.context {
   height: auto;
 }
 
+@media (max-width: 768px) {
+  .roll_pitch_yaw {
+    max-width: 100%;
+  }
+}
+
 blockquote {
   margin-bottom: 50px;
 }

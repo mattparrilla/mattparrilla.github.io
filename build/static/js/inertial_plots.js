@@ -148,17 +148,15 @@ const plotErrors = (id, errors, xPos, yPos, defined) => {
     .text("Full transit");
 
   if (id == "gyro_errors") {
-    // TODO: what the hell am I doing with scaling here?
+    // THIS SCALING IS ONLY GOOD AT A SPECIFIC RESOLUTION
     const smallMultipleDimensions = { width: width / 4, height: 200 };
     const smallMultiplePlot = d3.select("#gyro_small_multiples")
       .attr("width", width)
       .attr("height", smallMultipleDimensions.height);
 
-    x.domain([0, 200]);
+    x.domain([0, 400]);
     y.domain([0, 1000]);
     y.range([smallMultipleDimensions.height - 5, 5])
-
-
 
     const durations = [2, 1, 0.5, 0.25];
     durations.forEach((hours, i) => {

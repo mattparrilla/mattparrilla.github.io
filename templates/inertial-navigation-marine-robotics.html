@@ -64,8 +64,11 @@ position     = &int;&int; a = &frac12; &middot; a &middot; t<sup>2</sup></pre>
         <p>A magnetometer measures the magnetic field in 3 spatial dimensions. A compass is a single dimension magnetometer, measuring the magnetic field about Z, defining our heading (also known as <em>yaw</em>. Heading is our most important measurement underwater because small errors in heading can lead to large errors in position.</p>
         <p>The below chart shows where our robot thinks it ended up after traveling in a straight line for 1 kilometer. The black line shows the true path and the other lines show the calculated course given an error in our heading after starting from the same point.</p>
         <div class="media">
-          <h4>Position Error After 1 Kilometer</h4>
-          <svg id="heading_errors"></svg>
+          <img
+            class="img-responsive"
+            src="{{ url_for('static', filename='img/heading_error.png') }}"
+            alt="Heading error on position"
+          />
         </div>
         <p>If our heading is off by 10&deg; we'll end up with a position error of 174 meters, which is 17.4% of our distance traveled. 10&deg; might seem like a huge error, but compasses are notoriously fickle, and for good reason. Putting a compass in a metal cage with electricity flowing and whirly bits moving tends to make for unhappy compasses.</p>
         <p>We need another sensor to aid in our heading measurement. That’s where the gyroscope comes in.</p>
@@ -100,13 +103,19 @@ angular position = &int; v  = v &middot; t</pre>
         <p>Given that we still need to integrate once to get angular position, gyroscopes will need to be much more precise than magnetometers to outperform them. The good news is that they are. In fact, FOGs are able to measure the rotation of the earth!</p>
         <p>The earth rotates 360&deg; in 24 hours, which gives us a rotation rate of 15&deg;/hr. In order to see the full 15&deg;/hr in our heading measurement, we'd need to be at one of the poles. If we were at the equator, we would see no bias from the earth's rotation in our heading measurement (we would see it in roll and/or pitch). The bias due to the rotation of the earth is a function of latitude, so as long as we know our latitude we can factor it out.</p>
         <div class="media">
-          <h4>Position Error After 1 Kilometer Traveling at 0.5 m/s</h4>
-          <svg id="gyro_errors"></svg>
+          <img
+            class="img-responsive"
+            src="{{ url_for('static', filename='img/gyro_bias_error.png') }}"
+            alt="Gyro bias error on position"
+          />
         </div>
         <p>The above plot shows the effect of gyro bias on position error over a 1km straight line run traveling at 0.5 m/s. For FOGs we can expect gyro biases of less than 1&deg;/hr, provided we've factored out the rotation of the earth. In the above plot, the red line represents the gyro bias due to earth's rotation at the poles. The latitude bias due to the earth's rotation where I live, in Vermont, is about 10&deg;/hr.</p>
         <div class="media">
-          <h4>Effect Of Time On Gyro Errors</h4>
-          <svg id="gyro_small_multiples"></svg>
+          <img
+            class="img-responsive"
+            src="{{ url_for('static', filename='img/gyro_bias_error_time.png') }}"
+            alt="Gyro bias error on position over time"
+          />
         </div>
         <p>Since we need to integrate rotational velocity to get heading, the error introduced by the gyroscope increases over time. The above plots show the position errors over a 1 kilometer transit for the same biases over different durations. After some amount of time, the error will be worse than the magnetometer error if uncorrected. In practice we are able to combine measurements from the magnetometer and aiding sensors to reign in this error.</p>
       
@@ -171,9 +180,4 @@ angular position = &int; v  = v &middot; t</pre>
       {% include "other-stuff.html" %}
     </div>
   </div>
-{% endblock %}
-
-{% block scripts %}
-<script type="text/javascript" src="{{ url_for('static', filename='js/d3.min.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/inertial_plots.js') }}"></script>
 {% endblock %}
