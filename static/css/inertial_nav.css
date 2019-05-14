@@ -22,6 +22,12 @@ pre {
   margin: 40px 0;
 }
 
+@media (max-width: 1000px) {
+  pre {
+    font-size: 14px;
+  }
+}
+
 svg text {
   font-family: monospace;
 }
