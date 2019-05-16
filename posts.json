@@ -4,6 +4,11 @@
     "description": "Data visualizations, blog posts, and random musings of an embedded cultural anthropologist",
     "social_img": "img/harvest_moon.png"
   },
+  "how-to-tell-where-robot-is-underwater": {
+    "title": "How To Tell Where Your Robot Is When It's Underwater",
+    "description": "An introduction to inertial navigation in marine robotics, from the sensors used to the mathematical tools needed to fuse that sensor data into a navigation solution",
+    "social_img": "img/foggy_glider.jpg"
+  },
   "inertial-navigation-marine-robotics": {
     "title": "Inertial Navigation in Marine Robotics",
     "description": "An introduction to inertial navigation in marine robotics, from the sensors used to the mathematical tools needed to fuse that sensor data into a navigation solution",

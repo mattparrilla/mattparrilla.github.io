@@ -1,52 +1,16 @@
-<!doctype html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Inertial Navigation in Marine Robotics</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="An introduction to inertial navigation in marine robotics, from the sensors used to the mathematical tools needed to fuse that sensor data into a navigation solution">
-    <meta name="author" content="@mattparrilla">
+{% extends "base.html" %}
 
-    <!-- Social Media Tags -->
-    <meta property="og:title" content="Inertial Navigation in Marine Robotics">
-    <meta property="og:description" content="An introduction to inertial navigation in marine robotics, from the sensors used to the mathematical tools needed to fuse that sensor data into a navigation solution">
-    <meta property="og:url" content="https://www.matthewparrilla.com/post/inertial-navigation-marine-robotics/index.html">
-    
-      <meta property="og:image" content="https://www.matthewparrilla.com/static/img/foggy_glider.jpg">
-      <meta name="twitter:image" content="https://www.matthewparrilla.com/static/img/foggy_glider.jpg">
-    
-    <meta name="twitter:title" content="Inertial Navigation in Marine Robotics">
-    <meta name="twitter:description" content="An introduction to inertial navigation in marine robotics, from the sensors used to the mathematical tools needed to fuse that sensor data into a navigation solution">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="mattparrilla">
+{% block head %}
+<link href="{{ url_for('static', filename='css/inertial_nav.css') }}" rel="stylesheet">
+{% endblock %}
 
-    <link href="/static/css/style.css" rel="stylesheet">
-    <link href='//fonts.googleapis.com/css?family=Raleway:400,500,600,300,200|Roboto:500,600,300,100' rel='stylesheet' type='text/css'>
-    <link rel="shortcut icon" href="/static/favicon.ico">
-
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-        ga('create', 'UA-31358980-1', 'auto');
-        ga('send', 'pageview');
-    </script>
-    
-<link href="/static/css/inertial_nav.css" rel="stylesheet">
-
-</head>
-<body>
-    <div id="top_border"></div>
-    <div class="container">
-      
+{% block content %}
   <div class="row post">
     <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
       <div class="title-block">
-        <p class="date">May 6, 2019</p>
-        <h1>Inertial Navigation in Marine Robotics</h1>
-        <h2>Or how to tell where your robot is when it's underwater</h2>
+        <p class="date">May 16, 2019</p>
+        <h2>How To Tell Where Your Robot Is When It's Underwater</h2>
+        <h1>An Introduction to Inertial Navigation in Marine Robotics</h1>
       </div>
       <div id="body">
         <blockquote>
@@ -76,7 +40,7 @@ navigation_solution {
           <img
             class="roll_pitch_yaw"
             alt="Roll, pitch, yaw diagram"
-            src="/static/img/roll_pitch_yaw.png"
+            src="{{ url_for('static', filename='img/roll_pitch_yaw.png') }}"
           />
         </div>
         <p>For position we've got 3 spatial dimensions, X, Y, and Z as well the first and second derivatives, velocity and acceleration, in each of those 3 dimensions.</p>
@@ -102,7 +66,7 @@ position     = &int;&int; a = &frac12; &middot; a &middot; t<sup>2</sup></pre>
         <div class="media">
           <img
             class="img-responsive"
-            src="/static/img/heading_error.png"
+            src="{{ url_for('static', filename='img/heading_error.png') }}"
             alt="Heading error on position"
           />
         </div>
@@ -122,7 +86,7 @@ angular position = &int; v  = v &middot; t</pre>
           <img
             class="img-responsive"
             alt="Demonstration of fiber optic gyro ring stationary and rotating"
-            src="/static/img/FOG.png"/>
+            src="{{ url_for('static', filename='img/FOG.png') }}"/>
           <div id="fog_labels">
             <div class="row">
               <div class="col-xs-5 col-xs-offset-1">
@@ -141,7 +105,7 @@ angular position = &int; v  = v &middot; t</pre>
         <div class="media">
           <img
             class="img-responsive"
-            src="/static/img/gyro_bias_error.png"
+            src="{{ url_for('static', filename='img/gyro_bias_error.png') }}"
             alt="Gyro bias error on position"
           />
         </div>
@@ -149,7 +113,7 @@ angular position = &int; v  = v &middot; t</pre>
         <div class="media">
           <img
             class="img-responsive"
-            src="/static/img/gyro_bias_error_time.png"
+            src="{{ url_for('static', filename='img/gyro_bias_error_time.png') }}"
             alt="Gyro bias error on position over time"
           />
         </div>
@@ -163,7 +127,7 @@ angular position = &int; v  = v &middot; t</pre>
           <img
             alt="Dopper shift animation"
             class="img-responsive"
-            src="/static/img/Dopplerfrequency.gif" />
+            src="{{ url_for('static', filename='img/Dopplerfrequency.gif') }}" />
         </div>
         <p>The DVL operates by sending a 4-beam signal out of a transducer and then listening for the response. It then measures the phase shift across those 4 beams and reports a speed and course-over-ground.</p>
         <div class="media">
@@ -171,7 +135,7 @@ angular position = &int; v  = v &middot; t</pre>
           <img
             alt="Doppler Velocity Log (DVL)"
             class="img-responsive"
-            src="/static/img/dvl_doppler_shift.jpg" />
+            src="{{ url_for('static', filename='img/dvl_doppler_shift.jpg') }}" />
           <p class="caption">Source: <a href="https://cultofsea.com/bridge-equipment/1229/">cultofsea</a></p>
         </div>
         <p>Course-over-ground is another measurement of rotational velocity and a pretty good one. Like the gyroscope it only provides a relative measurement of heading. It can’t tell us which way is north, but it is very valuable in telling us how far we’ve turned.</p>
@@ -199,7 +163,7 @@ angular position = &int; v  = v &middot; t</pre>
           <img 
             class="img-responsive"
             alt="Kalman filter explanation"
-            src="/static/img/kalman_filter.png"
+            src="{{ url_for('static', filename='img/kalman_filter.png') }}"
           />
           <p class="caption">Source: <a href="https://www.mathworks.com/videos/understanding-kalman-filters-part-1-why-use-kalman-filters--1485813028675.html">Mathworks</a>
         </div>
@@ -213,47 +177,7 @@ angular position = &int; v  = v &middot; t</pre>
         <p>Thanks to what Feynman called the "cleverness of man", we are able to arrive at a solution that is surprisingly good, given the challenges of the environment and the limitations of the technology. But even with state-of-the-art sensors and powerful processors, inertial navigation in marine robotics is still a field where advances can be made and proprietary techniques set solutions apart.</p>
         <p>I hope you enjoyed this post. If you are interested in more content like this, including an in-depth explanation of kalman filters, you should <a href="//twitter.com/mattparrilla">follow me on twitter</a> or <a href="http://matthewparrilla.com">keep an eye my website.</a></p>
       </div>
-      <div class="row featured-stuff">
-  <h2>Other Stuff By Matt</h2>
-  <div class="col-md-6 feature">
-      <a href="http://mattparrilla.github.io/mansfield-stake" alt="Interactive graphic of snow depth on Mt. Mansfield">
-          <img class="img-responsive img-bordered" src="/static/img/mansfield.png" alt="Mt. Mansfield Snow Depth graph">
-          <h4>Mt. Mansfield Snow Depth</h4>
-      </a>
-      <p>An interactive graphic that allows users to explore the snow depth on Mt. Mansfield for any season on record. This visualization was retweeted by <a href="http://en.wikipedia.org/wiki/Edward_Tufte">Edward Tufte</a> (who <a href="http://www.amazon.com/The-Visual-Display-Quantitative-Information/dp/0961392142">wrote the book</a> on data visualization) and was <a href="http://knowmore.washingtonpost.com/2015/02/20/60-years-of-snowfall-visualized/">shared</a> by the Washington Post on their "Know More" blog.</p>
-  </div>
-  <div class="col-md-6 feature">
-      <a href="http://www.vpr.net/apps/lyme-disease" alt="VPR report on the spread of Lyme Disease">
-          <img class="img-responsive img-bordered" src="/static/img/vermont-lyme.png" alt="Animated radar of continental US">
-          <h4>Lyme On The Rise</h4>
-      </a>
-      <p>A data project for Vermont Public Radio on the growth of Lyme Disease over the last 15 years. Includes an interactive bar graph of New England and small multiples of Vermont and the continental United States showing the infection's expanded range. Published in the open with links to the data.</p>
-  </div>
-  <p class="centered-with-space">See the rest - <a href="/">matthewparrilla.com</a></p>
-</div>
+      {% include "other-stuff.html" %}
     </div>
   </div>
-
-    </div>
-
-    <footer>
-    <div class="container">
-        <div class="contact row">
-            <a href="http://twitter.com/mattparrilla" alt="Matt's twitter profile" class="service col-sm-4">
-                <p class="icon"><i class="icon ion-social-twitter"></i></p>
-                <p>@mattparrilla</p>
-            </a>
-            <a href="http://github.com/mattparrilla" alt="Matt's github profile" class="service col-sm-4">
-                <p class="icon"><i class="icon ion-social-github"></i></p>
-                <p>mattparrilla</p>
-            </a>
-            <a href="mailto:matthew.parrilla@gmail.com" alt="Email Matt" class="service email col-sm-4">
-                <p class="icon"><i class="icon ion-email"></i></p>
-                <p>matthew.parrilla@gmail.com</p>
-            </a>
-        </div>
-    </div>
-</footer>
-    
-</body>
-</html>
+{% endblock %}
