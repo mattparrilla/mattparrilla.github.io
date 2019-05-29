@@ -17,5 +17,10 @@
     "title": "Improving The Weather On Twitter",
     "description": "Using National Weather Service data and imagery to make a network of twitter bots that post regional radar GIFs with improved palettes and projections.",
     "social_img": "img/conus-basemap.gif"
+  },
+
+  "to-do-what-you-love-quit-what-you-dont": {
+    "title": "To Do What You Love Quit What You Don't",
+    "description": "Life is too short to spend your waking hours to not love what you do. To do what you love, quit what you don't"
   }
 }
