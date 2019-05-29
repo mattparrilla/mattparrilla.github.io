@@ -14,6 +14,9 @@
     {% if social_img %}
       <meta property="og:image" content="https://www.matthewparrilla.com{{ url_for('static', filename=social_img) }}">
       <meta name="twitter:image" content="https://www.matthewparrilla.com{{ url_for('static', filename=social_img) }}">
+    {% else %}
+      <meta property="og:image" content="https://www.matthewparrilla.com{{ url_for('static', filename='img/bolton.jpg') }}">
+      <meta name="twitter:image" content="https://www.matthewparrilla.com{{ url_for('static', filename='img/bolton.jpg') }}">
     {% endif %}
     <meta name="twitter:title" content="{{ title }}">
     <meta name="twitter:description" content="{{ description }}">
