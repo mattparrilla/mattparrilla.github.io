@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block head %}
+  <style>
+    .caption {
+      text-align: center;
+      font-size: 12px;
+    }
+    h1 {
+      margin-bottom: 30px !important;
+    }
+    ul {
+      margin-bottom: 30px;
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+  <div class="row post">
+    <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+      <div class="title-block">
+        <p class="date">November 20, 2019</p>
+        <h1>How To Communicate As You Scale Your Org</h1>
+      </div>
+      <div id="body">
+        <p>There were a handful of you. You moved fast, broke things, and outmaneuvered the bigger fish. Now you're growing and your oral culture and tribal knowledge are slowing you down as you add more folks to your organization. Congratulations, you've got  a Good Problem&#8482; to solve.</p>
+        <p><strong>Each person you add increases the complexity of communication non-linearly.</strong> With three people you've got three relationships, with four people you've got six relationships, and with 10 people you've got 45 relationships.</p>
+        <div class="row">
+          <div class="col-sm-4">
+            <img class="img-responsive" src="{{ url_for('static', filename='img/three_employees.png') }}" alt="Graph of relationsips between three employees"></img>
+            <p class="caption">Three Employees</p>
+          </div>
+          <div class="col-sm-4">
+            <img class="img-responsive" src="{{ url_for('static', filename='img/four_employees.png') }}" alt="Graph of relationsips between four employees"></img>
+            <p class="caption">Four Employees</p>
+          </div>
+          <div class="col-sm-4">
+            <img class="img-responsive" src="{{ url_for('static', filename='img/ten_employees.png') }}" alt="Graph of relationsips between ten employees"></img>
+            <p class="caption">Ten Employees</p>
+          </div>
+        </div>
+        <p>At some point, the number of relationships at a growing organization becomes too unwieldy to expect organizational coherence and you've got a case of <em>the left hand not knowing what the right hand is doing.</em> Fortunately, there is a solution to this problem, though it requires changing what made you successful at a small scale: you've got to commit to a written culture.</p>
+        <h2>Make Information Accessible</h2>
+        <p>A written culture looks like an organization that codifies its decisions and procedures in writing that is accessible to all at the company. Secret memos or private channels of communication does not make a written culture. <strong>The accessibility of information is as important a feature of a written culture as the writing itself.</strong></p>
+        <p>Accessible means available and discoverable. It's not enough to post a document to a shared directory unless that directory is known to be a place to find such content. Information should be published as broadly as possible. Bonus points if the content is indexable.</p>
+        <p>Use channels that others are able to join and see old content. It's not necessary for everyone to get all communication but you want folks to be able to find information when they need it or if they are interested.</p>
+        <h2>Embrace Temporality</h2>
+        <p>Documentation is constantly getting out of date and bad documentation can often be worse than no documentation. One way around this is to embrace the temporality of the information and to <strong>publish frequently changing information in a medium that implies temporality.</strong> A timestamped blog invites less expectation that it represents the current state of things than an article in your knowledge base.</p>
+        <p>With this in mind, instant messaging can actually become a powerful tool for making tribal knowledge machine readable. An instant messaging service with open channels that are searchable can then become an invaluable resource. The trick is to have as many of the "How do I do X?" conversations in open channels as possible because accessibility.</p>
+        <h2>Benefits of A Written Culture</h2>
+        <h3>Easier Onboarding</h3>
+        <p>One of the main beneficiaries of a written culture of your company are the folks who aren't yet at your company. Having policies, procedures, and reasons accessible to new hires gives them the ability to find and ingest this information as needed with less impact on the rest of the team.</p>
+        <h3>Increase Bus Factor</h3>
+        <p>The "bus factor" is the number of folks who need to get hit by a bus to derail a project. When important information lives in the brains of individuals, there are business consequences to those individuals being sick, taking vacation, or leaving your company. It's also benefits the individual if their time off isn't always interrupted by someone in the organization needing that information.</p>
+        <h3>Remote Friendly</h3>
+        <p>At a small company, many decisions get made around the proverbial water cooler, but if you've got remote workers you need to a channel to disseminate information to them.</p>
+        <h3>Greater Cohesion</h3>
+        <p>Remember the graphs of relationships above: as you increase the number of people in an organization, the number of possible relationships explodes. To keep everybody marching in the same direction it helps to have guideposts that folks can use to orient themselves.</p>
+        <h3>The Clarifying Power of Writing</h3>
+        <p>Even the act of writing, separate from the artifact it produces, has its benefits. Needing to articulate information in a cohesive and understandable manner benefits the writer, as well as the reader.</p>
+
+        <h2>Commit to a Written Culture</h2>
+        <p>Changing your company culture is hard and needs to feel organic, failing to do so runs the risk of stifling the dynamism that made you successful in the first place. Fortunately, there's plenty of low-hanging fruit that can help get the ball rolling, such as:</p>
+        <ul>
+          <li>public and searchable instant messaging channels</li>
+          <li>email groups</li>
+          <li>meeting agendas and synopses</li>
+        </ul>
+        <p>If you aim for accessible information and embrace temporality, you can have a low-pain and high-reward shift to a written culture, giving people access to the information they need to do their job.</p>
+        <hr>
+        <p>I hope you enjoyed this post. If you are interested in more content like this you should <a href="//twitter.com/mattparrilla">follow me on twitter</a> or <a href="http://matthewparrilla.com">keep an eye my website.</a> Please reach out if you have any questions.</p>
+        <hr>
+        <p><a href="https://twitter.com/patio11/status/1194902286935322625">A tweet from Patrick McKenzie</a> was the source of some of the specific language of this post. Everything Patrick writes is worth reading, so <a href="https://www.kalzumeus.com/">check him out.</a></p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
