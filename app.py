@@ -78,7 +78,8 @@ def post():
     with open("posts.json", "r") as f:
         posts = json.load(f)
         for title in posts.keys():
-            yield {"title": title}
+            if title != "index":
+                yield {"title": title}
 
 
 if __name__ == "__main__":
