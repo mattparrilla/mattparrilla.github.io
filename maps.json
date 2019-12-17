@@ -8,9 +8,10 @@
       "Within are three ski resorts and numerous backcountry zones both well known and little explored. Mount Mansfield is home to the largest alpine zone in the state and many of the peaks and drainages in the area offer some of the best tree skiing around."
     ],
     "social_image": "img/maps/mount_mansfield_region_2500.png",
+    "small_resolution_image": "img/maps/mount_mansfield_region_1000.png",
     "med_resolution_image": "img/maps/mount_mansfield_region_2500.png",
-    "full_resolution_image": "img/maps/mount_mansfield_region_2500.png",
-    "full_resolution_size": "50.7"
+    "full_resolution_image": "img/maps/mount_mansfield_region_full_resolution.png",
+    "full_resolution_size": "47.8"
   },
 
   "stowe": {
@@ -20,10 +21,11 @@
     "body": [
       "The eastern side of Vermont's highest peak is home to Stowe Mountain Resort. Stowe's inbounds terrain is among the best in Vermont and it's lifts provide access to some of the gnarliest alpine skiing in the northeast."
     ],
-    "social_image": "img/maps/mount_mansfield_region_2500.png",
-    "med_resolution_image": "img/maps/mount_mansfield_region_2500.png",
-    "full_resolution_image": "img/maps/mount_mansfield_region_2500.png",
-    "full_resolution_size": "50.7"
+    "social_image": "img/maps/stowe_2500.png",
+    "small_resolution_image": "img/maps/stowe_1000.png",
+    "med_resolution_image": "img/maps/stowe_2500.png",
+    "full_resolution_image": "img/maps/stowe_full_resolution.png",
+    "full_resolution_size": "47.1"
   },
 
   "smugglers-notch": {
@@ -32,22 +34,25 @@
     "description": "High resolution elevation map of Smugglers Notch Resort",
     "body": [
     ],
-    "social_image": "img/maps/mount_mansfield_region_2500.png",
-    "med_resolution_image": "img/maps/mount_mansfield_region_2500.png",
-    "full_resolution_image": "img/maps/mount_mansfield_region_2500.png",
-    "full_resolution_size": "50.7"
+    "social_image": "img/maps/smuggs_2500.png",
+    "small_resolution_image": "img/maps/smuggs_1000.png",
+    "med_resolution_image": "img/maps/smuggs_2500.png",
+    "full_resolution_image": "img/maps/smuggs_full_resolution.png",
+    "full_resolution_size": "48.2"
   },
 
   "bolton-valley": {
     "title": "Bolton Valley",
+    "subtitle": "It's Lit",
     "description": "High resolution elevation map of Bolton Valley Resort",
     "body": [
       "This map shows Bolton lit up by the early spring sun. Late in the season Bolton shines when its west-facing slopes catch the late afternoon sun and you can finish your day skiing into the sunset with Lake Champlain and the Adirondacks laid out before you."
     ],
-    "social_image": "img/maps/mount_mansfield_region_2500.png",
-    "med_resolution_image": "img/maps/mount_mansfield_region_2500.png",
-    "full_resolution_image": "img/maps/mount_mansfield_region_2500.png",
-    "full_resolution_size": "50.7"
+    "social_image": "img/maps/bolton_valley_2500.png",
+    "small_resolution_image": "img/maps/bolton_valley_1000.png",
+    "med_resolution_image": "img/maps/bolton_valley_2500.png",
+    "full_resolution_image": "img/maps/bolton_valley_full_resolution.png",
+    "full_resolution_size": "46.2"
   },
 
   "bolton-to-trapps": {
@@ -58,10 +63,11 @@
       "The Catamount Trail stretches the entire length of the state of Vermont, winding its way along the sping of the Green Mountains. The trail reaches its highest point along the Bolton to Trapps trail, which is also one of its more famous sections.",
       "The tour starts at the Bolton Valley Nordic Center and ends at Trapp Family Lodge. A nordic pass is required from both resorts."
     ],
-    "social_image": "img/maps/mount_mansfield_region_2500.png",
-    "med_resolution_image": "img/maps/mount_mansfield_region_2500.png",
-    "full_resolution_image": "img/maps/mount_mansfield_region_2500.png",
-    "full_resolution_size": "50.7"
+    "social_image": "img/maps/bolton_to_trapps_2500.png",
+    "small_resolution_image": "img/maps/bolton_to_trapps_1000.png",
+    "med_resolution_image": "img/maps/bolton_to_trapps_2500.png",
+    "full_resolution_image": "img/maps/bolton_to_trapps_full_resolution.png",
+    "full_resolution_size": "49.7"
   },
 
   "jay-peak": {
@@ -69,10 +75,8 @@
     "subtitle": "Vermont's Snowiest Resort",
     "description": "High resolution elevation map of Jay Peak Resort and surroundings.",
     "coming_soon": true,
-    "social_image": "img/maps/mount_mansfield_region_2500.png",
-    "med_resolution_image": "img/maps/mount_mansfield_region_2500.png",
-    "full_resolution_image": "img/maps/mount_mansfield_region_2500.png",
-    "full_resolution_size": "50.7"
+    "small_resolution_image": "img/maps/mount_mansfield_region_1000.png",
+    "social_image": "img/maps/stowe_1000.png"
   },
 
   "killington": {
@@ -80,10 +84,8 @@
     "subtitle": "Vermont's Longest Ski Season",
     "description": "High resolution elevation map of Killington Ski Resort",
     "coming_soon": true,
-    "social_image": "img/maps/mount_mansfield_region_2500.png",
-    "med_resolution_image": "img/maps/mount_mansfield_region_2500.png",
-    "full_resolution_image": "img/maps/mount_mansfield_region_2500.png",
-    "full_resolution_size": "50.7"
+    "small_resolution_image": "img/maps/mount_mansfield_region_1000.png",
+    "social_image": "img/maps/stowe_1000.png"
   },
 
   "camels-hump": {
@@ -91,9 +93,24 @@
     "subtitle": "Vermont's Highest Undeveloped Peak",
     "description": "High resolution elevation map of Camel's Hump",
     "coming_soon": true,
-    "social_image": "img/maps/mount_mansfield_region_2500.png",
-    "med_resolution_image": "img/maps/mount_mansfield_region_2500.png",
-    "full_resolution_image": "img/maps/mount_mansfield_region_2500.png",
-    "full_resolution_size": "50.7"
+    "small_resolution_image": "img/maps/mount_mansfield_region_1000.png",
+    "social_image": "img/maps/stowe_1000.png"
+  },
+
+  "the-notch": {
+    "title": "The Notch",
+    "subtitle": "The Terrain Feature, not the Resort",
+    "description": "High resolution elevation map of Smuggler's Notch",
+    "coming_soon": true,
+    "small_resolution_image": "img/maps/mount_mansfield_region_1000.png",
+    "social_image": "img/maps/stowe_1000.png"
+  },
+
+  "west-side-of-mansfield": {
+    "title": "West Side of Mansfield",
+    "subtitle": "The Undeveloped Side of Vermont's Highest Peak",
+    "description": "High resolution elevation map of the undeveloped side of Mount Mansfield, Vermont's Highest Peak",
+    "coming_soon": true,
+    "social_image": "img/maps/stowe_1000.png"
   }
 }
