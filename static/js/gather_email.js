@@ -1,4 +1,4 @@
-window.addEventListener("load", () => {
+window.addEventListener("load", function () {
   var form = document.getElementById("email_form");
 
   function sendData() {
@@ -18,10 +18,6 @@ window.addEventListener("load", () => {
     XHR.onreadystatechange = function () {
       var onSubmit = document.getElementById("email_response");
       if (XHR.readyState === 4) {
-        window.scroll({
-            top: 0,
-            behavior: 'smooth'
-        });
         if (XHR.status === 200) {
           document.getElementById('email').value = '';
           onSubmit.innerHTML = "Sent";
@@ -35,8 +31,6 @@ window.addEventListener("load", () => {
   // ...and take over its submit event.
   form.addEventListener("submit", function (event) {
       event.preventDefault();
-      console.log('yep');
-
       sendData();
   });
 });
