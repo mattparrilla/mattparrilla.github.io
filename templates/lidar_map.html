@@ -29,7 +29,7 @@
           <div class="col-xs-12">
             <section>
               <img class="img-responsive" src="{{ url_for('static', filename=med_resolution_image) }}" alt="Green mountains, Winooski to Lamoille"></img>
-              <p class="caption">To download at full resolution ({{ full_resolution_size }}MB) <a src="{{ url_for('static', filename=full_resolution_image) }}" alt="full resolution of Mount Mansfield region map">click here.</a>
+              <p class="caption">To download at full resolution ({{ full_resolution_size }}MB) <a href="{{ url_for('static', filename=full_resolution_image) }}" alt="full resolution of Mount Mansfield region map">click here.</a>
             </section>
           </div>
         </div>

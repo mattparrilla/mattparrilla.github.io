@@ -16,28 +16,25 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-xs-12">
-      {% for name, obj in maps.items() %}
-        {# if odd number index (jinja loop is 1-indexed, start row #}
-        {% if loop.index % 2 %}
-          <div class="row">
-        {% endif %}
-        <div class="col-md-6">
-          <div class="map_link">
-            <a href="{{ url_for('map', title=name) }}" alt="{{ obj.title }} map">
-              <h3>{{ obj.title }}</h3>
+  {% for name, obj in maps.items() %}
+    {# if odd number index (jinja loop is 1-indexed, start row #}
+    {% if loop.index % 2 %}
+      <div class="row">
+    {% endif %}
+      <div class="col-md-6">
+          <a href="{{ url_for('map', title=name) }}" alt="{{ obj.title }} map">
+            <h3>{{ obj.title }}</h3>
+            <div class="map_teaser">
+              {% if obj.coming_soon %}<div class="coming_soon">Coming Soon</div>{% endif %}
               <img class="img-responsive" src="{{ url_for('static', filename=obj.social_image) }}" alt="{{ obj.description }}"></img>
-            </a>
-          </div>
-        </div>
-        {# if even number or if last item in list, close row #}
-        {% if not loop.index % 2 or loop.index == maps.items()|length %}
-          </div>
-        {% endif %}
-      {% endfor %}
-    </div>
-  </div>
+            </div>
+          </a>
+      </div>
+    {# if even number or if last item in list, close row #}
+    {% if not loop.index % 2 or loop.index == maps.items()|length %}
+      </div>
+    {% endif %}
+  {% endfor %}
   <div class="row">
     <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
 

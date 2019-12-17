@@ -5,7 +5,12 @@
 {% endblock %}
 
 {% block banner %}
-<a href="{{ url_for('map_index') }}" alt="Green Mountain Map Home"><img class="banner" src="{{ url_for('static', filename='img/maps/mansfield_region_banner.png') }}" alt="Mansfield region banner"></img></a>
+<div class="banner">
+  <a href="{{ url_for('map_index') }}" alt="Green Mountain Map Home">
+    <img class="banner" src="{{ url_for('static', filename='img/maps/mansfield_region_banner.png') }}" alt="Mansfield region banner"></img>
+    <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+  </a>
+</div>
 {% endblock %}
 
 {% block scripts %}
