@@ -12,7 +12,7 @@ h3, .caption, .view-more {
 
 form {
   text-align: center;
-  margin: 20px 0;
+  margin: 20px 0 10px;
 }
 
 #top_border {
@@ -29,4 +29,16 @@ form {
 
 .email {
   font-family: Monospace;
+}
+
+#email_response {
+  font-size: 14px;
+}
+
+section {
+  margin: 50px 0;
+}
+
+.post {
+  padding-bottom: 0;
 }

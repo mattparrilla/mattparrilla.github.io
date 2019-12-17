@@ -40,6 +40,8 @@
 <body>
     <div id="top_border"></div>
     
+<a href="/green-mountain-maps/index.html" alt="Green Mountain Map Home"><img class="banner" src="/static/img/maps/mansfield_region_banner.png" alt="Mansfield region banner"></img></a>
+
     <div class="container">
       
   <div class="row post">
@@ -48,30 +50,51 @@
         <h1>Bolton to Trapps</h1>
         <h2>Section 22 of the Catamount Trail</h2>
       </div>
-      <div id="body">
-        
-          <img class="img-responsive" src="/static/img/maps/mount_mansfield_region_1000_400.png" alt="Green mountains, Winooski to Lamoille"></img>
-          <p class="caption">To download at full resolution (50.7MB) <a src="/static/img/maps/mount_mansfield_region_1000_400.png" alt="full resolution of Mount Mansfield region map">click here.</a>
-          
-            <p>The Catamount Trail stretches the entire length of the state of Vermont, winding its way along the sping of the Green Mountains. The trail reaches its highest point along the Bolton to Trapps trail, which is also one of its more famous sections.</p>
-          
-            <p>The tour starts at the Bolton Valley Nordic Center and ends at Trapp Family Lodge. A nordic pass is required from both resorts.</p>
-          
+    </div>
+  </div>
+    <div id="body">
+      
+        <div class="row">
+          <div class="col-xs-12">
+            <section>
+              <img class="img-responsive" src="/static/img/maps/mount_mansfield_region_1000_400.png" alt="Green mountains, Winooski to Lamoille"></img>
+              <p class="caption">To download at full resolution (50.7MB) <a src="/static/img/maps/mount_mansfield_region_1000_400.png" alt="full resolution of Mount Mansfield region map">click here.</a>
+            </section>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+            <section>
+              
+                <p>The Catamount Trail stretches the entire length of the state of Vermont, winding its way along the sping of the Green Mountains. The trail reaches its highest point along the Bolton to Trapps trail, which is also one of its more famous sections.</p>
+              
+                <p>The tour starts at the Bolton Valley Nordic Center and ends at Trapp Family Lodge. A nordic pass is required from both resorts.</p>
+              
+            </section>
 
-        <h3>Want A Print Version?</h3>
-        <form class="form-inline">
+            <section>
+              <h3>Want A Print Version?</h3>
+              <form id="email_form" class="form-inline">
+    <input type="hidden" name="page" value="Bolton to Trapps">
   <div class="form-group">
-    <input type="email" class="form-control" id="email" placeholder="jon.snow@pow.com">
+    <input type="email" name="email" class="form-control" id="email" placeholder="jon.snow@pow.com" required>
   </div>
   <button type="submit" class="btn btn-default">Submit</button>
+  <div id="email_response">&nbsp;</div>
 </form>
-        <p>If there's enough interest I'll print a run of maps. Submit your email
-           to let me know that you're interested and to be notified when print maps
-           become available.</p>
-        
+              <p>If there's enough interest I'll print a run of maps. Submit your email
+                  to let me know that you're interested and to be notified when print maps
+                  become available.</p>
+            </section>
+          </div>
+        </div>
+      
 
         
-        <h3>About The Data</h3>
+      <div class="row">
+        <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+          <section>
+            <h3>About The Data</h3>
 <p>These maps were derived from public data provided by the
   <a href="https://vcgi.vermont.gov/" alt="VCGI homepage">Vermont Center
   for Geograhic Information</a>.</p>
@@ -81,11 +104,15 @@
   for coniferous or deciduous. The state's E-911 data was used for roads and trails.
 </p>
 <p>All styling done in QGIS on my underpowered laptop.</p>
-        <hr>
+          </section>
 
-        <h3>More</h3>
-        <div class="view-more"><a href="/green-mountain-maps/index.html" alt="View all available green mountain maps">View all available Green Mountain Maps</a></div>
+          <hr>
 
+          <section>
+            <h3>More</h3>
+            <div class="view-more"><a href="/green-mountain-maps/index.html" alt="View all available green mountain maps">View all available Green Mountain Maps</a></div>
+          </section>
+        </div>
       </div>
     </div>
   </div>
@@ -111,5 +138,7 @@
     </div>
 </footer>
     
+  <script src="/static/js/gather_email.js"></script>
+
 </body>
 </html>
