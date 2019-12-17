@@ -12,25 +12,34 @@
         <h2>{{ subtitle }}</h2>
       </div>
       <div id="body">
-        {% block body %}{% endblock %}
+        {% if coming_soon %}
+          <p>I haven't finished pulling the data together for this image.</p>
+
+          <h3>Want To Know When It's Ready?</h3>
+          {% include "map-get-email.html" %}
+          <p>The more folks are psyched about a place, the quicker I'll get to it!
+            Send me your email to be notified when the map is ready.</p>
+        {% else %}
+          <img class="img-responsive" src="{{ url_for('static', filename=med_resolution_image) }}" alt="Green mountains, Winooski to Lamoille"></img>
+          <p class="caption">To download at full resolution ({{ full_resolution_size }}MB) <a src="{{ url_for('static', filename=full_resolution_image) }}" alt="full resolution of Mount Mansfield region map">click here.</a>
+          {% for row in body %}
+            <p>{{ row }}</p>
+          {% endfor %}
 
         <h3>Want A Print Version?</h3>
-        <p>Provide your email to be notified when print maps are available.</p>
-        <form class="form-inline">
-          <div class="form-group">
-            <label for="email">Enter your email</label>
-            <input type="email" class="form-control" id="email" placeholder="jon.snow@pow.com">
-          </div>
-        </form>
+        {% include "map-get-email.html" %}
+        <p>If there's enough interest I'll print a run of maps. Submit your email
+           to let me know that you're interested and to be notified when print maps
+           become available.</p>
+        {% endif %}
+
         
-        <h3>About The Data</h3>
-        <p>These maps were derived from public data provided by the
-          <a href=https://vcgi.vermont.gov/" alt="VCGI homepage">Vermont Center
-          for Geograhic Information</a>. I used 0.7m resolution DEM data to generate
-          hillshade, 0.5m resolution Tree Canopy data to color the landscape, the
-          E-911 data for roads and trails.
-        </p>
-        <p>All styling done in QGIS on an underpowered laptop.</p>
+        {% include "about-lidar.html" %}
+        <hr>
+
+        <h3>More</h3>
+        <div class="view-more"><a href="{{ url_for('map_index') }}" alt="View all available green mountain maps">View all available Green Mountain Maps</a></div>
+
       </div>
     </div>
   </div>

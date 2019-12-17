@@ -1,3 +1,32 @@
-h3, .caption {
+.banner {
+  width: 100%;
+}
+
+h3, .caption, .view-more {
   text-align: center;
+}
+
+.caption { 
+  font-size: 14px;
+}
+
+form {
+  text-align: center;
+  margin: 20px 0;
+}
+
+#top_border {
+  display: none;
+}
+
+.about {
+  margin-bottom: 80px;
+}
+
+.map_link {
+  min-height: 400px;
+}
+
+.email {
+  font-family: Monospace;
 }

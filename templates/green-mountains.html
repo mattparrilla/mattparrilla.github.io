@@ -4,6 +4,10 @@
 <link href="{{ url_for('static', filename='css/maps.css') }}" rel="stylesheet">
 {% endblock %}
 
+{% block banner %}
+<img class="banner" src="{{ url_for('static', filename='img/maps/mansfield_region_banner.png') }}" alt="Mansfield region banner"></img>
+{% endblock %}
+
 {% block content %}
   <div class="row post">
     <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
@@ -11,52 +15,50 @@
         <h1>Green Mountain Maps</h1>
         <h2>Winter in High Definition</h2>
       </div>
-      <div id="body">
-        <p><strong>The Northern Green Mountains are home to some of the best tree skiing
-        this side of Hokkaido.</strong> For the first time, they can be explored in high definition
-        maps with elevation resolution 10 times better than any previously available
-        and with tree-type classification accurate to a half-meter.</p>
-        <p>Click on any map to view it in full resolution. Happy hunting.</p>
 
-        <h3>Mount Mansfield Region</h3>
-        <img class="img-responsive" src="{{ url_for('static', filename='img/winooski_to_lamoille_1000.png') }}" alt="Green mountains, Winooski to Lamoille"></img>
-        <p class="caption">The Green Mountains from the Winooski to the Lamoille River.</p>
-
-        <h3>Stowe</h3>
-        <img class="img-responsive" src="{{ url_for('static', filename='img/stowe_1000.png') }}" alt="Stowe Mountain Resort"></img>
-        <p class="caption">Stowe Mountain Resort</p>
-
-        <h3>Smugglers Notch</h3>
-        <img class="img-responsive" src="{{ url_for('static', filename='img/smuggs_1000.png') }}" alt="Smugglers Notch">
-        <p class="caption">Smugglers Notch</p>
-
-        <h3>Bolton Valley</h3>
-        <img class="img-responsive" src="{{ url_for('static', filename='img/bolton_1000.png') }}" alt="Bolton Valley in the late day sun"></img>
-        <p class="caption">Bolton Valley in the late day sun.</p>
-
-        <h3>Bolton to Trapps</h3>
-        <img class="img-responsive" src="{{ url_for('static', filename='img/bolton_to_trapps_1000.png') }}" alt="Bolton to Trapps"></img>
-        <p class="caption">Bolton to Trapps</p>
-
-        <h3>Want More?</h3>
-        <p>Provide your email to be notified when print maps are available or
-        new maps are made public.</p>
-        <form class="form-inline">
-          <div class="form-group">
-            <label for="email">Enter your email</label>
-            <input type="email" class="form-control" id="email" placeholder="jon.snow@pow.com">
+      <p><strong>The Green Mountains are home to some of the best tree skiing
+      in the Northeast.</strong> For the first time, they can be explored in high definition
+      maps with elevation resolution 10 times better than any previously available
+      and with tree-type classification accurate to a half-meter.</p>
+      <p>Click on any map to view it in full resolution. Enjoy!</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      {% for name, obj in maps.items() %}
+        {# if odd number index (jinja loop is 1-indexed, start row #}
+        {% if loop.index % 2 %}
+          <div class="row">
+        {% endif %}
+        <div class="col-md-6">
+          <div class="map_link">
+            <a href="{{ url_for('map', title=name) }}" alt="{{ obj.title }} map">
+              <h3>{{ obj.title }}</h3>
+              <img class="img-responsive" src="{{ url_for('static', filename=obj.social_image) }}" alt="{{ obj.description }}"></img>
+            </a>
           </div>
-        </form>
-        
-        <h3>About The Data</h3>
-        <p>These maps were derived from public data provided by the
-          <a href=https://vcgi.vermont.gov/" alt="VCGI homepage">Vermont Center
-          for Geograhic Information</a>. I used 0.7m resolution DEM data to generate
-          hillshade, 0.5m resolution Tree Canopy data to color the landscape, the
-          E-911 data for roads and trails.
-        </p>
-        <p>All styling done in QGIS on an underpowered laptop.</p>
-      </div>
+        </div>
+        {# if even number or if last item in list, close row #}
+        {% if not loop.index % 2 or loop.index == maps.items()|length %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  <div class="row about">
+    <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+
+      <h3>Want More?</h3>
+      {% include "map-get-email.html" %}
+      <p>Provide your email to be notified when print maps are available or
+      new maps are made public.</p>
+
+      <h3>Missing Something?</h3>
+      <p>Not seeing your favorite mountain on here? Let me know what you're looking
+        to see by sending me an email at <span class="email">matthew.parrilla@gmail.com</span> and
+        I'll look into it!</p>
+
+      {% include "about-lidar.html" %}
     </div>
   </div>
 {% endblock %}
