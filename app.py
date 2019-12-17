@@ -51,14 +51,10 @@ def map_index():
 @app.route("/green-mountain-maps/<title>/index.html")
 def map(title):
     post_properties = {}
-    print(title)
     with open("maps.json", "r") as f:
         posts = json.load(f)
         post_properties = posts[title]
     post_properties["url"] = request.path
-    print('\n')
-    print(title)
-    print(post_properties)
 
     if not post_properties.get("title", False):
         raise ValueError("Missing title entry for {}".format(title))

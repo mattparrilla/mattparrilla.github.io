@@ -1,12 +1,4 @@
-{% extends "base.html" %}
-
-{% block head %}
-<link href="{{ url_for('static', filename='css/maps.css') }}" rel="stylesheet">
-{% endblock %}
-
-{% block banner %}
-<img class="banner" src="{{ url_for('static', filename='img/maps/mansfield_region_banner.png') }}" alt="Mansfield region banner"></img>
-{% endblock %}
+{% extends "lidar_base.html" %}
 
 {% block content %}
   <div class="row post">
@@ -23,6 +15,7 @@
       <p>Click on any map to view it in full resolution. Enjoy!</p>
     </div>
   </div>
+
   <div class="row">
     <div class="col-xs-12">
       {% for name, obj in maps.items() %}
@@ -45,20 +38,26 @@
       {% endfor %}
     </div>
   </div>
-  <div class="row about">
+  <div class="row">
     <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
 
-      <h3>Want More?</h3>
-      {% include "map-get-email.html" %}
-      <p>Provide your email to be notified when print maps are available or
-      new maps are made public.</p>
+      <section>
+        <h3>Want More?</h3>
+        {% include "email-form.html" %}
+        <p>Provide your email to be notified when print maps are available or
+        new maps are made public.</p>
+      </section>
 
-      <h3>Missing Something?</h3>
-      <p>Not seeing your favorite mountain on here? Let me know what you're looking
-        to see by sending me an email at <span class="email">matthew.parrilla@gmail.com</span> and
-        I'll look into it!</p>
+      <section>
+        <h3>Missing Something?</h3>
+        <p>Not seeing your favorite mountain on here? Let me know what you're looking
+          to see by sending me an email at <span class="email">matthew.parrilla@gmail.com</span> and
+          I'll look into it!</p>
+        </section>
 
-      {% include "about-lidar.html" %}
+      <section>
+        {% include "about-lidar.html" %}
+      </section>
     </div>
   </div>
 {% endblock %}
