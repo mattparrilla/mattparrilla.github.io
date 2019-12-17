@@ -42,7 +42,7 @@ def map_index():
         maps = json.load(f)
     return render_template("green-mountains.html",
         url=request.path,
-        social_img="img/maps/mount_mansfield_region_1000.png",
+        social_img="img/maps/stowe_2500.png",
         description="High resolution elevation maps of the Green Mountains designed for winter.",
         title="Green Mountain Maps",
         maps=maps)
