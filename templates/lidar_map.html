@@ -1,0 +1,73 @@
+{% extends "lidar_base.html" %}
+
+{% block content %}
+  <div class="row post">
+    <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+      <div class="title-block">
+        <h1>{{ title }}</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </div>
+  </div>
+    <div id="body">
+      {% if coming_soon %}
+        <div class="row">
+          <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+          
+            <p class="lazy_matt">I haven't finished pulling the data together for this image.</p>
+
+            <section>
+              <h3>Want To Know When It's Ready?</h3>
+              {% include "email-form.html" %}
+              <p>The more folks are psyched about a place, the quicker I'll get to it!
+                Send me your email to be notified when the map is ready.</p>
+            </section>
+          </div>
+        </div>
+      {% else %}
+        <div class="row">
+          <div class="col-xs-12">
+            <section>
+              <img class="img-responsive" src="{{ url_for('static', filename=med_resolution_image) }}" alt="Green mountains, Winooski to Lamoille"></img>
+              <p class="caption">To download at full resolution ({{ full_resolution_size }}MB) <a href="{{ url_for('static', filename=full_resolution_image) }}" alt="full resolution of Mount Mansfield region map">click here.</a>
+            </section>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+            <section>
+              {% for row in body %}
+                <p>{{ row }}</p>
+              {% endfor %}
+            </section>
+
+            <section>
+              <h3>Want A Print Version?</h3>
+              {% include "email-form.html" %}
+              <p>If there's enough interest I'll print a run of maps. Send me your email
+                  to let me know that you're interested and to be notified when print maps
+                  become available.</p>
+            </section>
+          </div>
+        </div>
+      {% endif %}
+
+        
+      <div class="row">
+        <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+          <section>
+            {% include "about-lidar.html" %}
+          </section>
+
+          <hr>
+
+          <section>
+            <h3>More</h3>
+            <div class="view-more"><a href="{{ url_for('map_index') }}" alt="View all available green mountain maps">View all available Green Mountain Maps</a></div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+

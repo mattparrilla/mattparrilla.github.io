@@ -6,6 +6,7 @@ app = Flask(__name__)
 freezer = Freezer(app)
 
 app.config["FREEZER_DESTINATION_IGNORE"] = ["CNAME"]
+app.debug = True
 
 
 @app.route("/")
@@ -34,12 +35,51 @@ def post(title):
     return render_template("{}.html".format(title), **post_properties)
 
 
+@app.route("/green-mountain-maps/index.html")
+def map_index():
+    maps = {}
+    with open("maps.json", "r") as f:
+        maps = json.load(f)
+    return render_template("green-mountains.html",
+        url=request.path,
+        social_image="img/maps/mount_mansfield_region_1000_400.png",
+        description="High resolution elevation maps of the Green Mountains designed for winter.",
+        title="Green Mountain Maps",
+        maps=maps)
+
+
+@app.route("/green-mountain-maps/<title>/index.html")
+def map(title):
+    post_properties = {}
+    with open("maps.json", "r") as f:
+        posts = json.load(f)
+        post_properties = posts[title]
+    post_properties["url"] = request.path
+
+    if not post_properties.get("title", False):
+        raise ValueError("Missing title entry for {}".format(title))
+    if not post_properties.get("description", False):
+        raise ValueError("Missing description entry for {}".format(title))
+
+    return render_template("lidar_map.html", **post_properties)
+
+
+@freezer.register_generator
+def map():
+    with open("maps.json", "r") as f:
+        posts = json.load(f)
+        for title in posts.keys():
+            if title != "index":
+                yield {"title": title}
+
+
 @freezer.register_generator
 def post():
     with open("posts.json", "r") as f:
         posts = json.load(f)
         for title in posts.keys():
-            yield {"title": title}
+            if title != "index":
+                yield {"title": title}
 
 
 if __name__ == "__main__":
