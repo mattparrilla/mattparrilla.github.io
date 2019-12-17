@@ -14,6 +14,20 @@
     "full_resolution_size": "47.8"
   },
 
+  "stowe": {
+    "title": "Stowe",
+    "subtitle": "Vermont's Largest Alpine Zone",
+    "description": "High resolution elevation map of Stowe Mountain Resort, on the eastern side of Mount Mansfield",
+    "body": [
+      "The eastern side of Vermont's highest peak is home to Stowe Mountain Resort. Stowe's inbounds terrain is among the best in Vermont and it's lifts provide access to some of the gnarliest alpine skiing in the northeast."
+    ],
+    "social_img": "img/maps/stowe_2500.png",
+    "small_resolution_image": "img/maps/stowe_1000.png",
+    "med_resolution_image": "img/maps/stowe_2500.png",
+    "full_resolution_image": "img/maps/stowe_full_resolution.png",
+    "full_resolution_size": "47.1"
+  },
+  
   "smugglers-notch": {
     "title": "Smugglers Notch Resort",
     "subtitle": "Slow Lifts and Rad Sidecountry",
@@ -56,20 +70,6 @@
     "full_resolution_size": "49.7"
   },
 
-  "stowe": {
-    "title": "Stowe",
-    "subtitle": "Vermont's Largest Alpine Zone",
-    "description": "High resolution elevation map of Stowe Mountain Resort, on the eastern side of Mount Mansfield",
-    "body": [
-      "The eastern side of Vermont's highest peak is home to Stowe Mountain Resort. Stowe's inbounds terrain is among the best in Vermont and it's lifts provide access to some of the gnarliest alpine skiing in the northeast."
-    ],
-    "social_img": "img/maps/stowe_2500.png",
-    "small_resolution_image": "img/maps/stowe_1000.png",
-    "med_resolution_image": "img/maps/stowe_2500.png",
-    "full_resolution_image": "img/maps/stowe_full_resolution.png",
-    "full_resolution_size": "47.1"
-  },
-  
   "jay-peak": {
     "title": "Jay Peak",
     "subtitle": "Vermont's Snowiest Resort",

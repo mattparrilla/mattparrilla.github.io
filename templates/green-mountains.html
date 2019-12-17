@@ -22,7 +22,7 @@
       <div class="row">
     {% endif %}
       <div class="col-md-6">
-          <a href="{{ url_for('map', title=name) }}" alt="{{ obj.title }} map">
+          <a href="/green-mountain-maps/{{ name }}" alt="{{ obj.title }} map">
             <h3>{{ obj.title }}</h3>
             <div class="map_teaser">
               {% if obj.coming_soon %}<div class="coming_soon">Coming Soon</div>{% endif %}
