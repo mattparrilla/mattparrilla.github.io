@@ -2,13 +2,13 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>{{ title }}</title>
+    <title>{{ title }}{% if category %} | {{ category }}{% endif %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="{{ description }}">
     <meta name="author" content="@mattparrilla">
 
     <!-- Social Media Tags -->
-    <meta property="og:title" content="{{ title }}">
+    <meta property="og:title" content="{{ title }}{% if category %} | {{ category }}{% endif %}">
     <meta property="og:description" content="{{ description }}">
     <meta property="og:url" content="https://www.matthewparrilla.com{{ url }}">
     {% if social_img %}
@@ -18,7 +18,7 @@
       <meta property="og:image" content="https://www.matthewparrilla.com{{ url_for('static', filename='img/bolton.jpg') }}">
       <meta name="twitter:image" content="https://www.matthewparrilla.com{{ url_for('static', filename='img/bolton.jpg') }}">
     {% endif %}
-    <meta name="twitter:title" content="{{ title }}">
+    <meta name="twitter:title" content="{{ title }}{% if category %} | {{ category }}{% endif %}">
     <meta name="twitter:description" content="{{ description }}">
     <meta name="twitter:card" content="{% if social_img %}summary_large_image{% else %}summary{% endif %}">
     <meta name="twitter:site" content="mattparrilla">

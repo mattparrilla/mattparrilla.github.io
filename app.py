@@ -61,6 +61,8 @@ def map(title):
     if not post_properties.get("description", False):
         raise ValueError("Missing description entry for {}".format(title))
 
+    post_properties["category"] = "Green Mountain Maps"
+
     return render_template("lidar_map.html", **post_properties)
 
 

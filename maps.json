@@ -75,7 +75,7 @@
     "subtitle": "Vermont's Snowiest Resort",
     "description": "High resolution elevation map of Jay Peak Resort and surroundings.",
     "coming_soon": true,
-    "small_resolution_image": "img/maps/mount_mansfield_region_1000.png",
+    "small_resolution_image": "img/maps/stowe_1000.png",
     "social_image": "img/maps/stowe_1000.png"
   },
 
@@ -84,7 +84,7 @@
     "subtitle": "Vermont's Longest Ski Season",
     "description": "High resolution elevation map of Killington Ski Resort",
     "coming_soon": true,
-    "small_resolution_image": "img/maps/mount_mansfield_region_1000.png",
+    "small_resolution_image": "img/maps/stowe_1000.png",
     "social_image": "img/maps/stowe_1000.png"
   },
 
@@ -93,7 +93,7 @@
     "subtitle": "Vermont's Highest Undeveloped Peak",
     "description": "High resolution elevation map of Camel's Hump",
     "coming_soon": true,
-    "small_resolution_image": "img/maps/mount_mansfield_region_1000.png",
+    "small_resolution_image": "img/maps/stowe_1000.png",
     "social_image": "img/maps/stowe_1000.png"
   },
 
@@ -102,7 +102,7 @@
     "subtitle": "The Terrain Feature, not the Resort",
     "description": "High resolution elevation map of Smuggler's Notch",
     "coming_soon": true,
-    "small_resolution_image": "img/maps/mount_mansfield_region_1000.png",
+    "small_resolution_image": "img/maps/stowe_1000.png",
     "social_image": "img/maps/stowe_1000.png"
   },
 
@@ -111,6 +111,7 @@
     "subtitle": "The Undeveloped Side of Vermont's Highest Peak",
     "description": "High resolution elevation map of the undeveloped side of Mount Mansfield, Vermont's Highest Peak",
     "coming_soon": true,
+    "small_resolution_image": "img/maps/stowe_1000.png",
     "social_image": "img/maps/stowe_1000.png"
   }
 }

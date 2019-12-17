@@ -26,7 +26,7 @@
             <h3>{{ obj.title }}</h3>
             <div class="map_teaser">
               {% if obj.coming_soon %}<div class="coming_soon">Coming Soon</div>{% endif %}
-              <img class="img-responsive" src="{{ url_for('static', filename=obj.social_image) }}" alt="{{ obj.description }}"></img>
+              <img class="img-responsive" src="{{ url_for('static', filename=obj.small_resolution_image) }}" alt="{{ obj.description }}"></img>
             </div>
           </a>
       </div>
