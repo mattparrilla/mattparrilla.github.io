@@ -14,23 +14,9 @@
     "full_resolution_size": "47.8"
   },
 
-  "stowe": {
-    "title": "Stowe",
-    "subtitle": "Vermont's Largest Alpine Zone",
-    "description": "High resolution elevation map of Stowe Mountain Resort, on the eastern side of Mount Mansfield",
-    "body": [
-      "The eastern side of Vermont's highest peak is home to Stowe Mountain Resort. Stowe's inbounds terrain is among the best in Vermont and it's lifts provide access to some of the gnarliest alpine skiing in the northeast."
-    ],
-    "social_image": "img/maps/stowe_2500.png",
-    "small_resolution_image": "img/maps/stowe_1000.png",
-    "med_resolution_image": "img/maps/stowe_2500.png",
-    "full_resolution_image": "img/maps/stowe_full_resolution.png",
-    "full_resolution_size": "47.1"
-  },
-
   "smugglers-notch": {
-    "title": "Smuggs",
-    "subtitle": "Slow Lifts and Epic Sidecountry",
+    "title": "Smugglers Notch Resort",
+    "subtitle": "Slow Lifts and Rad Sidecountry",
     "description": "High resolution elevation map of Smugglers Notch Resort",
     "body": [
     ],
@@ -46,7 +32,7 @@
     "subtitle": "It's Lit",
     "description": "High resolution elevation map of Bolton Valley Resort",
     "body": [
-      "This map shows Bolton lit up by the early spring sun. Late in the season Bolton shines when its west-facing slopes catch the late afternoon sun and you can finish your day skiing into the sunset with Lake Champlain and the Adirondacks laid out before you."
+      "This map shows Bolton lit up by the spring sun. Late in the season, Bolton shines when its west-facing slopes catch the late afternoon sun and you can finish your day skiing into the sunset with Lake Champlain and the Adirondacks laid out before you."
     ],
     "social_image": "img/maps/bolton_valley_2500.png",
     "small_resolution_image": "img/maps/bolton_valley_1000.png",
@@ -60,7 +46,7 @@
     "subtitle": "Section 22 of the Catamount Trail",
     "description": "High resolution elevation map of Bolton to Trapps, section 22 of the catamount trail",
     "body": [
-      "The Catamount Trail stretches the entire length of the state of Vermont, winding its way along the sping of the Green Mountains. The trail reaches its highest point along the Bolton to Trapps trail, which is also one of its more famous sections.",
+      "The Catamount Trail stretches the entire length of the state of Vermont, winding its way along the spine of the Green Mountains. The trail reaches its highest point along the Bolton to Trapps trail, which is also one of its more gnarly sections.",
       "The tour starts at the Bolton Valley Nordic Center and ends at Trapp Family Lodge. A nordic pass is required from both resorts."
     ],
     "social_image": "img/maps/bolton_to_trapps_2500.png",
@@ -70,6 +56,20 @@
     "full_resolution_size": "49.7"
   },
 
+  "stowe": {
+    "title": "Stowe",
+    "subtitle": "Vermont's Largest Alpine Zone",
+    "description": "High resolution elevation map of Stowe Mountain Resort, on the eastern side of Mount Mansfield",
+    "body": [
+      "The eastern side of Vermont's highest peak is home to Stowe Mountain Resort. Stowe's inbounds terrain is among the best in Vermont and it's lifts provide access to some of the gnarliest alpine skiing in the northeast."
+    ],
+    "social_image": "img/maps/stowe_2500.png",
+    "small_resolution_image": "img/maps/stowe_1000.png",
+    "med_resolution_image": "img/maps/stowe_2500.png",
+    "full_resolution_image": "img/maps/stowe_full_resolution.png",
+    "full_resolution_size": "47.1"
+  },
+  
   "jay-peak": {
     "title": "Jay Peak",
     "subtitle": "Vermont's Snowiest Resort",
