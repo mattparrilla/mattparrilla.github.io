@@ -11,8 +11,3 @@ Generate HTML:
 ```
 $ python3 app.py
 ```
-
-Push content in `build` directory to `master`
-```
-$ git subtree push --prefix build origin master
-```
