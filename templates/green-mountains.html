@@ -1,0 +1,61 @@
+{% extends "lidar_base.html" %}
+
+{% block content %}
+  <div class="row post">
+    <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+      <div class="title-block">
+        <h1>Green Mountain Maps</h1>
+        <h2>Winter in High Definition</h2>
+      </div>
+
+      <p><strong>The Green Mountains are home to some of the best tree skiing
+      in the Northeast.</strong> For the first time, they can be explored in high definition
+      maps with elevation resolution 20 times better than any previously available
+      and with tree-type classification accurate to a half-meter.</p>
+      <p>Click on any map to view. Enjoy!</p>
+    </div>
+  </div>
+
+  {% for name, obj in maps.items() %}
+    {# if odd number index (jinja loop is 1-indexed, start row #}
+    {% if loop.index % 2 %}
+      <div class="row">
+    {% endif %}
+      <div class="col-md-6">
+          <a href="/green-mountain-maps/{{ name }}" alt="{{ obj.title }} map">
+            <h3>{{ obj.title }}</h3>
+            <div class="map_teaser">
+              {% if obj.coming_soon %}<div class="coming_soon">Coming Soon</div>{% endif %}
+              <img class="img-responsive" src="{{ url_for('static', filename=obj.small_resolution_image) }}" alt="{{ obj.description }}"></img>
+            </div>
+          </a>
+      </div>
+    {# if even number or if last item in list, close row #}
+    {% if not loop.index % 2 or loop.index == maps.items()|length %}
+      </div>
+    {% endif %}
+  {% endfor %}
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+
+      <section>
+        <h3>Want More?</h3>
+        {% include "email-form.html" %}
+        <p>Provide your email to be notified when print maps are available or
+        new maps are made public.</p>
+      </section>
+
+      <section>
+        <h3>Missing Something?</h3>
+        <p>Not seeing your favorite mountain on here? Let me know what you're looking
+          to see by sending me an email at <span class="email">matthew.parrilla@gmail.com</span> and
+          I'll look into it!</p>
+        </section>
+
+      <section>
+        {% include "about-lidar.html" %}
+      </section>
+    </div>
+  </div>
+{% endblock %}
+

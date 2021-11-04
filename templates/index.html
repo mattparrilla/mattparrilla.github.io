@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="intro row">
+    <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+      <h1>Hi, I'm Matt.</h1>
+      <div class="introduction">
+        <p><strong>I love to tell stories on the web,</strong> taking data and shaping it into something compelling through analysis and visualization.</p>
+        <p>I've worked as a robotics engineer, was the lead developer of a web analytics reporting application with over 10,000 users, and have a degree in physics. Now I'm the co-founder of a <a href="https://ramblemaps.com">wall map company</a>.</p>
+      </div>
+      <hr>
+    </div>
+  </div>
+
+  <div class="portfolio row">
+    <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+      <h2 id="recent-work">My Recent Work</h2>
+      
+      <div class="project">
+        <h3><a href="https://ramblemaps.com/why-does-sunlight-come-from-north">Why Does Sunlight Come From The North In Shaded Relief Maps?</a></h3>
+        <p class="date">July 2021</p>
+        <p>An explanation (with pictures) of how human perception influences the position of sunlight in shaded relief maps.</p>
+      </div>
+      <hr>
+
+      <div class="project">
+        <h3><a href="https://chartingcovid.com">COVID in the Counties</a></h3>
+        <p class="date">April 2020</p>
+        <p>A data visualization showing the spread and growth of COVID-19 at the county-level during the early days of the pandemic. At the time of publication, there was no way to see this data broken out at the county-level. Shut down in September 2020.</p>
+      </div>
+      <hr>
+
+      <div class="project">
+        <h3><a href="https://ramblemaps.com">Ramble Maps</a></h3>
+        <p class="date">January 2020</p>
+        <p>High resolution maps of mountains, states, national parks, and other beautiful terrain to hang on your wall. We use the highest resolution data available and print maps using the latest photographic printing techniques to produce maps at the limit of what the human eye can perceive.</p>
+      </div>
+      
+      <hr>
+      <div class="project">
+        <h3><a href="/post/how-to-communicate-as-you-scale-your-org">How To Communicate As You Scale Your Org</a></h3>
+        <p class="date">November 2019</p>
+        <p>Embracing a written culture can help your org get through growing pains as you scale from small to medium sized.</p>
+      </div>
+      
+      <hr>
+      <div class="project">
+        <h3><a href="/post/inertial-navigation-marine-robotics">Inertial Navigation In Marine Robotics</a></h3>
+        <p class="date">May 2019</p>
+        <p>An introduction to inertial navigation in marine robotics, from the sensors used to the mathematical tools needed to fuse that sensor data into a navigation solution</p>
+      </div>
+      
+      <hr>
+
+      <div class="project">
+        <h3><a href="https://bugbucket.io/blog/email-only-auth">An Email-Only Authentication Scheme</a></h3>
+        <p class="date">October 2018</p>
+        <p>A post on <a href="https://bugbucket.io">bugbucket.io</a> outlining a JSON Web Token based, email-only
+          authentication scheme that I used for that application.</p>
+      </div>
+      
+      <hr>
+      
+      <div class="project">
+        <h3><a href="https://bugbucket.io">BugBucket</a></h3>
+        <p class="date">September 2018</p>
+        <p>BugBucket is a Github app that allows private repositories to open their Github issues to users outside of their organization.
+          It is intended to provide a lightweight way for companies to manage user feedback, bug reports, and
+          feature requests.</p>
+      </div>
+      
+      <hr>
+
+      <div class="project">
+        <h3><a href="/presentations/complexity-iceberg">Beyond The Fat Arrow: Functional Programming In Javascript</a></h3>
+        <p class="date">April 2016</p>
+        <p>A quick survey of functional concepts and a discussion of the perils of mutating state and how you can use immutable data structures to protect against unwanted side effects in your javascript today.</p>
+      </div>
+
+      <hr>
+
+      <div class="project">
+        <h3><a href="https://github.com/mattparrilla/lake-brite">Programmer Artist: LakeBrite at the ECHO Center</a></h3>
+        <p class="date">December 2015</p>
+        <p>LakeBrite is a 7,500 node, 3D LED matrix installed at the ECHO Center in 2015. As the first "programmer artist" for the installation, I helped design the interface to the LEDs as well as developed the first handful of data visualizations used in the 24ft x 9ft x 5ft display.</p>
+      </div>
+
+      <hr>
+
+      <div class="project">
+        <h3><a href="/post/improving-the-weather-on-twitter/">Improving The Weather On Twitter: Using NWS Data To Make Animated Radar GIFs</a></h3>
+        <p class="date">July 2015</p>
+        <p>How I used National Weather Service data and imagery to make a network of twitter bots that post regional radar GIFs with improved palettes and projections.</p>
+      </div>
+
+      <hr>
+
+      <div class="project">
+        <h3><a href="/post/negotiation-http2-alpn-tls-handshake/">Negotiating HTTP/2: ALPN And The TLS Handshake</a></h3>
+        <p class="date">April 2015</p>
+        <p>The <a href="https://tools.ietf.org/html/draft-ietf-httpbis-http2-17">HTTP/2 specification</a> was <a href="https://www.mnot.net/blog/2015/02/18/http2">approved</a> on February 18, 2015 and implementation has already begun. In this post, I explain how HTTP/2 will be negotiated in today's web.</p>
+      </div>
+
+      <hr>
+
+      <div class="project">
+        <h3><a href="http://mattparrilla.github.io/mansfield-stake">Mt. Mansfield Snow Depth</a></h3>
+        <p class="date">February 2015</p>
+        <p>A data visualization that allows users to compare the snow depth on Mt. Mansfield for a particular season against the historical record. This chart was used as an example of an effective visualization in <a href="https://hbr.org/product/good-charts-the-hbr-guide-to-making-smarter-more-persuasive-data-visualizations/15005-PBK-ENG">"Good Charts"</a> by the Harvard Business Review, was retweeted by <a href="http://en.wikipedia.org/wiki/Edward_Tufte">Edward Tufte</a> (who wrote <a href="http://www.amazon.com/The-Visual-Display-Quantitative-Information/dp/0961392142">the book</a> on data visualization), and was <a href="http://knowmore.washingtonpost.com/2015/02/20/60-years-of-snowfall-visualized/">shared</a> by the Washington Post on their "Know More" blog.</p>
+      </div>
+
+      <hr>
+
+      <div class="project">
+        <h3><a href="http://twitter.com/wxgif">wxGIF: Beautiful Radar Made For Twitter</a></h3>
+        <p class="date">January 2015</p>
+        <p>A network of 15 Twitter bots that tweeted animated radar GIFs every 2 hours (until I shut down the service in April 2017). I took static NWS images, changed the projection, basemap, and palette&mdash;making it color-blind friendly and more intuitive&mdash;and strung the images together into GIFs.</p>
+      </div>
+
+      <hr>
+
+      <div class="project">
+        <h3><a href="http://www.vpr.net/apps/lyme-disease">Lyme On The Rise: A Look At The Numbers</a></h3>
+        <p class="date">July 2014</p>
+        <p>A data project for Vermont Public Radio on the growth of Lyme Disease over the last 15 years. Includes an interactive bar graph of New England and small multiples of Vermont and the continental United States showing the infection's expanded range. Published in the open with links to the data.</p>
+      </div>
+
+      <hr>
+
+      <div class="project">
+        <h3><a href="http://www.vpr.net/apps/health/network">Under The Hood</a></h3>
+        <p class="date">November 2013</p>
+        <p>A news app that explained how Vermont Health Connect works and&mdash;when it didn't&mdash;showed where it was broken.</p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
