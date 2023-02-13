@@ -1,13 +1,32 @@
 # matthewparrilla.com
 
-Note, the default branch for this repo is `source` not `master`. This is because,
-as a "User" page, Github pages needs to serve from the root of the `master` branch.
-The `source` branch contains the code that generates the HTML.
+## Relevant commands
 
-## To Publish
+Activate virtual environment:
+
+```
+source venv/bin/activate
+```
 
 Generate HTML:
 
 ```
 $ python3 app.py
 ```
+
+Generate CSS from sass:
+
+```
+sass static/sass/style.scss static/css/style.css
+```
+
+Run project locally:
+```
+cd docs/
+python -m http.server
+```
+
+## To publish
+
+Just commit and push `master` branch. The `docs/` directory is the source.
+
