@@ -1750,7 +1750,7 @@ html, body {
   background: #fff;
   height: 100%;
   font-size: 16px;
-  font-weight: 300; }
+  font-weight: 400; }
   @media (min-width: 768px) {
     html, body {
       font-size: 18px; } }
@@ -1775,6 +1775,13 @@ p {
 a {
   color: #3169c4;
   text-decoration: none !important; }
+
+.earth_at_night h1 {
+  margin-bottom: 15px !important; }
+.earth_at_night img {
+  margin: 40px 0; }
+.earth_at_night .menu_item {
+  font-family: monospace; }
 
 /*!
   Ionicons, v1.4.0

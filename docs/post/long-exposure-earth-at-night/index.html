@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>How To Fake A Long Exposure Photo of Earth At Night</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn how to fake a long-exposure photo of earth at night using Photoshop and publically available satellite imagery.">
+    <meta name="author" content="@mattparrilla">
+
+    <!-- Social Media Tags -->
+    <meta property="og:title" content="How To Fake A Long Exposure Photo of Earth At Night">
+    <meta property="og:description" content="Learn how to fake a long-exposure photo of earth at night using Photoshop and publically available satellite imagery.">
+    <meta property="og:url" content="https://www.matthewparrilla.com/post/long-exposure-earth-at-night/index.html">
+    
+      <meta property="og:image" content="https://www.matthewparrilla.com/static/img/long_exposure_earth_at_night.jpg">
+      <meta name="twitter:image" content="https://www.matthewparrilla.com/static/img/long_exposure_earth_at_night.jpg">
+    
+    <meta name="twitter:title" content="How To Fake A Long Exposure Photo of Earth At Night">
+    <meta name="twitter:description" content="Learn how to fake a long-exposure photo of earth at night using Photoshop and publically available satellite imagery.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="mattparrilla">
+    <link href="/static/css/style.css" rel="stylesheet">
+    <link href='//fonts.googleapis.com/css?family=Raleway:400,500,600,300,200|Roboto:300,400,500,600,300,100' rel='stylesheet' type='text/css'>
+    <link rel="shortcut icon" href="/static/favicon.ico">
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-31358980-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+    
+</head>
+<body>
+    <div id="top_border"></div>
+    
+    <div class="container">
+      
+  <div class="row post earth_at_night">
+    <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+      <div class="title-block">
+        <p class="date">February 13, 2023</p>
+        <h1>How To Fake A Long-Exposure Photo Of The Earth At Night</h1>
+      </div>
+      <div id="body">
+        <img
+          class="img-responsive"
+          src="/static/img/long_exposure_earth_at_night.jpg"
+          alt="Long exposure photo of earth at night"
+        />
+        <p>You're probably familiar with star trail photos, where a camera captures the stars as they circle around Polaris, forming trails. But have you ever seen a long-exposure photo of the earth at night, with her lights forming trails of their own? Me neither! So I made one. Here's how I did it using Photoshop.</p>
+        <p>To fake a long exposure shot of the earth at night, we need a sequence of frames that we'll blend together.</p>
+        <p>NASA's Suomi NPP captures such imagery. On the <a href="https://earthobservatory.nasa.gov/features/NightLights">Earth Observatory page "Earth At Night"</a> they've got a video of a full rotation of the earth at night from 2016 that we'll use to create our long exposure. Here's a <a href="https://earthobservatory.nasa.gov/ContentFeature/NightLights/images/media/BlackMarble_2016_rotate_1080p.mov" target="_blank">direct link</a> to that video.</p>
+        <img
+          class="img-responsive"
+          src="/static/img/earth_at_night.gif"
+          alt="Animation of earth rotating at night"
+        />
+        <p>Armed with our source data, we're ready to make our image. Here's how to do it.</p>
+
+        <h3>Import The Video Into Photoshop</h3>
+        <p>Open Photoshop and choose <span class="menu_item">File > Import > Video Frames Into Layers</span> and select the video. (Download the video from <a href="https://earthobservatory.nasa.gov/ContentFeature/NightLights/images/media/BlackMarble_2016_rotate_1080p.mov" target="_blank">here</a> if you haven't already.)</p>
+
+        <h3>Make All Layers Visible</h3>
+        <p>Once all the layers have loaded, we'll need to make sure they are all visible.</p>
+        <p>Click on the first layer, then scroll all the way to the bottom, hold down shift and click on the last layer. Then go to the <span class="menu_item">Layer</span> menu and choose <span class="menu_item">Hide Layers.</span> Then, back into the <span class="menu_item">Layer</span> menu and click <span class="menu_item">Show Layers</span>. You should now have the layer visibility icon (an eye) next to each layer.</p>
+        <p>Yes, this step is a bit cumbersome. If you know of a better way to show all layers let me know!</p>
+
+        <h3>Convert To A Smart Object</h3>
+        <p>With all of the layers still selected, right click on the selection and choose <span class="menu_item">Convert To Smart Object.</span></p>
+
+        <h3>Stack The Layers</h3>
+        <p>Now that we've got a smart object, go to <span class="menu_item">Layer > Smart Objects > Stack Mode</span> and select <span class="menu_item">Maximum</span>.</p>
+        <img
+          class="img-responsive"
+          src="/static/img/earth_pre_motion_blur.jpg"
+          alt="Earth at night before motion blur"
+        />
+        <p>This will pull the brightest pixel from all the layers to the top. Now we can see the lights tracing their path around the earth.</p>
+        <p>But since this isn't a true long-exposure shot, we don't get those nice trails as the earth spins around, instead we see the lights as little dots for each frame.</p>
+
+        <h3>Add Some Motion Blur</h3>
+        <p>To fix this we'll add some motion blur. Go to <span class="menu_item">Filter > Blur > Motion Blur</span>. I found a blur of 60 pixels gave me a nice effect that turned our dots into lovely trails.</p>
+        <img
+          class="img-responsive"
+          src="/static/img/earth_with_blur_no_clip.jpg"
+          alt="Earth at night with motion blur, before clipping."
+        />
+        <p>But now we've fuzzed out the shape of earth. Let's do something about that.</p>
+
+        <h3>Create Layer At The Bounds of Earth</h3>
+        <p>First, we'll undo our motion blur change. We'll bring it back after creating our new layer.</p>
+        <p>Next, select a contiguous area using the magic wand tool targeting the black of space. Our goal is to create a selection of everything but earth. I found a tolerance of 4 got me the selection that I was looking for.</p>
+        <p>Go ahead and copy this selection and paste it into a new layer, putting it on top of our stacked smart object. It should look exactly the same as it did before we added motion blur.</p>
+
+        <h3>Re-Add Motion Blur</h3>
+        <p>Now that we've got our space layer, we can re-add the motion blur. Now, we just make sure our space layer is visible and on top of our motion blurred layer and voila, we've now got a faked long-exposure shot of earth at night!</p>
+        <img
+          class="img-responsive"
+          src="/static/img/earth_at_night_clipped_and_blurred.jpg"
+          alt="Earth at night clipped and blurred"
+        />
+
+        <h3>That's It!</h3>
+        <p>You'll of course notice that my image at the top doesn't look like the image we just created. It's true, I did some extra Photoshopping, changing the colors and adding a background of stars and some atmospheric glow around the edges of earth. I leave improving our image as an exercise to the reader!</p>
+
+
+        </div>
+
+      <div class="row featured-stuff">
+  <h2>Other Stuff By Matt</h2>
+  <div class="col-md-6 feature">
+      <a href="https://ramblemaps.com/if-google-earth-were-designed-for-wall" alt="If Google Earth Were Designed For Your Wall">
+          <img class="img-responsive img-bordered" src="/static/img/google-earth-for-your-wall.jpg" alt="Side angle photo of Mount Rainier acrylic print">
+          <h4>If Google Earth Were Designed For Your Wall</h4>
+      </a>
+      <p>The window that Google Earth provides into our world is mind-blowing and the imagery is fantastic. But the very thing that makes it so amazing - that you can look anywhere in the world in great detail on demand - is a design constraint that leaves room for improvement when the goal is to display a large format image on the wall.</p>
+  </div>
+  <div class="col-md-6 feature">
+      <a href="https://ramblemaps.com/why-does-sunlight-come-from-north" alt="Why does sunlight come from the north in shaded relief maps?">
+          <img class="img-responsive img-bordered" src="/static/img/escher-cubes.jpg" alt="Escher cubes">
+          <h4>Why Does Sunlight Come From The North In Shaded Relief Maps?</h4>
+          <p>If you've got a sharp eye and a knack for details, you might have noticed the sun coming from an unrealistic angle in most shaded relief maps: the north. In this article we explain why.</p>
+      </a>
+  </div>
+  <p class="centered-with-space">See the rest - <a href="/">matthewparrilla.com</a></p>
+</div>
+    </div>
+  </div>
+
+    </div>
+
+    <footer>
+    <div class="container">
+        <div class="contact row">
+            <a href="http://twitter.com/mattparrilla" alt="Matt's twitter profile" class="service col-sm-4">
+                <p class="icon"><i class="icon ion-social-twitter"></i></p>
+                <p>@mattparrilla</p>
+            </a>
+            <a href="http://github.com/mattparrilla" alt="Matt's github profile" class="service col-sm-4">
+                <p class="icon"><i class="icon ion-social-github"></i></p>
+                <p>mattparrilla</p>
+            </a>
+            <a href="mailto:me@matthewparrilla.com" alt="Email Matt" class="service email col-sm-4">
+                <p class="icon"><i class="icon ion-email"></i></p>
+                <p>me@matthewparrilla.com</p>
+            </a>
+        </div>
+    </div>
+</footer>
+    
+</body>
+</html>

@@ -3,3 +3,5 @@ node_modules
 pages/
 npm-debug.log
 __pycache__
+*Zone.Identifier
+.sass-cache

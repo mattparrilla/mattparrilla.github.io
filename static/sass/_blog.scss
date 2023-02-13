@@ -22,7 +22,7 @@ html, body {
     background: #fff;
     height: 100%;
     font-size: 16px;
-    font-weight: 300;
+    font-weight: 400;
     @media (min-width: $tablet) {
         font-size: 18px;
     }
@@ -54,3 +54,14 @@ a {
     text-decoration: none !important;
 }
 
+.earth_at_night {
+    h1 {
+        margin-bottom: 15px !important;
+    }
+    img {
+        margin: 40px 0;
+    }
+    .menu_item {
+        font-family: monospace;
+    }
+}
