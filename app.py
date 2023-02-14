@@ -6,6 +6,7 @@ app = Flask(__name__)
 freezer = Freezer(app)
 
 app.config["FREEZER_DESTINATION_IGNORE"] = ["CNAME"]
+app.config["FREEZER_STATIC_IGNORE"] = ["*.scss"]
 app.config["FREEZER_DESTINATION"] = "docs"
 app.debug = True
 
