@@ -21,6 +21,11 @@ def index():
     return render_template("index.html", **post_properties)
 
 
+@app.route("/summer-of-protocols-resume.html")
+def sop_resume():
+    return render_template("sop_resume.html", url=request.path)
+
+
 @app.route("/post/<title>/index.html")
 def post(title):
     post_properties = {}

@@ -3981,18 +3981,21 @@ a {
       .intro h1 {
         font-size: 72px; } }
 
-.portfolio {
+.portfolio, .resume {
   margin-bottom: 80px; }
-  .portfolio h2 {
+  .portfolio h2, .resume h2 {
     margin-bottom: 30px; }
-  .portfolio .project h3 {
+  .portfolio .project h3, .resume .project h3 {
     margin-bottom: 0px; }
-  .portfolio .project p.date {
+  .portfolio .project p.date, .resume .project p.date {
     font-size: 18px;
     color: #75787b;
     margin-bottom: 5px; }
-  .portfolio .project p {
+  .portfolio .project p, .resume .project p {
     line-height: 1.4em; }
+
+.resume .project {
+  margin-bottom: 30px; }
 
 .strong_lead {
   font-weight: 500; }

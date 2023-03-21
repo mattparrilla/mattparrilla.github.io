@@ -27,7 +27,7 @@
     }
 }
 
-.portfolio {
+.portfolio, .resume {
     margin-bottom: 80px;
     h2 {
         margin-bottom: 30px;
@@ -45,6 +45,10 @@
             line-height: 1.4em;
         }
     }
+}
+
+.resume .project {
+    margin-bottom: 30px;
 }
 
 .strong_lead {
