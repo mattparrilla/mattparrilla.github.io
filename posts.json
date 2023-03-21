@@ -1,8 +1,13 @@
 {
   "index": {
     "title": "Personal website of Matt Parrilla",
-    "description": "Data visualizations, side projects, and random musings of an embedded cultural anthropologist",
+    "description": "Data visualizations, side projects, and random musings.",
     "social_img": "img/harvest_moon.png"
+  },
+  "sop_resume": {
+    "title": "Resume of Matt Parrilla",
+    "description": "The resume of Matt Parrilla for the Summer of Protocols Core Researcher position. Matt wants to create a protocol for connecting a wallet to a physical location.",
+    "social_img": "img/long_exposure_earth_at_night.jpg"
   },
   "long-exposure-earth-at-night": {
     "title": "How To Fake A Long Exposure Photo of Earth At Night",

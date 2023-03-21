@@ -23,6 +23,7 @@ def index():
 
 @app.route("/summer-of-protocols-resume.html")
 def sop_resume():
+    description = "The resume of Matt Parrilla for the Summer of Protocols Core Researcher. Matt wants to create a protocol for connecting a wallet to a physical location."
     return render_template("sop_resume.html", url=request.path)
 
 
